@@ -1,0 +1,3 @@
+(executable
+  (name 001_nqueens_ocaml)
+	(ocamlopt_flags (:standard -O3)))
