@@ -23,9 +23,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Build and push Docker image
+      - name: Build Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: ./systems/ocaml
           push: false
-          tags: ocaml
+          tags: effecthandlers/effect-handlers:ocaml
+      
+      - name: Run benchmarks
+        run: |
+          make bench_ocaml
