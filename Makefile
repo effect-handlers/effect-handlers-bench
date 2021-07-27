@@ -1,7 +1,7 @@
 all: bench_ocaml
 
 sys_ocaml:
-	docker build -t effect-handlers:ocaml systems/ocaml
+	docker build -t effecthandlers/effect-handlers:ocaml systems/ocaml
 
 OCAML_BENCH_DIR=/source/benchmarks/ocaml
 OCAML_EXE_BASEDIR=$(OCAML_BENCH_DIR)/_build/default
@@ -20,7 +20,7 @@ bench_helper_ocaml:
 	cp ocaml.csv $(DIR)
 
 bench_ocaml: sys_ocaml
-	docker run -v $(shell pwd):/source effect-handlers:ocaml \
+	docker run -v $(shell pwd):/source effecthandlers/effect-handlers:ocaml \
 		make -C /source bench_helper_ocaml
 
 clean:
