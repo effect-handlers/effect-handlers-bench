@@ -1,4 +1,4 @@
-name: bench_system_ocaml
+name: Multicore OCaml
 
 # Controls when the workflow will run
 on:
