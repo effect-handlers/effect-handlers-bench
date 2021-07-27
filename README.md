@@ -1,5 +1,7 @@
 # effect-handlers-bench
 
+[![Multicore OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml)
+
 The project aims to build a repository of various `systems` that implement
 effect handlers, `benchmarks` implemented in those systems, and scripts to
 build the systems, run the benchmarks and produce the results.
