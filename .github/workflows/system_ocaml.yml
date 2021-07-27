@@ -1,4 +1,4 @@
-name: setup_system_ocaml
+name: bench_system_ocaml
 
 # Controls when the workflow will run
 on:
@@ -23,6 +23,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Setup OCaml system
+        run: |
+          make sys_ocaml
+          
       - name: Run OCaml benchmarks
         run: |
           make bench_ocaml
