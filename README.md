@@ -37,7 +37,7 @@ The currently included systems are:
 
 ## Benchmarks
 
-| Serial Numer | Benchmark | Description |
+| S.No. | Benchmark | Description |
 |--------------|-----------|-------------|
 | 1 | N-queens | Finds an assignment of queens on a chess board of size N x N |
 | 2 | Generator | Traverses a complete binary tree of depth 25 by yielding at every step |
