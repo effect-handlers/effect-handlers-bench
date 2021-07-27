@@ -6,7 +6,7 @@ The project aims to build a repository of various `systems` that implement
 effect handlers, `benchmarks` implemented in those systems, and scripts to
 build the systems, run the benchmarks and produce the results.
 
-A `system` may either be a programming language that have native support for
+A `system` may either be a programming language that has native support for
 effect handlers, or a library that embeds effect handlers in another programming
 language.
 
