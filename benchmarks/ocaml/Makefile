@@ -1,7 +1,4 @@
 all:
-	ls -l
-	whoami
-	mkdir _build
 	#Build OCaml benchmarks
 	opam exec --switch=4.12.0+domains+effects -- dune build
 	#Run OCaml benchmarks
