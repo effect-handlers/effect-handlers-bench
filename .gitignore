@@ -3,3 +3,4 @@ ocaml.csv
 *~
 *.swp
 _results
+\#*
