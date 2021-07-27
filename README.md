@@ -14,8 +14,8 @@ language.
 $ make bench_ocaml
 ```
 
-runs the OCaml benchmarks and produces `ocaml.csv` which contains the result of
-running the benchmarks.
+runs the OCaml benchmarks and produces `_results/ocaml.csv` which contains the
+result of running the Multicore OCaml benchmarks.
 
 ## Directory structure
 
@@ -63,8 +63,9 @@ at `systems/<awesome_system>/Dockerfile`. Having a dockerfile aids
 reproducibility and ensures that we can build the system from scratch natively
 on a machine if needed.
 
-The benchmarking chair will push the image to Docker Hub so that the CI does not
-have to build the image from scratch for every run.
+The benchmarking chair will push the image to [Docker
+Hub](https://hub.docker.com/repository/docker/effecthandlers/effect-handlers) so
+that systems are easily available for wider use.
 
 ### Benchmark
 
