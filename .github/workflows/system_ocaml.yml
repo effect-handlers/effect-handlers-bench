@@ -13,7 +13,7 @@ on:
 
 #From https://docs.github.com/en/actions/guides/publishing-docker-images
 jobs:
-  build-system-ocaml:
+  bench-system-ocaml:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -23,13 +23,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Build Docker image
+      - name: Build OCaml Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: ./systems/ocaml
           push: false
           tags: effecthandlers/effect-handlers:ocaml
       
-      - name: Run benchmarks
+      - name: Run OCaml benchmarks
         run: |
           make bench_ocaml
