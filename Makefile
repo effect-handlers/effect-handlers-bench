@@ -1,6 +1,6 @@
-all: bench_ocaml
-
 DOCKERHUB=effecthandlers/effect-handlers
+
+all: bench_ocaml
 
 sys_ocaml:
 	docker build -t $(DOCKERHUB):ocaml systems/ocaml
@@ -15,6 +15,13 @@ sys_links:
 bench_links:
 	docker run -v $(shell pwd):/source $(DOCKERHUB):links \
 		make -C /source/benchmarks/links
+
+sys_hia:
+	docker build -t $(DOCKERHUB):hia systems/hia
+
+bench_links:
+	docker run -v $(shell pwd):/source $(DOCKERHUB):hia \
+		make -C /source/benchmarks/hia
 
 clean:
 	rm -f _results *~
