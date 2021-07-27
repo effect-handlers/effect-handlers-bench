@@ -50,12 +50,21 @@ We use [hyperfine](https://github.com/sharkdp/hyperfine) to run the benchmarks.
 
 ## Contributing
 
+### Benchmarking chair
+
+The benchmarking chairs maintain the repository and ensure that the quality of
+the contributions. The tenure of the benchmarking chair is 6 months. The current
+benchmarking chair is [Daniel Hillerström](https://github.com/dhil).
+
 ### System
 
 If you wish to contribute a system `awesome_system`, please add a new dockerfile
 at `systems/<awesome_system>/Dockerfile`. Having a dockerfile aids
 reproducibility and ensures that we can build the system from scratch natively
 on a machine if needed.
+
+The benchmarking chair will push the image to Docker Hub so that the CI does not
+have to build the image from scratch for every run.
 
 ### Benchmark
 
@@ -64,9 +73,3 @@ If you wish to add a new benchmark `goat_benchmark` for system `awesome_system`,
 + Pick the next serial number for the benchmark `NNN`.
 + Add the benchmark sources under `benchmarks/<awesome_system>/NNN_<goat_benchmark>`.
 + Update the `Makefile` to build and run the benchmark.
-
-## Benchmarking chair
-
-The benchmarking chairs maintain the repository and ensure that the quality of
-the contributions. The tenure of the benchmarking chair is 6 months. The current
-benchmarking chair is [Daniel Hillerström](https://github.com/dhil).
