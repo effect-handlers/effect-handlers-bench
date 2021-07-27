@@ -27,6 +27,10 @@ jobs:
         # Ignore the failure of a step and avoid terminating the job.
         continue-on-error: true
         
+      - name: Add write permission to directories
+        run: |
+          find . -type d -exec chmod 777 {} \;
+          
       - name: Setup OCaml system
         run: |
           make sys_ocaml
