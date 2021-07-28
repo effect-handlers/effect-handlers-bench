@@ -5,7 +5,7 @@ queens on a N x N chess board. Effect handlers are utilised for backtracking
 search.
 
 **Input:** The program should take a single commandline argument which is the
-size `N` of the chess board.
+size `N` of the chess board. For benchmarking, the default input used is 13.
 
 **Output:** The program should print the number of solutions to the standard
 output.

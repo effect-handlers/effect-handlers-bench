@@ -5,7 +5,8 @@ binary tree of height `h` using a generator. The generator is implemented using
 effect handlers.
 
 **Input:** The program should take a single commandline argument which is the
-height of the complete binary tree.
+height of the complete binary tree. For benchmarking, the default input used is
+25.
 
 **Output:** The sum of the elements in the binary tree.
 
