@@ -1,10 +1,8 @@
 {- Inversion of control -}
 
-{-# LANGUAGE GADTs, TypeFamilies, RankNTypes,
-    MultiParamTypeClasses, FlexibleInstances, OverlappingInstances,
-    FlexibleContexts, UndecidableInstances, TypeOperators,
-    QuasiQuotes, DeriveFoldable, BangPatterns
-  #-}
+{-# LANGUAGE GADTs, TypeFamilies, MultiParamTypeClasses,
+    FlexibleInstances, FlexibleContexts, QuasiQuotes, DeriveFoldable,
+    BangPatterns #-}
 
 import System.Environment
 
