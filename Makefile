@@ -19,14 +19,14 @@ bench_koka: sys_koka
 sys_links:
 	docker build -t $(DOCKERHUB):links systems/links
 
-bench_links:
+bench_links: sys_links
 	docker run -v $(shell pwd):/source $(DOCKERHUB):links \
 		make -C /source/benchmarks/links
 
 sys_hia:
 	docker build -t $(DOCKERHUB):hia systems/hia
 
-bench_links:
+bench_hia: sys_hia
 	docker run -v $(shell pwd):/source $(DOCKERHUB):hia \
 		make -C /source/benchmarks/hia
 
