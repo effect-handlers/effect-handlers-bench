@@ -4,3 +4,8 @@ ocaml.csv
 *.swp
 _results
 \#*
+
+# Object files
+*.o
+*.hi
+*.dyn_o
