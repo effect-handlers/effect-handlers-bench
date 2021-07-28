@@ -16,7 +16,7 @@ import HIA.DesugarHandlers
 
 data Tree a = Leaf
             | Node (Tree a) a (Tree a)
-            deriving (Show, Foldable)
+            deriving Foldable
 
 completeTree :: Int -> Tree Int
 completeTree 0 = Leaf
