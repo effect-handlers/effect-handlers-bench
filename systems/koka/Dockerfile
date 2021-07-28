@@ -18,8 +18,12 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER ubuntu
 WORKDIR /home/ubuntu
 
-# Install Koka
+# Install hyperfine
 RUN sudo apt install -y wget git curl gcc make m4
+RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfine_1.11.0_amd64.deb
+RUN sudo dpkg -i hyperfine_1.11.0_amd64.deb
+
+# Install Koka
 RUN curl -sSL https://github.com/koka-lang/koka/releases/latest/download/install.sh | sh
 
 # Final steps
