@@ -1,14 +1,23 @@
+BUILD_DIRS = HIA 001_nqueens
+BUILD_DIRS_CLEAN = $(addsuffix clean,$(BUILD_DIRS))
+
 all:
 	# Compile
-	ghc -O2 001_nqueens.hs
+	ghc -O2 001_nqueens/NQueens.hs
 	# Run benchmarks
 	hyperfine --export-csv hia.csv \
-		'./001_nqueens 22'
+		'./001_nqueens/NQueens 13'
 	#Cleanup
-	rm *.hi *.dyn_hi *.o *.dyn_o
-	rm HIA/*.hi HIA/*.dyn_hi HIA/*.o HIA/*.dyn_o
-	rm 001_nqueens
+	make -C . clean
 	#Copy results to the root of the repository
 	mkdir -p ../../results
 	mv hia.csv ../../results
 
+clean: $(BUILD_DIRS_CLEAN)
+	rm -fv 001_nqueens/NQueens
+
+clean-build-dir:
+	rm -fv *.hi *.o *.dyn_hi *.dyn_o
+
+%clean: %
+	$(MAKE) -C $< -f $(shell pwd)/Makefile clean-build-dir
