@@ -3,7 +3,7 @@
 {-# LANGUAGE GADTs, TypeFamilies, RankNTypes,
     MultiParamTypeClasses, FlexibleInstances, OverlappingInstances,
     FlexibleContexts, UndecidableInstances, TypeOperators,
-    QuasiQuotes, DeriveFoldable
+    QuasiQuotes, DeriveFoldable, BangPatterns
   #-}
 
 import System.Environment
@@ -38,7 +38,7 @@ makeGen t = handleYield (forM_ t (\x -> yield x))
 
 accumulate :: Generator Int -> Int
 accumulate gen = loop 0 gen
-  where loop acc gen = case runGen gen of
+  where loop !acc gen = case runGen gen of
                          Nothing -> acc
                          Just (x, next) -> loop (acc + x) next
 
