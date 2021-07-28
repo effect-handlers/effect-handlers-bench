@@ -15,6 +15,8 @@ language.
 
 ## Quick start
 
+Ensure that [Docker](https://www.docker.com/) is installed on your system. Then,
+
 ```bash
 $ make bench_ocaml
 ```
