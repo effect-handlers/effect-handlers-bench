@@ -19,7 +19,7 @@ let rec find_solution n col : int list =
 
 let queens_count n =
   match find_solution n n with
-  | x -> 1
+  | _x -> 1
   | exception Fail -> 0
   | effect (Pick n) k ->
       let rec loop i acc =
