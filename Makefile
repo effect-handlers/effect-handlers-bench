@@ -19,7 +19,7 @@ bench_links:
 sys_hia:
 	docker build -t $(DOCKERHUB):hia systems/hia
 
-bench_links:
+bench_hia:
 	docker run -v $(shell pwd):/source $(DOCKERHUB):hia \
 		make -C /source/benchmarks/hia
 
