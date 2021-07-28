@@ -1,10 +1,12 @@
 # effect-handlers-bench
 
-The project aims to build a repository of various `systems` that implement
-effect handlers, `benchmarks` implemented in those systems, and scripts to
-build the systems, run the benchmarks and produce the results.
+[![Multicore OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml)
 
-A `system` may either be a programming language that have native support for
+The project aims to build a repository of `systems` that implement
+effect handlers, `benchmarks` implemented in those systems, and scripts to
+build the systems, run the benchmarks, and produce the results.
+
+A `system` may either be a programming language that has native support for
 effect handlers, or a library that embeds effect handlers in another programming
 language.
 
@@ -52,9 +54,11 @@ We use [hyperfine](https://github.com/sharkdp/hyperfine) to run the benchmarks.
 
 ### Benchmarking chair
 
-The benchmarking chairs maintain the repository and ensure that the quality of
-the contributions. The tenure of the benchmarking chair is 6 months. The current
-benchmarking chair is [Daniel Hillerström](https://github.com/dhil).
+The role of the benchmarking chair is to curate the repository, monitor the 
+quality of benchmarks, and to solicit new benchmarks and fixes to existing
+benchmarks. The tenure of the benchmarking chair is 6 months.
+
+Inaugural chair (2021/07/23 - 2022/01/22): [Daniel Hillerström](https://github.com/dhil)
 
 ### System
 
