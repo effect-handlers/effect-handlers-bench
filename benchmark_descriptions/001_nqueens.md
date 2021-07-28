@@ -10,7 +10,7 @@ size `N` of the chess board. For benchmarking, the default input used is 13.
 **Output:** The program should print the number of solutions to the standard
 output.
 
-Here are the sloutions to the various input sizes:
+Here are the solutions to the various input sizes:
 
 | N | Number of solutions |
 |---|---------------------|
