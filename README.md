@@ -49,7 +49,7 @@ We use Ubuntu 20.04 as the base image for building the systems.
 | S.No. | Benchmark | Description |
 |--------------|-----------|-------------|
 | 1 | N-queens | Counts the number of solutions to the N queens problem for board size N x N |
-| 2 | Generator | Traverses a complete binary tree of depth 25 by yielding at every step |
+| 2 | Generator | Count the sum of elements in a complete binary tree using a generator |
 
 We use [hyperfine](https://github.com/sharkdp/hyperfine) to run the benchmarks.
 
