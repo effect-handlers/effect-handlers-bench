@@ -19,9 +19,9 @@ data Tree a = Leaf
             deriving Foldable
 
 completeTree :: Int -> Tree Int
-completeTree 0 = Leaf
-completeTree n = let t = completeTree (n - 1) in
-                 Node t n t
+completeTree !0 = Leaf
+completeTree !n = let t = completeTree (n - 1) in
+                  Node t n t
 
 [operation|Yield a :: a -> ()|]
 
