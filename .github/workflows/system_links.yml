@@ -1,4 +1,4 @@
-name: Multicore OCaml
+name: Links
 
 # Controls when the workflow will run
 on:
@@ -13,7 +13,7 @@ on:
 
 #From https://docs.github.com/en/actions/guides/publishing-docker-images
 jobs:
-  bench-system-ocaml:
+  bench-system-links:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -31,10 +31,10 @@ jobs:
         run: |
           find . -type d -exec chmod 777 {} \;
 
-      - name: Setup OCaml system
+      - name: Setup Links system
         run: |
-          make sys_ocaml
+          make sys_links
 
-      - name: Run OCaml benchmarks
+      - name: Run Links benchmarks
         run: |
-          make bench_ocaml
+          make bench_links

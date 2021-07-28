@@ -1,4 +1,4 @@
-name: Multicore OCaml
+name: Handlers in Action
 
 # Controls when the workflow will run
 on:
@@ -13,7 +13,7 @@ on:
 
 #From https://docs.github.com/en/actions/guides/publishing-docker-images
 jobs:
-  bench-system-ocaml:
+  bench-system-hia:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -31,10 +31,10 @@ jobs:
         run: |
           find . -type d -exec chmod 777 {} \;
 
-      - name: Setup OCaml system
+      - name: Setup HIA system
         run: |
-          make sys_ocaml
+          make sys_hia
 
-      - name: Run OCaml benchmarks
+      - name: Run HIA benchmarks
         run: |
-          make bench_ocaml
+          make bench_hia
