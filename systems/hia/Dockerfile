@@ -31,7 +31,7 @@ RUN ghcup set ghc 8.6.5
 # Install cabal & HIA dependencies
 RUN ghcup install cabal
 RUN cabal update
-RUN cabal new-install --lib template-haskell mtl haskell-src-meta haskell-src-exts pipes random network parsec
+RUN cabal new-install --lib template-haskell mtl haskell-src-meta haskell-src-exts pipes random network parsec criterion
 
 # Install hyperfine
 RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfine_1.11.0_amd64.deb
