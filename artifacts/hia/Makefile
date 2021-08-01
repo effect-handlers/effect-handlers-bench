@@ -1,8 +1,17 @@
+DOCKERHUB=effecthandlers/effect-handlers
+
+system:
+	docker build -t $(DOCKERHUB):hia ../../systems/hia
+
+benchmark: system
+	docker run -v $(shell pwd):/source $(DOCKERHUB):hia \
+		make -C /source all
+
 all: checkout compile run
 
 checkout:
-	git clone https://github.com/slindley/effect-handlers.git
-	cd effect-handlers; git checkout ghc865
+	test -s effect-handlers || \
+		git clone --branch ghc865 --single-branch https://github.com/slindley/effect-handlers.git
 
 compile:
 	cd effect-handlers/; \
@@ -10,7 +19,6 @@ compile:
 	ghc -O2 Benchmarks/TestQueens.hs; \
 	ghc -O2 Benchmarks/TestPipes.hs; \
 	ghc -O2 Benchmarks/TestAOP.hs
-
 
 run:
 	cd effect-handlers/; \
