@@ -37,4 +37,4 @@ jobs:
 
       - name: Run Koka benchmarks
         run: |
-          make bench_koka
+          make ci_bench_koka
