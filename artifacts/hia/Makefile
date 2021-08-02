@@ -4,7 +4,7 @@ system:
 	docker build -t $(DOCKERHUB):hia ../../systems/hia
 
 benchmark: system
-	docker run -v $(shell pwd):/source $(DOCKERHUB):hia \
+	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):hia \
 		make -C /source all
 
 all: checkout compile run
