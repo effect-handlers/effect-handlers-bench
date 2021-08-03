@@ -1,6 +1,18 @@
 DOCKERHUB=effecthandlers/effect-handlers
 
-all: bench_hia bench_koka bench_links bench_ocaml
+all: bench_eff bench_hia bench_koka bench_links bench_ocaml
+
+# Eff in ocaml
+sys_eff:
+	docker build -t $(DOCKERHUB):eff systems/eff
+
+bench_eff: sys_eff
+	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):eff \
+		make -C /source/benchmarks/eff
+
+ci_bench_eff: sys_eff
+	docker run -v $(shell pwd):/source $(DOCKERHUB):eff \
+		make -C /source/benchmarks/eff
 
 # Handlers in Action
 sys_hia:

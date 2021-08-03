@@ -1,0 +1,5 @@
+(executable
+ (name generator)
+ (libraries OcamlHeader)
+ (ocamlopt_flags
+  (:standard -O3)))

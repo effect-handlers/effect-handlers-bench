@@ -1,5 +1,6 @@
 # effect-handlers-bench
 
+[![Eff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml)
 [![Handlers in Action](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml)
 [![Koka](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml)
 [![Links](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml)
@@ -42,6 +43,7 @@ result of running the Multicore OCaml benchmarks.
 
 The currently included systems are:
 
++ `eff` - [Eff](https://github.com/matijapretnar/eff)
 + `hia` - [Handlers in Action](https://github.com/slindley/effect-handlers)
 + `ocaml` - [Multicore OCaml](https://github.com/ocaml-multicore/ocaml-multicore)
 
