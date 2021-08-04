@@ -1,6 +1,7 @@
 FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN true
 
 # Get the basic stuff
 RUN apt-get update && \
@@ -17,6 +18,11 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 # Set as default user
 USER ubuntu
 WORKDIR /home/ubuntu
+
+# Configure tzdata
+RUN echo 'tzdata tzdata/Areas select Europe' | sudo debconf-set-selections
+RUN echo 'tzdata tzdata/Zones/Europe select London' | sudo debconf-set-selections
+RUN sudo apt-get install -qqy --no-install-recommends tzdata
 
 # Install OCaml
 RUN sudo apt install -y wget git curl gcc make m4 unzip bubblewrap bzip2 pkg-config libgmp-dev
