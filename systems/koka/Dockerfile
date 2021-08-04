@@ -18,6 +18,11 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER ubuntu
 WORKDIR /home/ubuntu
 
+# Configure tzdata
+RUN echo 'tzdata tzdata/Areas select Europe' | sudo debconf-set-selections
+RUN echo 'tzdata tzdata/Zones/Europe select London' | sudo debconf-set-selections
+RUN sudo apt-get install -qqy --no-install-recommends tzdata
+
 # Install hyperfine
 RUN sudo apt install -y wget git curl gcc make m4
 RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfine_1.11.0_amd64.deb
