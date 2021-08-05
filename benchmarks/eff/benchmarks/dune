@@ -1,0 +1,7 @@
+(library
+ (name OcamlHeader))
+
+(env
+ (dev
+  (flags
+   (:standard -w -33 -w -39 -w -8))))

@@ -1,5 +1,6 @@
 _build
 ocaml.csv
+eff.csv
 *~
 *.swp
 _results
