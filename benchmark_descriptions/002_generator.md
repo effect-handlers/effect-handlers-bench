@@ -27,7 +27,7 @@ type 'a tree =
 
 let rec make_tree = function
   | 0 -> Leaf
-  | n -> let t = make (n-1) in Node (t,n,t)
+  | n -> let t = make_tree (n-1) in Node (t,n,t)
 ```
 
 Here are the solutions to the various input sizes:
