@@ -1,0 +1,3 @@
+(executable
+  (name 003_tree_explore)
+	(ocamlopt_flags (:standard -O3)))
