@@ -4,7 +4,7 @@ effect Get: unit -> int
 effect Set: int -> unit
 
 type tree
- = Empty
+ = Leaf
  | Node of tree * int * tree
 
 
@@ -18,7 +18,7 @@ let rec ( @ ) xs ys =
   | Cons (x, xs) -> Cons (x, xs @ ys)
 
 let rec make_tree = function
-  | 0 -> Empty
+  | 0 -> Leaf
   | n ->
     let t = make_tree (n - 1) in
     Node (t, n, t)
@@ -34,7 +34,7 @@ let max_path_merged_handler m =
   in
   let ___t = make_tree m in
   let rec explore t = match t with
-    | Empty -> perform (Get ())
+    | Leaf -> perform (Get ())
     | Node (left, x, right) -> 
       let next = if (perform (Choose ())) then left else right in
       let state = perform (Get ()) in
@@ -58,7 +58,15 @@ let max_path_merged_handler m =
         )
   )
   in
-  match ((with monad_state handle explore ___t) 0)
+  let rec looper s n = 
+    if n = 0 then 
+      s 
+    else (
+    let s = match ((with monad_state handle explore ___t) s)
     with (s', l) -> (
-    maxl 0 l
-  )
+      maxl 0 l
+    )  
+    in looper s (n - 1)
+    )
+  in
+  looper 0 10

@@ -1,13 +1,15 @@
 # 003 - Tree
 
-The goal of this benchmark is to compute the maximal result of reducing a binary operation `op` over all possible paths from the root to the leaves in a full binary tree.
+The goal of this benchmark is to compute the maximal result of reducing a binary operation `op` over all possible paths from the root to the leaves in a full binary tree 10 times.
 Effect handlers are used to simulate non-determinism when exploring the tree.
 Leaf value is determined by the global state to benchmark the global state in presence of multiple resumptions.
+The global state can be implemented in a way that is most idiomatic for the target language.
 The initial value of the state is `0`.
 Before descending into a child subtree, the state is updated as `state := op state node_value`.
 The value of leaf is defined as the current value of the `state`.
+The full benchmark is repeated 10 times, each time, results from the previous traversal is taken as the initial value of the state.
 
-*Input* The program should take a single command line argument which is the height of the complete binary tree. For benchmarking the default input used is 16
+*Input* The program should take a single command line argument which is the height of the complete binary tree. For benchmarking the default input used is 16.
 
 *Output* Maximal value of the fold operation over all paths from the root to leaves.
 
@@ -60,21 +62,21 @@ Here are the solutions to the various input sizes:
 
 | Height | Maximal value |
 |--------|---------------|
-| 1  |  272 |
-| 2  |  913 |
-| 3  |  807 |
-| 4  |  953 |
-| 5  |  997 |
+| 1  |  147 |
+| 2  |  903 |
+| 3  |  923 |
+| 4  |  993 |
+| 5  |  946 |
 | 6  | 1001 |
-| 7  |  978 |
-| 8  | 1008 |
-| 9  | 1006 |
+| 7  |  981 |
+| 8  | 1006 |
+| 9  | 1003 |
 | 10 | 1003 |
-| 11 | 1002 |
+| 11 | 1004 |
 | 12 | 1002 |
 | 13 | 1003 |
 | 14 | 1006 |
 | 15 | 1003 |
-| 16 | 1008 |
+| 16 | 1005 |
 | 17 | 1007 |
 | 18 | 1008 |
