@@ -1,13 +1,16 @@
 # 003 - Tree
 
 The goal of this benchmark is to compute the maximal result of reducing a binary operation `op` over all possible paths from the root to the leaves in a full binary tree 10 times.
+The main idea of this benchmark is to analyze the performance of state in the presence of multiple resumptions.
+
 Effect handlers are used to simulate non-determinism when exploring the tree.
-Leaf value is determined by the global state to benchmark the global state in presence of multiple resumptions.
-The global state can be implemented in a way that is most idiomatic for the target language.
+Leaf value is determined by the global state.
 The initial value of the state is `0`.
 Before descending into a child subtree, the state is updated as `state := op state node_value`.
 The value of leaf is defined as the current value of the `state`.
-The full benchmark is repeated 10 times, each time, results from the previous traversal is taken as the initial value of the state.
+The global state can be implemented in a way which is most idiomatic for the target language.
+The full benchmark is repeated 10 times, each time, result from the previous traversal is taken as the initial value of the state.
+
 
 *Input* The program should take a single command line argument which is the height of the complete binary tree. For benchmarking the default input used is 16.
 
