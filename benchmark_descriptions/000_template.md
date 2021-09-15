@@ -29,14 +29,6 @@ Make sure, that smart compiler will not optimize the multiple runs away and clea
 
 Optional explanation of benchmark computation on small sample input.
 
-## Labels (optional)
-
-Labels corresponding to the benchmark (multiple).
-Use labels provided in [LABELS.md](../LABELS.md).
-If suitable labels are not available, you may create your own and put them in the LABELS.md file.
-
-MULTIPLE_RESUMPTIONS, DEEP_HANDLER_STACK, GENERATORS
-
 ## Benchmark rationale (optional)
 
 Provide a short rationale for the benchmark.
