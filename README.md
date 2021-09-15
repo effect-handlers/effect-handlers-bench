@@ -74,7 +74,7 @@ Inaugural chair (2021/07/23 - 2022/01/22): [Daniel Hillerström](https://github.
 If you wish to add a new benchmark `goat_benchmark` for system `awesome_system`,
 
 + Pick the next serial number for the benchmark `NNN`.
-+ Add the benchmark sources under `benchmarks/<awesome_system>/NNN_<goat_benchmark>`.
++ Add the benchmark sources under `benchmarks/<awesome_system>/NNN_<goat_benchmark>`, use the template provided in `benchmark_descriptions/000_template.md`.
 + Update the `Makefile` to build and run the benchmark.
 + Add a benchmark description under `benchmark_description/NNN_<goat_benchmark>.md`
   clearly stating the input, output and the expectation from the benchmark. Make sure
