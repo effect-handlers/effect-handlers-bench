@@ -59,6 +59,22 @@ We use Ubuntu 20.04 as the base image for building the systems.
 
 We use [hyperfine](https://github.com/sharkdp/hyperfine) to run the benchmarks.
 
+## Benchmark availability
+
+|        | N-queens           | Generator          | Tree explore       |
+| :----- | :----------------: | :----------------: | :----------------: |
+| Eff    | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Hia    | :white_check_mark: | :white_check_mark: | :x:                |
+| Koka   | :x:                | :x:                | :x:                |
+| Links  | :x:                | :x:                | :x:                |
+| OCaml  | :white_check_mark: | :white_check_mark: | :x:                |
+
+Legend:
+
++ :white_check_mark: : Benchmark is implemented
++ :x: : Benchmark is not implemented
++ :heavy_multiplication_x: :Benchmark is unsuitable for this system and there is no sense in implementing it (eg. benchmarking the speed of file transfer in a lanuge that does not support networking)
+
 ## Contributing
 
 ### Benchmarking chair
