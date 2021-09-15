@@ -43,9 +43,11 @@ result of running the Multicore OCaml benchmarks.
 
 The currently included systems are:
 
-+ `eff` - [Eff](https://github.com/matijapretnar/eff)
-+ `hia` - [Handlers in Action](https://github.com/slindley/effect-handlers)
-+ `ocaml` - [Multicore OCaml](https://github.com/ocaml-multicore/ocaml-multicore)
++ `eff` - [Eff](https://github.com/matijapretnar/eff) [![Eff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml)
++ `hia` - [Handlers in Action](https://github.com/slindley/effect-handlers) [![Handlers in Action](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml)
++ `koka` - [Koka](https://github.com/koka-lang/koka) [![Koka](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml)
++ `links` - [Links](https://github.com/links-lang/links) [![Links](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml)
++ `ocaml` - [Multicore OCaml](https://github.com/ocaml-multicore/ocaml-multicore) [![Multicore OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml)
 
 We use Ubuntu 20.04 as the base image for building the systems.
 
