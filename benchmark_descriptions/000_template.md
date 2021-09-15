@@ -23,7 +23,7 @@ If a specific version of an algorithm is used, provide a detailed description an
 
 Default benchmark size should target a runtime between a second and up to a few seconds.
 If the generation of input data is time-consuming, it is ok to run the benchmark multiple times on the same generated input for more accurate results.
-Make sure, that smart compiler will not optimize the multiple runs away and clearly state the number of times the computation should be repeated.
+Be careful that a smart compiler will not optimize the multiple runs away and clearly state the number of times the computation should be repeated.
 
 ## Sample explanation (optional)
 
