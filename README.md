@@ -75,7 +75,7 @@ Legend:
 
 + :white_check_mark: : Benchmark is implemented
 + :x: : Benchmark is not implemented
-+ :heavy_multiplication_x: : Benchmark is unsuitable for this system, and there is no sense in implementing it (eg. benchmarking the speed of file transfer in a language that does not support networking)
++ :heavy_minus_sign: : Benchmark is unsuitable for this system, and there is no sense in implementing it (eg. benchmarking the speed of file transfer in a language that does not support networking)
 
 ## Contributing
 
