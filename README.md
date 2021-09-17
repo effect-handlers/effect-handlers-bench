@@ -33,23 +33,13 @@ result of running the Multicore OCaml benchmarks.
   - `bench_<system_name>`: Runs the benchmarks using the docker image for the
     `<system_name>`.
 
-## Benchmarks
-
-| S.No. | Benchmark | Description |
-|--------------|-----------|-------------|
-| 1 | N-queens | Counts the number of solutions to the N queens problem for board size N x N |
-| 2 | Generator | Count the sum of elements in a complete binary tree using a generator |
-| 3 | Tree explore | Nondeterministically explore a complete binary tree with additional state |
-
-We use [hyperfine](https://github.com/sharkdp/hyperfine) to run the benchmarks.
-
 ## Benchmark availability
 
 |              | [Eff](https://github.com/matijapretnar/eff)<br>[![Eff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml) | [Handlers in Action](https://github.com/slindley/effect-handlers)<br>[![Handlers in Action](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml) | [Koka](https://github.com/koka-lang/koka)<br>[![Koka](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml) | [Links](https://github.com/links-lang/links)<br>[![Links](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml) | [Multicore OCaml](https://github.com/ocaml-multicore/ocaml-multicore)<br>[![Multicore OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml) |
 | :----------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: |
-| N-queens     | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :white_check_mark: |
-| Generator    | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :white_check_mark: |
-| Tree explore | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
+| **N-queens**<br>Counts the number of solutions to the<br>N queens problem for board size N x N     | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :white_check_mark: |
+| **Generator**<br>Count the sum of elements in a complete <br>binary tree using a generator         | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :white_check_mark: |
+| **Tree explore**<br>Nondeterministically explore a complete<br>binary tree with additional state   | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
 
 Legend:
 
@@ -103,7 +93,8 @@ scratch natively on a machine if needed. The benchmarking chair will push the im
 to [Docker Hub](https://hub.docker.com/repository/docker/effecthandlers/effect-handlers) so
 that systems are easily available for wider use.
 
-We use Ubuntu 20.04 as the base image for building the systems.
+We use Ubuntu 20.04 as the base image for building the systems and 
+[hyperfine](https://github.com/sharkdp/hyperfine) to run the benchmarks.
 
 ### Artifacts
 
