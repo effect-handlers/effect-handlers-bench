@@ -1,11 +1,5 @@
 # effect-handlers-bench
 
-[![Eff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml)
-[![Handlers in Action](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml)
-[![Koka](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml)
-[![Links](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml)
-[![Multicore OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml)
-
 The project aims to build a repository of `systems` that implement
 effect handlers, `benchmarks` implemented in those systems, and scripts to
 build the systems, run the benchmarks, and produce the results.
@@ -99,7 +93,7 @@ If you wish to contribute a system `awesome_system`, please
 
 + add a new dockerfile at `systems/<awesome_system>/Dockerfile`
 + add a new workflow under `.github/workflows/system_<awesome_system>.yml`
-+ create a status badge for the new workflow and add it to the top of this `README.md` file in
++ create a status badge for the new workflow and add it to to the availability table in
   lexicographic order.
 
 Ideally, you will also add benchmarks to go with the new system.
