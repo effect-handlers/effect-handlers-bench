@@ -39,18 +39,6 @@ result of running the Multicore OCaml benchmarks.
   - `bench_<system_name>`: Runs the benchmarks using the docker image for the
     `<system_name>`.
 
-## Systems
-
-The currently included systems are:
-
-+ `eff` - [Eff](https://github.com/matijapretnar/eff) [![Eff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml)
-+ `hia` - [Handlers in Action](https://github.com/slindley/effect-handlers) [![Handlers in Action](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml)
-+ `koka` - [Koka](https://github.com/koka-lang/koka) [![Koka](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml)
-+ `links` - [Links](https://github.com/links-lang/links) [![Links](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml)
-+ `ocaml` - [Multicore OCaml](https://github.com/ocaml-multicore/ocaml-multicore) [![Multicore OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml)
-
-We use Ubuntu 20.04 as the base image for building the systems.
-
 ## Benchmarks
 
 | S.No. | Benchmark | Description |
@@ -63,13 +51,11 @@ We use [hyperfine](https://github.com/sharkdp/hyperfine) to run the benchmarks.
 
 ## Benchmark availability
 
-|        | N-queens           | Generator          | Tree explore       |
-| :----- | :----------------: | :----------------: | :----------------: |
-| Eff    | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Hia    | :white_check_mark: | :white_check_mark: | :x:                |
-| Koka   | :x:                | :x:                | :x:                |
-| Links  | :x:                | :x:                | :x:                |
-| OCaml  | :white_check_mark: | :white_check_mark: | :x:                |
+|              | [Eff](https://github.com/matijapretnar/eff)<br>[![Eff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml) | [Handlers in Action](https://github.com/slindley/effect-handlers)<br>[![Handlers in Action](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml) | [Koka](https://github.com/koka-lang/koka)<br>[![Koka](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml) | [Links](https://github.com/links-lang/links)<br>[![Links](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml) | [Multicore OCaml](https://github.com/ocaml-multicore/ocaml-multicore)<br>[![Multicore OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml) |
+| :----------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: |
+| N-queens     | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :white_check_mark: |
+| Generator    | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :white_check_mark: |
+| Tree explore | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
 
 Legend:
 
@@ -122,6 +108,8 @@ Having a dockerfile aids reproducibility and ensures that we can build the syste
 scratch natively on a machine if needed. The benchmarking chair will push the image
 to [Docker Hub](https://hub.docker.com/repository/docker/effecthandlers/effect-handlers) so
 that systems are easily available for wider use.
+
+We use Ubuntu 20.04 as the base image for building the systems.
 
 ### Artifacts
 
