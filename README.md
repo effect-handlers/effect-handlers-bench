@@ -19,20 +19,6 @@ $ make bench_ocaml
 runs the OCaml benchmarks and produces `_results/ocaml.csv` which contains the
 result of running the Multicore OCaml benchmarks.
 
-## Directory structure
-
-+ `systems/<system_name>/Dockerfile` is the `Dockerfile` in order to build
-  the system.
-+ `benchmarks/<system_name>/NNN_<benchmark_name>/` contains the source for the
-  benchmark `<benchmark_name>` for the system `<system_name>`.
-+ `benchmark_descriptions/NNN_<benchmark_name>.md` contains the description of
-  the benchmark, the input and outputs, and any special considerations.
-+ `Makefile` is used to build the systems and benchmarks, and run the
-  benchmarks. For each `system`, the Makefile has the following rules:
-  - `sys_<system_name>`: Builds the `<system_name>` docker image.
-  - `bench_<system_name>`: Runs the benchmarks using the docker image for the
-    `<system_name>`.
-
 ## Benchmark availability
 
 |              | [Eff](https://github.com/matijapretnar/eff)<br>[![Eff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml) | [Handlers in Action](https://github.com/slindley/effect-handlers)<br>[![Handlers in Action](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml) | [Koka](https://github.com/koka-lang/koka)<br>[![Koka](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml) | [Links](https://github.com/links-lang/links)<br>[![Links](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml) | [Multicore OCaml](https://github.com/ocaml-multicore/ocaml-multicore)<br>[![Multicore OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml) |
@@ -46,6 +32,20 @@ Legend:
 + :white_check_mark: : Benchmark is implemented
 + :x: : Benchmark is not implemented
 + :heavy_minus_sign: : Benchmark is unsuitable for this system, and there is no sense in implementing it (eg. benchmarking the speed of file transfer in a language that does not support networking)
+
+## Directory structure
+
++ `systems/<system_name>/Dockerfile` is the `Dockerfile` in order to build
+  the system.
++ `benchmarks/<system_name>/NNN_<benchmark_name>/` contains the source for the
+  benchmark `<benchmark_name>` for the system `<system_name>`.
++ `benchmark_descriptions/NNN_<benchmark_name>.md` contains the description of
+  the benchmark, the input and outputs, and any special considerations.
++ `Makefile` is used to build the systems and benchmarks, and run the
+  benchmarks. For each `system`, the Makefile has the following rules:
+  - `sys_<system_name>`: Builds the `<system_name>` docker image.
+  - `bench_<system_name>`: Runs the benchmarks using the docker image for the
+    `<system_name>`.
 
 ## Contributing
 
