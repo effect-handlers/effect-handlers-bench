@@ -1,11 +1,5 @@
 # effect-handlers-bench
 
-[![Eff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml)
-[![Handlers in Action](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml)
-[![Koka](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml)
-[![Links](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml)
-[![Multicore OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml)
-
 The project aims to build a repository of `systems` that implement
 effect handlers, `benchmarks` implemented in those systems, and scripts to
 build the systems, run the benchmarks, and produce the results.
@@ -25,6 +19,20 @@ $ make bench_ocaml
 runs the OCaml benchmarks and produces `_results/ocaml.csv` which contains the
 result of running the Multicore OCaml benchmarks.
 
+## Benchmark availability
+
+|              | [Eff](https://github.com/matijapretnar/eff)<br><br>[![Eff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml) | [Handlers in Action](https://github.com/slindley/effect-handlers)<br>[![Handlers in Action](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml) | [Koka](https://github.com/koka-lang/koka)<br><br>[![Koka](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml) | [Links](https://github.com/links-lang/links)<br><br>[![Links](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml) | [Multicore OCaml](https://github.com/ocaml-multicore/ocaml-multicore)<br>[![Multicore OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml) |
+| :----------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: |
+| **N-queens**<br>Counts the number of solutions to the N queens problem for board size N x N     | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :white_check_mark: |
+| **Generator**<br>Count the sum of elements in a complete binary tree using a generator         | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :white_check_mark: |
+| **Tree explore**<br>Nondeterministically explore a complete binary tree with additional state   | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
+
+Legend:
+
++ :white_check_mark: : Benchmark is implemented
++ :x: : Benchmark is not implemented
++ :heavy_minus_sign: : Benchmark is unsuitable for this system, and there is no sense in implementing it (eg. benchmarking the speed of file transfer in a language that does not support networking)
+
 ## Directory structure
 
 + `systems/<system_name>/Dockerfile` is the `Dockerfile` in order to build
@@ -38,26 +46,6 @@ result of running the Multicore OCaml benchmarks.
   - `sys_<system_name>`: Builds the `<system_name>` docker image.
   - `bench_<system_name>`: Runs the benchmarks using the docker image for the
     `<system_name>`.
-
-## Systems
-
-The currently included systems are:
-
-+ `eff` - [Eff](https://github.com/matijapretnar/eff)
-+ `hia` - [Handlers in Action](https://github.com/slindley/effect-handlers)
-+ `ocaml` - [Multicore OCaml](https://github.com/ocaml-multicore/ocaml-multicore)
-
-We use Ubuntu 20.04 as the base image for building the systems.
-
-## Benchmarks
-
-| S.No. | Benchmark | Description |
-|--------------|-----------|-------------|
-| 1 | N-queens | Counts the number of solutions to the N queens problem for board size N x N |
-| 2 | Generator | Count the sum of elements in a complete binary tree using a generator |
-| 3 | Tree explore | Nondeterministically explore a complete binary tree with additional state |
-
-We use [hyperfine](https://github.com/sharkdp/hyperfine) to run the benchmarks.
 
 ## Contributing
 
@@ -95,7 +83,7 @@ If you wish to contribute a system `awesome_system`, please
 
 + add a new dockerfile at `systems/<awesome_system>/Dockerfile`
 + add a new workflow under `.github/workflows/system_<awesome_system>.yml`
-+ create a status badge for the new workflow and add it to the top of this `README.md` file in
++ create a status badge for the new workflow and add it to to the availability table in
   lexicographic order.
 
 Ideally, you will also add benchmarks to go with the new system and update the benchmark avaialability table.
@@ -104,6 +92,9 @@ Having a dockerfile aids reproducibility and ensures that we can build the syste
 scratch natively on a machine if needed. The benchmarking chair will push the image
 to [Docker Hub](https://hub.docker.com/repository/docker/effecthandlers/effect-handlers) so
 that systems are easily available for wider use.
+
+We use Ubuntu 20.04 as the base image for building the systems and 
+[hyperfine](https://github.com/sharkdp/hyperfine) to run the benchmarks.
 
 ### Artifacts
 
