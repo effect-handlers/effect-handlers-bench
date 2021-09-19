@@ -1,4 +1,4 @@
-# effect-handlers-bench
+# Effect handlers benchmarks suite
 
 The project aims to build a repository of `systems` that implement
 effect handlers, `benchmarks` implemented in those systems, and scripts to
