@@ -74,12 +74,12 @@ Inaugural chair (2021/07/23 - 2022/01/22): [Daniel Hillerström](https://github.
 If you wish to add a new benchmark `goat_benchmark` for system `awesome_system`,
 
 + Pick the next serial number for the benchmark `NNN`.
-+ Add the benchmark sources under `benchmarks/<awesome_system>/NNN_<goat_benchmark>`.
++ Add the benchmark sources under `benchmarks/<awesome_system>/NNN_<goat_benchmark>`, use the template provided in `benchmark_descriptions/000_template.md`.
 + Update the `Makefile` to build and run the benchmark.
 + Add a benchmark description under `benchmark_description/NNN_<goat_benchmark>.md`
   clearly stating the input, output and the expectation from the benchmark. Make sure
   you mention the default input argument for the benchmark.
-+ Update this `README.md` file to add the new benchmark to the table of benchmarks.
++ Update this `README.md` file to add the new benchmark to the table of benchmarks and to the benchmark availability table.
 
 If you wish to add a benchmark `leet_benchmark` that is not available for a system
 `awesome_system` but is available for another system
@@ -98,7 +98,7 @@ If you wish to contribute a system `awesome_system`, please
 + create a status badge for the new workflow and add it to the top of this `README.md` file in
   lexicographic order.
 
-Ideally, you will also add benchmarks to go with the new system.
+Ideally, you will also add benchmarks to go with the new system and update the benchmark avaialability table.
 
 Having a dockerfile aids reproducibility and ensures that we can build the system from
 scratch natively on a machine if needed. The benchmarking chair will push the image

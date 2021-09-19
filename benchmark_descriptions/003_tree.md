@@ -1,7 +1,16 @@
 # 003 - Tree
 
 The goal of this benchmark is to compute the maximal result of reducing a binary operation `op` over all possible paths from the root to the leaves in a full binary tree 10 times.
-The main idea of this benchmark is to analyze the performance of state in the presence of multiple resumptions.
+
+## Input
+
+The program should take a single command-line argument which is the height of the complete binary tree. For benchmarking the default input used is 16.
+
+## Output
+
+Maximal value of the fold operation over all paths from the root to leaves.
+
+## Description
 
 Effect handlers are used to simulate non-determinism when exploring the tree.
 Leaf value is determined by the global state.
@@ -11,10 +20,8 @@ The value of leaf is defined as the current value of the `state`.
 The global state can be implemented in a way which is most idiomatic for the target language.
 The full benchmark is repeated 10 times, each time, result from the previous traversal is taken as the initial value of the state.
 
-
-*Input* The program should take a single command line argument which is the height of the complete binary tree. For benchmarking the default input used is 16.
-
-*Output* Maximal value of the fold operation over all paths from the root to leaves.
+Tree should be explored in a depth-first manner. Left subtree should be explored before right subtree and `op`
+should be right reduced over the path. State should be updated in way such that every resumption of the continuation updates it.
 
 The values in the binary tree nodes are defined in the same way as in [002_generator](./002_generator.md). If the height is 0,
 then the tree has no nodes. Hence, the output should be 0. If the tree has
@@ -42,9 +49,7 @@ The binary operation is defined as:
 let op x y = (abs (x - 503*y + 37)) mod 1009
 ```
 
-Tree should be explored in a depth-first manner. Left subtree should be explored before right subtree and `op` should be right reduced over the path. State should be updated in way such that every resumption of the continuation updates it.
-
-*Example*
+## Sample explanation
 
 Tree of height `2` would produce the following possible paths:
 
@@ -61,7 +66,11 @@ with results:
 
 And the maximal value of `913`.
 
-Here are the solutions to the various input sizes:
+## Benchmark rationale
+
+The rationale of this benchmark is to analyze the performance of state in the presence of multiple resumptions.
+
+## Output example
 
 | Height | Maximal value |
 |--------|---------------|
