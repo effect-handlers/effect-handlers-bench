@@ -25,7 +25,7 @@ result of running the Multicore OCaml benchmarks.
 | :----------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: |
 | **N-queens**<br>Counts the number of solutions to the N queens problem for board size N x N     | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :white_check_mark: |
 | **Generator**<br>Count the sum of elements in a complete binary tree using a generator         | :white_check_mark: | :white_check_mark: | :x:                | :x:                | :white_check_mark: |
-| **Tree explore**<br>Nondeterministically explore a complete binary tree with additional state   | :white_check_mark: | :x:                | :x:                | :x:                | :x:                |
+| **Tree explore**<br>Nondeterministically explore a complete binary tree with additional state   | :white_check_mark: | :x:                | :x:                | :x:                | :white_check_mark:                |
 
 Legend:
 
@@ -86,14 +86,14 @@ If you wish to contribute a system `awesome_system`, please
 + create a status badge for the new workflow and add it to to the availability table in
   lexicographic order.
 
-Ideally, you will also add benchmarks to go with the new system and update the benchmark avaialability table.
+Ideally, you will also add benchmarks to go with the new system and update the benchmark availability table.
 
 Having a dockerfile aids reproducibility and ensures that we can build the system from
 scratch natively on a machine if needed. The benchmarking chair will push the image
 to [Docker Hub](https://hub.docker.com/repository/docker/effecthandlers/effect-handlers) so
 that systems are easily available for wider use.
 
-We use Ubuntu 20.04 as the base image for building the systems and 
+We use Ubuntu 20.04 as the base image for building the systems and
 [hyperfine](https://github.com/sharkdp/hyperfine) to run the benchmarks.
 
 ### Artifacts
