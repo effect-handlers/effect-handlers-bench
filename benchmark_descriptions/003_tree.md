@@ -70,6 +70,10 @@ And the maximal value of `913`.
 
 The rationale of this benchmark is to analyze the performance of state in the presence of multiple resumptions.
 
+## Labels
+
+BACKTRACKING, MULTIPLE_RESUMPTIONS
+
 ## Output example
 
 | Height | Maximal value |

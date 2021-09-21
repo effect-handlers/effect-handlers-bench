@@ -14,6 +14,10 @@ size `N` of the chess board. For benchmarking, the default input used is 13.
 The program should print the number of solutions to the standard
 output.
 
+## Labels
+
+BACKTRACKING, MULTIPLE_RESUMPTIONS
+
 ## Description
 
 Compute the number of solutions to the N-Queens problem.
