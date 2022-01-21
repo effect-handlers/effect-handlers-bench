@@ -49,9 +49,9 @@ Legend:
 
 ## Contributing
 
-### Benchmarking chair
+### Benchmarking chairs
 
-The role of the benchmarking chairs are to curate the repository, monitor the
+The role of the benchmarking chairs is to curate the repository, monitor the
 quality of benchmarks, and to solicit new benchmarks and fixes to existing
 benchmarks. Each benchmarking chair serves two consecutive terms. Each term 
 is 6 months.
