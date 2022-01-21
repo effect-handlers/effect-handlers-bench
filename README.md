@@ -51,11 +51,15 @@ Legend:
 
 ### Benchmarking chair
 
-The role of the benchmarking chair is to curate the repository, monitor the
+The role of the benchmarking chairs are to curate the repository, monitor the
 quality of benchmarks, and to solicit new benchmarks and fixes to existing
-benchmarks. The tenure of the benchmarking chair is 6 months.
+benchmarks. Each benchmarking chair serves two consecutive terms. Each term 
+is 6 months.
 
-Inaugural chair (2021/07/23 - 2022/01/22): [Daniel Hillerström](https://github.com/dhil)
+The current co-chairs are
+
+* [Filip Koprivec](https://github.com/jO-Osko) (2022/01/21 - 2022/07/22 - 2023/01/21)
+* [Daniel Hillerström](https://github.com/dhil) (In augural chair, 2021/07/23 - 2022/01/22 - 2022/07/23)
 
 ### Benchmark
 
