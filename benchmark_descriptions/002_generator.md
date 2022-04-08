@@ -39,6 +39,10 @@ let rec make_tree = function
   | n -> let t = make_tree (n-1) in Node (t,n,t)
 ```
 
+## Labels
+
+ESCAPING_CONTINUATION
+
 ## Output example
 
 | Height | Sum of the elements |

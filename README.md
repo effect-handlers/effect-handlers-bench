@@ -46,6 +46,8 @@ Legend:
   - `sys_<system_name>`: Builds the `<system_name>` docker image.
   - `bench_<system_name>`: Runs the benchmarks using the docker image for the
     `<system_name>`.
++ `LABELS.md` contains a list of available benchmark labels.
+  Each benchmark can be assigned multiple labels.
 
 ## Contributing
 

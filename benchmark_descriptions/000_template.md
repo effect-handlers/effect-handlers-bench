@@ -42,6 +42,15 @@ This is a good benchmark to measure the performance of selecting the correct han
 
 *If necessary, provide a reference.*
 
+## Labels (optional)
+
+*Optional labels to help categorize the benchmark.
+If currently available labels in `../LABLES.md` do not sufficiently capture the classification, you are welcome to add new ones.
+If you do add a new label, be sure to add it to applicable existing benchmarks.*
+
+Example:
+MULTIPLE_RESUMPTIONS, CONCURRENCY, MULTIPLE_RESUMPTIONS
+
 ## Output example
 
 *Provide a larger set of input and output data that can be used to verify the correctness of the implementation.
