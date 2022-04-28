@@ -53,10 +53,10 @@ Legend:
 
 ### Benchmarking chairs
 
-The role of the benchmarking chairs is to curate the repository, monitor the
-quality of benchmarks, and to solicit new benchmarks and fixes to existing
-benchmarks. Each benchmarking chair serves two consecutive terms. Each term 
-is 6 months.
+The role of the benchmarking chairs is to curate the repository,
+monitor the quality of benchmarks, and to solicit new benchmarks and
+fixes to existing benchmarks. Each benchmarking chair serves two
+consecutive terms. Each term is 6 months.
 
 The current co-chairs are
 
@@ -104,4 +104,9 @@ We use Ubuntu 20.04 as the base image for building the systems and
 
 ### Artifacts
 
-TODO
+We curate software artifacts from papers related to effect
+handlers. If you wish to contribute your artifacts, then please place
+your artifact as-is under a suitable directory in `artifacts/`.
+
+There is no review process for artifacts (other than that they must be
+related to work on effect handlers).
