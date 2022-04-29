@@ -29,7 +29,7 @@ RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfin
 RUN sudo dpkg -i hyperfine_1.11.0_amd64.deb
 
 # Install Koka
-RUN curl -sSL https://github.com/koka-lang/koka/releases/latest/download/install.sh | sh
+RUN curl -sSL https://github.com/koka-lang/koka/releases/download/v2.4.0/install.sh | sh
 
 # Final steps
 ENV DEBIAN_FRONTEND teletype
