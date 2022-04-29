@@ -109,4 +109,10 @@ handlers. If you wish to contribute your artifacts, then please place
 your artifact as-is under a suitable directory in `artifacts/`.
 
 There is no review process for artifacts (other than that they must be
-related to work on effect handlers).
+related to work on effect handlers). Whilst we do not enforce any
+standards on artifacts, we do recommend that artifacts conform with
+[the artifacts evaluation packaging guidelines used by various
+programming language
+conferences](https://artifact-eval.org/guidelines.html).
+
+
