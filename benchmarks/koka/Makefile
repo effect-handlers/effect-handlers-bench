@@ -8,7 +8,7 @@ all:
 		'./benchmarkNQueens.kk-out 13' \
 		'./benchmarkGenerator.kk-out 25' \
 		'./benchmarkTreeExplore.kk-out 16' \
-		'./benchmarkTriples.kk.kk-out 300 300'
+		'./benchmarkTriples.kk-out 300 300'
 	# Clean generated files
 	make -C . clean
 	# Move results to the root of the repository
