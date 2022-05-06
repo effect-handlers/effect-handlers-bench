@@ -24,8 +24,8 @@ operation each. The effect interface can be summarised as follows.
 Effect interface
 
 ```haskell
-operation yield : int -> unit
-operation await : unit -> int
+yield : int -> unit
+await : unit -> int
 ```
 
 The producer process uses the operation `yield` to send integers to
