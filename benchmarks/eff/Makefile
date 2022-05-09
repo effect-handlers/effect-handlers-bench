@@ -12,7 +12,7 @@ all:
 		'./_build/default/benchmarks/002_generator/generator.exe 25' \
 		'./_build/default/benchmarks/003_tree_explore/tree_explore.exe 16' \
 		'./_build/default/benchmarks/004_triples/triples.exe 300 300' \
-		'./_build/default/benchmarks/006_simple_counter/simple_counter.exe 100000'
+		'./_build/default/benchmarks/006_simple_counter/simpleCounter.exe 50000'
 	# Clean generated ocaml files
 	make -C . clean
 	# Move results to the root of the repository

@@ -4,7 +4,7 @@ Repeatedly apply an operation in a loop at a non-tail position.
 
 ## Input
 
-The program should take as input a single non-negative integer `n` with default value 100000.
+The program should take as input a single non-negative integer `n` with default value 50000.
 
 ## Output
 
@@ -59,6 +59,7 @@ Example:
 | 100 | 518 |
 | 1000 | 708 |
 | 10000 | 860 |
+| 50000 | 701 |
 | 100000 | 1004 |
 | 200000 | 956 |
 | 250000 | 866 |
