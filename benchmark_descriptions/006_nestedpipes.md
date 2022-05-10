@@ -43,14 +43,17 @@ produceFrom n = yield n; produceFrom (n+1)
 ```
 
 The following pseudocode generates `2^n` pass-through pipes.
+
 ```haskell
 expoPipe n =
   if n = 0
   then let x = await () in
        yield (x+1); expoPipe 0
-  else expoPipe (n - 1) <+< expoPipe (n - 1)
+  else pipe (λ().expoPipe (n - 1)) (λ().expoPipe (n - 1))
 ```
-where the binary infix operator `<+<` connects its two arguments.
+
+where the binary function `pipe` constructs a pipeline using its two
+arguments.
 
 The glue code between the producer and consumer processes is
 implemented by some handler. There are multiple possible ways to
