@@ -85,7 +85,7 @@ pipe prod cons = handle cons (), prod () with
 
 This benchmark measure the effect of continuously changing handler
 contexts. This is a good benchmark to measure the performance of rapid
-cooperative switching between two differently known handlers.
+cooperative switching between many differently handlers.
 
 ## Reference
 
