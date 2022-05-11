@@ -38,6 +38,18 @@ ci_bench_koka: sys_koka
 	docker run -v $(shell pwd):/source effecthandlers/effect-handlers:koka \
 		make -C /source/benchmarks/koka
 
+# libmpeff
+sys_libmpeff:
+	docker build -t effecthandlers/effect-handlers:libmpeff systems/libmpeff
+
+bench_libmpeff: sys_libmpeff
+	docker run -it --init -v $(shell pwd):/source effecthandlers/effect-handlers:libmpeff \
+		make -C /source/benchmarks/libmpeff
+
+ci_bench_libmpeff: sys_libmpeff
+	docker run -v $(shell pwd):/source effecthandlers/effect-handlers:libmpeff \
+		make -C /source/benchmarks/libmpeff
+
 # Links
 sys_links:
 	docker build -t $(DOCKERHUB):links systems/links
