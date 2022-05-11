@@ -26,6 +26,8 @@ result of running the Multicore OCaml benchmarks.
 | **N-queens**<br>Counts the number of solutions to the N queens problem for board size N x N     | :white_check_mark: | :white_check_mark: | :white_check_mark:                | :x:                | :white_check_mark: |
 | **Generator**<br>Count the sum of elements in a complete binary tree using a generator         | :white_check_mark: | :white_check_mark: | :white_check_mark:                | :x:                | :white_check_mark: |
 | **Tree explore**<br>Nondeterministically explore a complete binary tree with additional state   | :white_check_mark: | :x:                | :white_check_mark:                | :x:                | :white_check_mark:                |
+| **Flat pipes**<br>Simple pipeline processing   | :x: | :x:  | :x:  | :x:  | :x:        |
+| **Nested pipes**<br>Deeply nested pipeline processing   | :x: | :x:  | :x:  | :x:  | :x:        |
 
 Legend:
 
