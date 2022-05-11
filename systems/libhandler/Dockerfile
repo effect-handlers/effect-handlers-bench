@@ -19,7 +19,7 @@ USER ubuntu
 WORKDIR /home/ubuntu
 
 # Install libhandler
-RUN sudo apt install -y wget git curl gcc make m4 unzip bubblewrap bzip2
+RUN sudo apt install -y wget git curl gcc make m4
 RUN curl -o libhandler-0.5.tar.gz -sL https://github.com/koka-lang/libhandler/archive/refs/tags/v0.5.tar.gz
 RUN tar xvf libhandler-0.5.tar.gz
 WORKDIR ./libhandler-0.5
