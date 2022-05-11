@@ -62,6 +62,18 @@ ci_bench_links: sys_links
 	docker run -v $(shell pwd):/source $(DOCKERHUB):links \
 		make -C /source/benchmarks/links
 
+# libhandler
+sys_libhandler:
+	docker build -t $(DOCKERHUB):libhandler systems/libhandler
+
+bench_libhandler: sys_libhandler
+	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):libhandler \
+		make -C /source/benchmarks/libhandler
+
+ci_bench_libhandler: sys_libhandler
+	docker run -v $(shell pwd):/source $(DOCKERHUB):libhandler \
+		make -C /source/benchmarks/libhandler
+
 # Multicore OCaml
 sys_ocaml:
 	docker build -t $(DOCKERHUB):ocaml systems/ocaml
