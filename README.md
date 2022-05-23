@@ -27,6 +27,7 @@ result of running the Multicore OCaml benchmarks.
 | **Generator**<br>Count the sum of elements in a complete binary tree using a generator         | :white_check_mark: | :white_check_mark: | :white_check_mark:                | :x: | :x: | :x: | :white_check_mark: |
 | **Tree explore**<br>Nondeterministically explore a complete binary tree with additional state   | :white_check_mark: | :x:                | :white_check_mark:                | :x: | :x: | :x: | :white_check_mark:                |
 | **Triples**<br>Nondeterministically calculate triples that sum up to specified number   | :white_check_mark: | :x:                | :white_check_mark:                | :x: | :x: | :x: | :white_check_mark:                |
+| **Simple counter**<br>Repeatedly apply operation in a non tail position.                | :white_check_mark: | :x:                | :white_check_mark:                | :x: | :x: | :x: | :white_check_mark:                |
 
 Legend:
 
