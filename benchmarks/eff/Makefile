@@ -10,11 +10,11 @@ all:
 	# Build executables
 	opam exec -- dune build
 	hyperfine --export-csv eff.csv \
-		'./_build/default/benchmarks/001_nqueens/001_nqueens.exe 13' \
-		'./_build/default/benchmarks/002_generator/002_generator.exe 25' \
-		'./_build/default/benchmarks/003_tree_explore/003_tree_explore.exe 16' \
-		'./_build/default/benchmarks/004_triples/004_triples.exe 300 300' \
-		'./_build/default/benchmarks/007_simple_counter/007_simple_counter.exe 20000'
+		'./_build/default/benchmarks/001_nqueens/wrapper_001_nqueens.exe 13' \
+		'./_build/default/benchmarks/002_generator/wrapper_002_generator.exe 25' \
+		'./_build/default/benchmarks/003_tree_explore/wrapper_003_tree_explore.exe 16' \
+		'./_build/default/benchmarks/004_triples/wrapper_004_triples.exe 300 300' \
+		'./_build/default/benchmarks/007_simple_counter/wrapper_007_simple_counter.exe 20000'
 	# Clean generated ocaml files
 	make -C . clean
 	# Move results to the root of the repository
