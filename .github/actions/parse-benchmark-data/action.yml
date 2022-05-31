@@ -22,9 +22,9 @@ runs:
     - name: Read input value
       id: read-input-value
       shell: bash
-      run: echo "::set-output name=default-input::'$(cat benchmark_descriptions/${{ inputs.benchmark-name }}/default.in)'"
+      run: echo "::set-output name=default-input::$(cat benchmark_descriptions/${{ inputs.benchmark-name }}/default.in)"
 
     - name: Read output value
       id: read-output-value
       shell: bash
-      run: echo "::set-output name=default-output::'$(cat benchmark_descriptions/${{ inputs.benchmark-name }}/default.out)'"
+      run: echo "::set-output name=default-output::$(cat benchmark_descriptions/${{ inputs.benchmark-name }}/default.out)"
