@@ -18,7 +18,7 @@ jobs:
       max-parallel: 1
       matrix:
         system: [ eff ]
-        benchmark: [ 001_nqueens, 002_generator, 003_tree, 004_triples, 007_simple_counter ] 
+        benchmark: [ 001_nqueens, 002_generator, 003_tree_explore, 004_triples, 007_simple_counter ] 
     runs-on: ubuntu-latest
 
     permissions:
