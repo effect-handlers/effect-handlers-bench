@@ -13,3 +13,9 @@ all:
 	#Copy results to the root of the repository
 	mkdir -p ../../results
 	mv ocaml.csv ../../results
+
+
+ci_test:
+	# Build everything
+	opam exec --switch=4.12.0+domains+effects -- dune build
+	./_build/default/$(BENCHMARK-NAME)/$(BENCHMARK-NAME).exe $(ARGS) > $(BENCHMARK-NAME).out

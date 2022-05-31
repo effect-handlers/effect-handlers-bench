@@ -90,5 +90,9 @@ ci_bench_ocaml: sys_ocaml
 	docker run -v $(shell pwd):/source $(DOCKERHUB):ocaml \
 		make -C /source/benchmarks/ocaml
 
+ci_test_ocaml: sys_ocaml
+	docker run -v $(shell pwd):/source $(DOCKERHUB):ocaml \
+		make -C /source/benchmarks/ocaml ci_test BENCHMARK-NAME=$(BENCHMARK-NAME) ARGS='$(ARGS)'
+
 clean:
 	rm -f _results *~

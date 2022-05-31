@@ -17,7 +17,7 @@ jobs:
       # Parralel runs impose problems when pushing data to
       max-parallel: 1
       matrix:
-        system: [ eff ]
+        system: [ eff, ocaml ]
         benchmark: [ 001_nqueens, 002_generator, 003_tree_explore, 004_triples, 007_simple_counter ] 
     runs-on: ubuntu-latest
 
