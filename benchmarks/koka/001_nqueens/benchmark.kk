@@ -1,4 +1,4 @@
-module benchmarkNQueens
+module benchmark
 
 import std/os/env
 import std/text/parse

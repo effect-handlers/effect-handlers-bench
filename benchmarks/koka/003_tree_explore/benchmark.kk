@@ -1,4 +1,4 @@
-module benchmarkGenerator
+module benchmark
 
 import std/os/env
 import std/text/parse
@@ -14,10 +14,6 @@ type tree<a>
 
 fun operator(x, y) 
   abs (x - (503 * y) + 37) % 1009
-
-type generator<a>
-  Empty
-  Thunk(v: a, rest: () -> generator<a>)
 
 fun make-tree(n: int) : div tree<int>
   if n == 0 then
