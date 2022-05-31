@@ -1,6 +1,7 @@
 all:
 	# TODO: generalize copy pasted code
 	# Compile to ocaml
+	rm benchmarks/*/generated_*.ml
 	eff.exe --no-stdlib --compile-plain-ocaml benchmarks/001_nqueens/001_nqueens.eff | opam exec -- ocamlformat - --name=temp.ml --enable-outside-detected-project > benchmarks/001_nqueens/generated_001_nqueens.ml
 	eff.exe --no-stdlib --compile-plain-ocaml benchmarks/002_generator/002_generator.eff | opam exec -- ocamlformat - --name=temp.ml --enable-outside-detected-project > benchmarks/002_generator/generated_002_generator.ml
 	eff.exe --no-stdlib --compile-plain-ocaml benchmarks/003_tree_explore/003_tree_explore.eff | opam exec -- ocamlformat - --name=temp.ml --enable-outside-detected-project > benchmarks/003_tree_explore/generated_003_tree_explore.ml
@@ -34,4 +35,3 @@ run_compiled_file:
 
 clean:
 	opam exec -- dune clean
-	rm -r benchmarks/*/generated_*.ml
