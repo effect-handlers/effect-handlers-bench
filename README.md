@@ -41,7 +41,7 @@ Legend:
   the system.
 + `benchmarks/<system_name>/NNN_<benchmark_name>/` contains the source for the
   benchmark `<benchmark_name>` for the system `<system_name>`.
-+ `benchmark_descriptions/NNN_<benchmark_name>.md` contains the description of
++ `benchmark_descriptions/NNN_<benchmark_name>/` contains the description of
   the benchmark, the input and outputs, and any special considerations.
 + `Makefile` is used to build the systems and benchmarks, and run the
   benchmarks. For each `system`, the Makefile has the following rules:
@@ -70,12 +70,14 @@ The current co-chairs are
 If you wish to add a new benchmark `goat_benchmark` for system `awesome_system`,
 
 + Pick the next serial number for the benchmark `NNN`.
-+ Add the benchmark sources under `benchmarks/<awesome_system>/NNN_<goat_benchmark>`, use the template provided in `benchmark_descriptions/000_template.md`.
++ Add the benchmark sources under `benchmarks/<awesome_system>/NNN_<goat_benchmark>`, use the template provided in `benchmark_descriptions/000_template/`.
 + Update the `Makefile` to build and run the benchmark.
-+ Add a benchmark description under `benchmark_description/NNN_<goat_benchmark>.md`
++ Add a benchmark description under `benchmark_description/NNN_<goat_benchmark>/readme.md`
   clearly stating the input, output and the expectation from the benchmark. Make sure
   you mention the default input argument for the benchmark.
+  Add benchmark inputs and outputs (with their default values) to input/output files.
 + Update this `README.md` file to add the new benchmark to the table of benchmarks and to the benchmark availability table.
++ Add the benchmark to CI testing script.
 
 If you wish to add a benchmark `leet_benchmark` that is not available for a system
 `awesome_system` but is available for another system
