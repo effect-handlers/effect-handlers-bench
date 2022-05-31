@@ -17,8 +17,17 @@ jobs:
       # Parralel runs impose problems when pushing data to shields
       max-parallel: 1
       matrix:
-        system: [ eff, ocaml, koka ]
+        system: [ eff, ocaml, koka, hia ]
         benchmark: [ 001_nqueens, 002_generator, 003_tree_explore, 004_triples, 007_simple_counter ] 
+        exclude:
+          # Manually exclude not implemented benchmarks
+          - system: hia
+            benchmark: 003_tree_explore
+          - system: hia
+            benchmark: 004_triples
+          - system: hia
+            benchmark: 007_simple_counter
+
     runs-on: ubuntu-latest
 
     permissions:

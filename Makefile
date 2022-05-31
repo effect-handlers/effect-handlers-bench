@@ -30,6 +30,10 @@ ci_bench_hia: sys_hia
 	docker run -v $(shell pwd):/source $(DOCKERHUB):hia \
 		make -C /source/benchmarks/hia
 
+ci_test_hia: sys_hia
+	docker run -v $(shell pwd):/source $(DOCKERHUB):hia \
+		make -C /source/benchmarks/hia ci_test BENCHMARK-NAME=$(BENCHMARK-NAME) ARGS='$(ARGS)'
+
 # Koka
 sys_koka:
 	docker build -t effecthandlers/effect-handlers:koka systems/koka
