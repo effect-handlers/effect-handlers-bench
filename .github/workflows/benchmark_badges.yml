@@ -14,10 +14,10 @@ on:
 jobs:
   benchmark-badges:
     strategy:
-      # Parralel runs impose problems when pushing data to
+      # Parralel runs impose problems when pushing data to shields
       max-parallel: 1
       matrix:
-        system: [ eff, ocaml ]
+        system: [ eff, ocaml, koka ]
         benchmark: [ 001_nqueens, 002_generator, 003_tree_explore, 004_triples, 007_simple_counter ] 
     runs-on: ubuntu-latest
 
