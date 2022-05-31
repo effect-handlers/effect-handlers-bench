@@ -27,5 +27,5 @@ run_compiled_file:
 	./$(BENCHMARK-NAME).kk-out $(ARGS) > $(BENCHMARK-NAME).out
 
 clean:
-	rm -r .koka/
+	rm -r */.koka/
 	rm *.kk-out
