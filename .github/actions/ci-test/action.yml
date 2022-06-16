@@ -1,0 +1,89 @@
+name: 'CI test'
+
+inputs:
+  system-name:
+    required: true
+  benchmark-name:
+    required: true
+  GITHUB_TOKEN:
+    description: 'Github token'
+    required: true
+
+#From https://docs.github.com/en/actions/guides/publishing-docker-images
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - id: parse-data
+      uses: ./.github/actions/parse-benchmark-data
+      with: 
+        benchmark-name: ${{ inputs.benchmark-name }}
+
+    - name: "Setup the system"
+      id: build
+      uses: ./.github/actions/system-builder
+      with: 
+        system-name: ${{ inputs.system-name }}
+      continue-on-error: true
+
+    - name: Add write permission to directories
+      shell: bash
+      run: |
+        find . -type d -exec chmod 777 {} \;
+
+    - name: Run ${{ inputs.system-name }} benchmarks
+      id: run
+      shell: bash
+      run: > 
+        make ci_test_${{ inputs.system-name }} BENCHMARK-NAME=${{ inputs.benchmark-name }} ARGS='${{ steps.parse-data.outputs.default-input }}' &&
+        echo "CI_TEST_OUTPUT=$(cat benchmarks/${{ inputs.system-name }}/${{ inputs.benchmark-name }}.out)" >> $GITHUB_ENV && 
+        echo "CI_TEST_CORRECT_OUTPUT=${{ steps.parse-data.outputs.default-result }}" >> $GITHUB_ENV
+      continue-on-error: true
+
+    - name: Set OK badge
+      if: ${{ env.CI_TEST_OUTPUT == steps.parse-data.outputs.default-result }}
+      uses: RubbaBoy/BYOB@v1.2.1
+      with:
+        NAME: ${{ inputs.system-name }}-${{ inputs.benchmark-name }}-result
+        LABEL: ''
+        # Heavy checkmark, base64 encoded https://openmoji.org/library/emoji-2714/
+        ICON: 'data:image/svg+xml;base64,PHN2ZyBpZD0iZW1vamkiIHZpZXdCb3g9IjAgMCA3MiA3MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZyBpZD0iY29sb3IiPgogICAgPHBhdGggZmlsbD0iI2IxY2MzMyIgZD0ibTYxLjUgMjMuMy04LjAxMy04LjAxMy0yNS43MSAyNS43MS05LjI2LTkuMjYtOC4wMTMgOC4wMTMgMTcuNDIgMTcuNDR6Ii8+CiAgPC9nPgogIDxnIGlkPSJsaW5lIj4KICAgIDxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIgZD0ibTEwLjUgMzkuNzYgMTcuNDIgMTcuNDQgMzMuNTgtMzMuODktOC4wMTMtOC4wMTMtMjUuNzEgMjUuNzEtOS4yNi05LjI2eiIvPgogIDwvZz4KPC9zdmc+Cg=='
+        STATUS: 'OK'
+        COLOR: green
+        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
+
+    - name: Set error badge
+      if: ${{ steps.build.outcome != 'success' || steps.run.outcome != 'success' }}
+      uses: RubbaBoy/BYOB@v1.2.1
+      with:
+        NAME: ${{ inputs.system-name }}-${{ inputs.benchmark-name }}-result
+        LABEL: ''
+        # https://openmoji.org/library/emoji-274C/
+        ICON: 'data:image/svg+xml;base64,PHN2ZyBpZD0iZW1vamkiIHZpZXdCb3g9IjAgMCA3MiA3MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZyBpZD0iY29sb3IiPgogICAgPHBhdGggZmlsbD0iI2VhNWE0NyIgZD0ibTU4LjE0IDIxLjc4LTcuNzYtOC4wMTMtMTQuMjkgMTQuMjItMTQuMjItMTQuMjItOC4wMTMgOC4wMTMgMTQuMzYgMTQuMjItMTQuMzYgMTQuMjIgOC4wMTQgOC4wMTMgMTQuMjItMTQuMjIgMTQuMjkgMTQuMjIgNy43Ni04LjAxMy0xNC4yMi0xNC4yMnoiLz4KICA8L2c+CiAgPGcgaWQ9ImhhaXIiLz4KICA8ZyBpZD0ic2tpbiIvPgogIDxnIGlkPSJza2luLXNoYWRvdyIvPgogIDxnIGlkPSJsaW5lIj4KICAgIDxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIgZD0ibTU4LjE0IDIxLjc4LTcuNzYtOC4wMTMtMTQuMjkgMTQuMjItMTQuMjItMTQuMjItOC4wMTMgOC4wMTMgMTQuMzUgMTQuMjItMTQuMzUgMTQuMjIgOC4wMTQgOC4wMTMgMTQuMjItMTQuMjIgMTQuMjkgMTQuMjIgNy43Ni04LjAxMy0xNC4yMi0xNC4yMnoiLz4KICA8L2c+Cjwvc3ZnPgo='
+        STATUS: 'ERR'
+        COLOR: red
+        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
+
+    - name: Set WA badge
+      if: ${{ env.CI_TEST_OUTPUT != steps.parse-data.outputs.default-result && steps.build.outcome == 'success' && steps.run.outcome == 'success' }}
+      uses: RubbaBoy/BYOB@v1.2.1
+      with:
+        NAME: ${{ inputs.system-name }}-${{ inputs.benchmark-name }}-result
+        LABEL: ''
+        # https://openmoji.org/library/emoji-274C/
+        ICON: 'data:image/svg+xml;base64,PHN2ZyBpZD0iZW1vamkiIHZpZXdCb3g9IjAgMCA3MiA3MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZyBpZD0iY29sb3IiPgogICAgPHBhdGggZmlsbD0iI2VhNWE0NyIgZD0ibTU4LjE0IDIxLjc4LTcuNzYtOC4wMTMtMTQuMjkgMTQuMjItMTQuMjItMTQuMjItOC4wMTMgOC4wMTMgMTQuMzYgMTQuMjItMTQuMzYgMTQuMjIgOC4wMTQgOC4wMTMgMTQuMjItMTQuMjIgMTQuMjkgMTQuMjIgNy43Ni04LjAxMy0xNC4yMi0xNC4yMnoiLz4KICA8L2c+CiAgPGcgaWQ9ImhhaXIiLz4KICA8ZyBpZD0ic2tpbiIvPgogIDxnIGlkPSJza2luLXNoYWRvdyIvPgogIDxnIGlkPSJsaW5lIj4KICAgIDxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMiIgZD0ibTU4LjE0IDIxLjc4LTcuNzYtOC4wMTMtMTQuMjkgMTQuMjItMTQuMjItMTQuMjItOC4wMTMgOC4wMTMgMTQuMzUgMTQuMjItMTQuMzUgMTQuMjIgOC4wMTQgOC4wMTMgMTQuMjItMTQuMjIgMTQuMjkgMTQuMjIgNy43Ni04LjAxMy0xNC4yMi0xNC4yMnoiLz4KICA8L2c+Cjwvc3ZnPgo='
+        STATUS: 'WA'
+        COLOR: orange
+        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
+    
+    # At some point we might want to fail the tasks
+    
+    # - name: Test result
+    #   if: ${{ env.CI_TEST_OUTPUT != steps.parse-data.outputs.default-result }}
+    #   uses: actions/github-script@v3
+    #   with:
+    #     script: |
+    #         core.setFailed('WRONG OUTPUT\n' + 'Expected: ${{ steps.parse-data.outputs.default-result }}\n' + 'Calculated: ${{ env.CI_TEST_OUTPUT }}')

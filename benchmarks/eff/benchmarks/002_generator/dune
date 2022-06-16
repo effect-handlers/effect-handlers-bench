@@ -1,5 +1,5 @@
 (executable
- (name generator)
+ (name wrapper_002_generator)
  (libraries OcamlHeader)
  (ocamlopt_flags
   (:standard -O3)))

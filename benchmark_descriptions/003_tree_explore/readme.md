@@ -1,4 +1,4 @@
-# 003 - Tree
+# 003 - Tree explore
 
 The goal of this benchmark is to compute the maximal result of reducing a binary operation `op` over all possible paths from the root to the leaves in a full binary tree 10 times.
 

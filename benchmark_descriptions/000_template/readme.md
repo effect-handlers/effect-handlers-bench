@@ -6,7 +6,8 @@
 
 *Describe the type and shape of the input data.
 Explicitly state default input to be used in the absence of input argument.
-The default input value should be reasonably small so that benchmarks can be computed in a reasonable time (up to a few seconds).*
+The default input value should be reasonably small so that benchmarks can be computed in a reasonable time (up to a few seconds).
+Default input and output value should also be written in `default.in` and `default.out`*
 
 ## Output
 
@@ -55,6 +56,9 @@ MULTIPLE_RESUMPTIONS, CONCURRENCY, MULTIPLE_RESUMPTIONS
 
 *Provide a larger set of input and output data that can be used to verify the correctness of the implementation.
 Provide a reasonable range of output parameters and comment on the expected range that should be computed in a reasonable time.*
+
+* Also include the example input and corresponding values in `data.in` and `data.out`.
+Each line of `data.in` will be feed to program under test as input and compared with the output corresponding line in `data.out`.*
 
 Example:
 

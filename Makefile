@@ -14,6 +14,10 @@ ci_bench_eff: sys_eff
 	docker run -v $(shell pwd):/source $(DOCKERHUB):eff \
 		make -C /source/benchmarks/eff
 
+ci_test_eff:
+	docker run -v $(shell pwd):/source $(DOCKERHUB):eff \
+		make -C /source/benchmarks/eff ci_test BENCHMARK-NAME=$(BENCHMARK-NAME) ARGS='$(ARGS)'
+
 # Handlers in Action
 sys_hia:
 	docker build -t $(DOCKERHUB):hia systems/hia
@@ -26,6 +30,10 @@ ci_bench_hia: sys_hia
 	docker run -v $(shell pwd):/source $(DOCKERHUB):hia \
 		make -C /source/benchmarks/hia
 
+ci_test_hia: sys_hia
+	docker run -v $(shell pwd):/source $(DOCKERHUB):hia \
+		make -C /source/benchmarks/hia ci_test BENCHMARK-NAME=$(BENCHMARK-NAME) ARGS='$(ARGS)'
+
 # Koka
 sys_koka:
 	docker build -t effecthandlers/effect-handlers:koka systems/koka
@@ -37,6 +45,10 @@ bench_koka: sys_koka
 ci_bench_koka: sys_koka
 	docker run -v $(shell pwd):/source effecthandlers/effect-handlers:koka \
 		make -C /source/benchmarks/koka
+
+ci_test_koka: sys_koka
+	docker run -v $(shell pwd):/source $(DOCKERHUB):koka \
+		make -C /source/benchmarks/koka ci_test BENCHMARK-NAME=$(BENCHMARK-NAME) ARGS='$(ARGS)'
 
 # libmpeff
 sys_libmpeff:
@@ -85,6 +97,10 @@ bench_ocaml: sys_ocaml
 ci_bench_ocaml: sys_ocaml
 	docker run -v $(shell pwd):/source $(DOCKERHUB):ocaml \
 		make -C /source/benchmarks/ocaml
+
+ci_test_ocaml: sys_ocaml
+	docker run -v $(shell pwd):/source $(DOCKERHUB):ocaml \
+		make -C /source/benchmarks/ocaml ci_test BENCHMARK-NAME=$(BENCHMARK-NAME) ARGS='$(ARGS)'
 
 clean:
 	rm -f _results *~
