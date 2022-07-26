@@ -1,0 +1,53 @@
+
+
+#sig choose : ([a]) {Choose:([a]) {}-> a |_}-> a
+#fun choose(xs) { do Choose(xs) }
+
+sig choose : Comp(Bool, {Choose:(()) {}-> Bool|_})
+fun choose() {do Choose(())}
+
+
+sig fail : Comp(a, {Failure:(()) {}-> Zero|_})
+fun fail() {switch (do Failure(())) { }}
+
+
+
+fun choice(n) {
+    if (n < 1) {fail() }
+    else if (do Choose()) { n }
+    else { choice(n-1) }
+}
+
+fun triple(n,s){
+    var i = choice(n);
+    var j = choice(i-1);
+    var k = choice(j-1);
+    if (i+j+k == s) {((i,j,k))}
+    else fail()
+}
+
+fun hash_triple(a,b,c){
+    mod((53 * a + 2809 * b + 148877 * c), 1000000007)
+    #(53 * a + 2809 * b + 148877 * c) mod 1000000007 
+}
+
+
+fun handler(m) {
+    handle(m()) {
+        case Return(x) -> x
+        case Choose((), k) -> mod((k(true) + k(false)), 1000000007)
+        case Failure((), k) -> 0
+    }
+}
+
+fun main(){
+    var n = 10;
+    var s = 10;
+    #triple(n,s)
+    #hash_triple(triple(n,s))
+    handler(hash_triple(triple(n,s)))
+    #var sum = handler(hash_triple(triple(n,s)));
+    #println(intToString(sum))
+}
+
+main()
