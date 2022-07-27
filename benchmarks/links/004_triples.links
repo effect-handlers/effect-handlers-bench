@@ -1,21 +1,21 @@
-sig choose : Comp(Bool, {Choose:(()) {}-> Bool|_})
-fun choose() {do Choose(())}
+sig choice : Comp(Bool, {Choice:(()) {}-> Bool|_})
+fun choice() {do Choice(())}
 
 sig fail : Comp(a, {Failure:(()) {}-> Zero|_})
 fun fail() {switch (do Failure(())) { }}
 
-sig choice : (Int) {Choose:(()) {}-> Bool,Failure:(()) {}-> Zero|a}~> Int
-fun choice(n) {
+sig choose : (Int) {Choice:(()) {}-> Bool,Failure:(()) {}-> Zero|a}~> Int
+fun choose(n) {
     if (n < 1) {fail() }
-    else if (choose()) { n }
-    else { choice(n-1) }
+    else if (choice()) { n }
+    else { choose(n-1) }
 }
 
-sig triple : (Int, Int) -a-> () {Choose:(()) {}-> Bool,Failure:(()) {}-> Zero|b}~> (Int, Int, Int)
+sig triple : (Int, Int) -a-> () {Choice:(()) {}-> Bool,Failure:(()) {}-> Zero|b}~> (Int, Int, Int)
 fun triple(n,s)(){
-    var i = choice(n);
-    var j = choice(i-1);
-    var k = choice(j-1);
+    var i = choose(n);
+    var j = choose(i-1);
+    var k = choose(j-1);
     if (i+j+k == s) {((i,j,k))}
     else {fail()}
 }
@@ -26,16 +26,16 @@ fun hash_triple(m)(){
     mod((53 * a + 2809 * b + 148877 * c), 1000000007)
 }
 
-sig handler : (() {Choose:(()) {}-> Bool,Failure:(()) {}-> a::Any|b}~> Int) {Choose{c},Failure{d}|b}~> Int
+sig handler : (() {Choice:(()) {}-> Bool,Failure:(()) {}-> a::Any|b}~> Int) {Choice{c},Failure{d}|b}~> Int
 fun handler(m) {
     handle(m()) {
         case Return(x) -> x
-        case Choose((), k) -> mod((k(true) + k(false)), 1000000007)
+        case Choice((), k) -> mod((k(true) + k(false)), 1000000007)
         case Failure((), k) -> 0
     }
 }
 
-sig main : () {Choose{a},Failure{b}|c}~> ()
+sig main : () {Choice{a},Failure{b}|c}~> ()
 fun main(){
     var n = stringToInt(getArgs() !! 0);
     var s = stringToInt(getArgs() !! 1);
