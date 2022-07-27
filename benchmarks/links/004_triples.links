@@ -1,19 +1,17 @@
-#sig choose : ([a]) {Choose:([a]) {}-> a |_}-> a
-#fun choose(xs) { do Choose(xs) }
-
 sig choose : Comp(Bool, {Choose:(()) {}-> Bool|_})
 fun choose() {do Choose(())}
 
 sig fail : Comp(a, {Failure:(()) {}-> Zero|_})
 fun fail() {switch (do Failure(())) { }}
 
-
+sig choice : (Int) {Choose:(()) {}-> Bool,Failure:(()) {}-> Zero|a}~> Int
 fun choice(n) {
     if (n < 1) {fail() }
     else if (choose()) { n }
     else { choice(n-1) }
 }
 
+sig triple : (Int, Int) -a-> () {Choose:(()) {}-> Bool,Failure:(()) {}-> Zero|b}~> (Int, Int, Int)
 fun triple(n,s)(){
     var i = choice(n);
     var j = choice(i-1);
@@ -22,12 +20,13 @@ fun triple(n,s)(){
     else {fail()}
 }
 
+sig hash_triple : (() -a-> (Int, Int, Int)) -b-> () -a-> Int
 fun hash_triple(m)(){
     var (a,b,c) = m (); 
     mod((53 * a + 2809 * b + 148877 * c), 1000000007)
 }
 
-
+sig handler : (() {Choose:(()) {}-> Bool,Failure:(()) {}-> a::Any|b}~> Int) {Choose{c},Failure{d}|b}~> Int
 fun handler(m) {
     handle(m()) {
         case Return(x) -> x
@@ -36,10 +35,11 @@ fun handler(m) {
     }
 }
 
+sig main : () {Choose{a},Failure{b}|c}~> ()
 fun main(){
-    var n = 10;
-    var s = 10;
-    var sum = handler(hash_triple(triple(n,s)));
+    var n = stringToInt(getArgs() !! 0);
+    var s = stringToInt(getArgs() !! 1);
+    var sum = handler(hash_triple(triple(n, s)));
     println(intToString(sum))
 }
 
