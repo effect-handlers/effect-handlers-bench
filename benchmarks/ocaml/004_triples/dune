@@ -1,3 +1,3 @@
 (executable
-  (name 004_triples)
+  (name 004_triples_ocaml)
 	(ocamlopt_flags (:standard -O3)))

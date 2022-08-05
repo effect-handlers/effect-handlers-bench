@@ -1,0 +1,46 @@
+name: Benchmark badges
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  benchmark-badges:
+    strategy:
+      # Parralel runs impose problems when pushing data to shields
+      max-parallel: 1
+      matrix:
+        system: [ eff, ocaml, koka, hia ]
+        benchmark: [ 001_nqueens, 002_generator, 003_tree_explore, 004_triples, 007_simple_counter ] 
+        exclude:
+          # Manually exclude not implemented benchmarks
+          - system: hia
+            benchmark: 003_tree_explore
+          - system: hia
+            benchmark: 004_triples
+          - system: hia
+            benchmark: 007_simple_counter
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      # This is needed to publish shields
+      contents: write
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: "Run CI test"
+        uses: ./.github/actions/ci-test
+        with: 
+          system-name: ${{ matrix.system }}
+          benchmark-name: ${{ matrix.benchmark }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

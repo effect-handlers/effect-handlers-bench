@@ -23,11 +23,11 @@ result of running the Multicore OCaml benchmarks.
 
 |              | [Eff](https://github.com/matijapretnar/eff)<br><br>[![Eff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml) | [Handlers in Action](https://github.com/slindley/effect-handlers)<br>[![Handlers in Action](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml) | [Koka](https://github.com/koka-lang/koka)<br><br>[![Koka](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml) | [libhandler](https://github.com/koka-lang/libhandler)<br><br>[![libhandler](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libhandler.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libhandler.yml) | [libmpeff](https://github.com/koka-lang/libmprompt)<br><br>[![libmpeff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libmpeff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libmpeff.yml) | [Links](https://github.com/links-lang/links)<br><br>[![Links](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml) | [Multicore OCaml](https://github.com/ocaml-multicore/ocaml-multicore)<br>[![Multicore OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml) |
 | :----------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: |
-| **N-queens**<br>Counts the number of solutions to the N queens problem for board size N x N     | :white_check_mark: | :white_check_mark: | :white_check_mark:                | :x: | :x: | :x: | :white_check_mark: |
-| **Generator**<br>Count the sum of elements in a complete binary tree using a generator         | :white_check_mark: | :white_check_mark: | :white_check_mark:                | :x: | :x: | :x: | :white_check_mark: |
-| **Tree explore**<br>Nondeterministically explore a complete binary tree with additional state   | :white_check_mark: | :x:                | :white_check_mark:                | :x: | :x: | :x: | :white_check_mark:                |
-| **Triples**<br>Nondeterministically calculate triples that sum up to specified number   | :white_check_mark: | :x:                | :white_check_mark:                | :x: | :x: | :x: | :white_check_mark:                |
-| **Simple counter**<br>Repeatedly apply operation in a non tail position.                | :white_check_mark: | :x:                | :white_check_mark:                | :x: | :x: | :x: | :white_check_mark:                |
+| **N-queens**<br>Counts the number of solutions to the N queens problem for board size N x N     | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/eff-001_nqueens-result) | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/hia-001_nqueens-result) | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/koka-001_nqueens-result)                | :x: | :x: | :x: | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/ocaml-001_nqueens-result) |
+| **Generator**<br>Count the sum of elements in a complete binary tree using a generator         | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/eff-002_generator-result) | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/hia-002_generator-result) | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/koka-002_generator-result) | :x: | :x: | :x: | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/ocaml-002_generator-result) |
+| **Tree explore**<br>Nondeterministically explore a complete binary tree with additional state   | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/eff-003_tree_explore-result) | :x:                | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/koka-003_tree_explore-result) | :x: | :x: | :x: | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/ocaml-003_tree_explore-result) |
+| **Triples**<br>Nondeterministically calculate triples that sum up to specified number   | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/eff-004_triples-result) | :x:                | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/koka-004_triples-result) | :x: | :x: | :x: | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/ocaml-004_triples-result) |
+| **Simple counter**<br>Repeatedly apply operation in a non tail position.                | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/eff-007_simple_counter-result) | :x:                | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/koka-007_simple_counter-result) | :x: | :x: | :x: | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/ocaml-007_simple_counter-result) |
 
 Legend:
 
@@ -41,7 +41,7 @@ Legend:
   the system.
 + `benchmarks/<system_name>/NNN_<benchmark_name>/` contains the source for the
   benchmark `<benchmark_name>` for the system `<system_name>`.
-+ `benchmark_descriptions/NNN_<benchmark_name>.md` contains the description of
++ `benchmark_descriptions/NNN_<benchmark_name>/` contains the description of
   the benchmark, the input and outputs, and any special considerations.
 + `Makefile` is used to build the systems and benchmarks, and run the
   benchmarks. For each `system`, the Makefile has the following rules:
@@ -70,12 +70,14 @@ The current co-chairs are
 If you wish to add a new benchmark `goat_benchmark` for system `awesome_system`,
 
 + Pick the next serial number for the benchmark `NNN`.
-+ Add the benchmark sources under `benchmarks/<awesome_system>/NNN_<goat_benchmark>`, use the template provided in `benchmark_descriptions/000_template.md`.
++ Add the benchmark sources under `benchmarks/<awesome_system>/NNN_<goat_benchmark>`, use the template provided in `benchmark_descriptions/000_template/`.
 + Update the `Makefile` to build and run the benchmark.
-+ Add a benchmark description under `benchmark_description/NNN_<goat_benchmark>.md`
++ Add a benchmark description under `benchmark_description/NNN_<goat_benchmark>/readme.md`
   clearly stating the input, output and the expectation from the benchmark. Make sure
   you mention the default input argument for the benchmark.
+  Add benchmark inputs and outputs (with their default values) to input/output files.
 + Update this `README.md` file to add the new benchmark to the table of benchmarks and to the benchmark availability table.
++ Add the benchmark to CI testing script.
 
 If you wish to add a benchmark `leet_benchmark` that is not available for a system
 `awesome_system` but is available for another system
@@ -93,6 +95,7 @@ If you wish to contribute a system `awesome_system`, please
 + add a new workflow under `.github/workflows/system_<awesome_system>.yml`
 + create a status badge for the new workflow and add it to to the availability table in
   lexicographic order.
++ Update top level Makefile with commands that build the system and run the benchmarks (if applicable).
 
 Ideally, you will also add benchmarks to go with the new system and update the benchmark availability table.
 
