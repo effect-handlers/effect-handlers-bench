@@ -95,7 +95,7 @@ If you wish to contribute a system `awesome_system`, please
 + add a new workflow under `.github/workflows/system_<awesome_system>.yml`
 + create a status badge for the new workflow and add it to to the availability table in
   lexicographic order.
-+ Update top level Makefile with commands that build the system and run the benchmarks (if applicable).
++ Update top level Makefile with commands that build the system and run the benchmarks (if applicable). `Makefile.example` can be used as a template to enable CI testing for a new system.
 
 Ideally, you will also add benchmarks to go with the new system and update the benchmark availability table.
 

@@ -1,0 +1,36 @@
+# Example makefile for the awesome system
+
+all:
+	# Prepares (compiles) benchmarks and runs them using hyperfine
+
+	# Compile all benchmark files for the specified system
+	# If your compiler supports optimization flags, use ones that provide the most efficient executable
+	## Example:
+	## opam exec --switch=4.12.0+domains+effects -- dune build # This compiles all ocaml files in current folder
+
+
+	# Run compiled benchmarks with hyperfine and provide them with default input parameters
+	# 
+	## Example:
+	## hyperfine --export-csv my_awesome_system.csv './001_nqueens.exe 13' './002_generator.exe 25'
+
+	# Clean generated files, executables, intermeediate files...
+	make -C . clean
+	# Move results to the root of the repository
+	mkdir -p ../../results
+	mv my_awesome_system.csv ../../results
+
+ci_test: compile_file run_compiled_file
+
+compile_file:
+	# Compile benchmark for $(BENCHMARK-NAME)
+	## Example:
+	## ocamlc $(BENCHMARK-NAME).ml -o $(BENCHMARK-NAME).exe
+
+run_compiled_file:
+	# Run already compiled benchmark: $(BENCHMARK-NAME) with arguments $(ARGS) and output result to $(BENCHMARK-NAME).out
+	## Example:
+	## ./$(BENCHMARK-NAME).exe $(ARGS) > $(BENCHMARK-NAME).out
+
+clean:
+	# Clean any leftower files
