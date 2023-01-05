@@ -26,7 +26,7 @@ result of running the Multicore OCaml benchmarks.
 | **N-queens**<br>Counts the number of solutions to the N queens problem for board size N x N     | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/eff-001_nqueens-result) | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/hia-001_nqueens-result) | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/koka-001_nqueens-result)                | :x: | :x: | :x: | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/ocaml-001_nqueens-result) |
 | **Generator**<br>Count the sum of elements in a complete binary tree using a generator         | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/eff-002_generator-result) | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/hia-002_generator-result) | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/koka-002_generator-result) | :x: | :x: | :x: | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/ocaml-002_generator-result) |
 | **Tree explore**<br>Nondeterministically explore a complete binary tree with additional state   | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/eff-003_tree_explore-result) | :x:                | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/koka-003_tree_explore-result) | :x: | :x: | :x: | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/ocaml-003_tree_explore-result) |
-| **Triples**<br>Nondeterministically calculate triples that sum up to specified number   | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/eff-004_triples-result) | :x:                | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/koka-004_triples-result) | :x: | :x: | :x: | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/ocaml-004_triples-result) |
+| **Triples**<br>Nondeterministically calculate triples that sum up to specified number   | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/eff-004_triples-result) | :x:                | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/koka-004_triples-result) | :x: | :x: | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/links-004_triples-result) | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/ocaml-004_triples-result) |
 | **Simple counter**<br>Repeatedly apply operation in a non tail position.                | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/eff-007_simple_counter-result) | :x:                | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/koka-007_simple_counter-result) | :x: | :x: | :x: | ![](https://byob.yarr.is/effect-handlers/effect-handlers-bench/ocaml-007_simple_counter-result) |
 
 Legend:
@@ -100,7 +100,7 @@ If you wish to contribute a system `awesome_system`, please
 + add a new workflow under `.github/workflows/system_<awesome_system>.yml`
 + create a status badge for the new workflow and add it to to the availability table in
   lexicographic order.
-+ Update top level Makefile with commands that build the system and run the benchmarks (if applicable).
++ Update top level Makefile with commands that build the system and run the benchmarks (if applicable). `Makefile.example` can be used as a template to enable CI testing for a new system.
 
 Ideally, you will also add benchmarks to go with the new system and update the benchmark availability table.
 

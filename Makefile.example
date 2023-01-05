@@ -1,3 +1,5 @@
+# Example makefile for the awesome system
+
 all:
 	# Prepares (compiles) benchmarks and runs them using hyperfine
 
@@ -10,13 +12,13 @@ all:
 	# Run compiled benchmarks with hyperfine and provide them with default input parameters
 	# 
 	## Example:
-	## hyperfine --export-csv links.csv './001_nqueens.exe 13' './002_generator.exe 25'
+	## hyperfine --export-csv my_awesome_system.csv './001_nqueens.exe 13' './002_generator.exe 25'
 
 	# Clean generated files, executables, intermeediate files...
 	make -C . clean
 	# Move results to the root of the repository
 	mkdir -p ../../results
-	mv links.csv ../../results
+	mv my_awesome_system.csv ../../results
 
 ci_test: compile_file run_compiled_file
 

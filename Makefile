@@ -74,6 +74,10 @@ ci_bench_links: sys_links
 	docker run -v $(shell pwd):/source $(DOCKERHUB):links \
 		make -C /source/benchmarks/links
 
+ci_test_links: sys_links
+	docker run -v $(shell pwd):/source $(DOCKERHUB):links \
+		make -C /source/benchmarks/links ci_test BENCHMARK-NAME=$(BENCHMARK-NAME) ARGS='$(ARGS)'
+
 # libhandler
 sys_libhandler:
 	docker build -t $(DOCKERHUB):libhandler systems/libhandler
