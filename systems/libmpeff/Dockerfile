@@ -1,6 +1,7 @@
 FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN true
 
 # Get the basic stuff
 RUN apt-get update && \
@@ -23,6 +24,11 @@ RUN echo 'tzdata tzdata/Areas select Europe' | sudo debconf-set-selections
 RUN echo 'tzdata tzdata/Zones/Europe select London' | sudo debconf-set-selections
 RUN sudo apt-get install -qqy --no-install-recommends tzdata
 
+# Install hyperfine
+RUN sudo apt install -y wget
+RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfine_1.11.0_amd64.deb
+RUN sudo dpkg -i hyperfine_1.11.0_amd64.deb
+
 # Install libmprompt/libmpeff
 RUN sudo apt install -y wget git curl gcc make cmake
 RUN curl -o libmprompt-0.6.3.tar.gz -sL https://github.com/koka-lang/libmprompt/archive/refs/tags/v0.6.3.tar.gz
@@ -34,6 +40,6 @@ WORKDIR ./out/release
 CMD ["/bin/cmake" "../.."]
 CMD ["/bin/make"]
 
+# Final steps
 ENV DEBIAN_FRONTEND teletype
-
 CMD ["/bin/bash"]

@@ -1,6 +1,7 @@
 FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN true
 
 # Get the basic stuff
 RUN apt-get update && \
@@ -18,6 +19,11 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER ubuntu
 WORKDIR /home/ubuntu
 
+# Install hyperfine
+RUN sudo apt install -y wget
+RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfine_1.11.0_amd64.deb
+RUN sudo dpkg -i hyperfine_1.11.0_amd64.deb
+
 # Install Multicore OCaml
 RUN sudo apt install -y wget git curl gcc make m4 unzip bubblewrap bzip2
 RUN curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh > /tmp/install.sh
@@ -29,10 +35,8 @@ RUN echo "test -r /home/ubuntu/.opam/opam-init/init.sh && . /home/ubuntu/.opam/o
 RUN opam switch create -y 4.12.0+domains+effects
 RUN eval $(opam env)
 
-RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfine_1.11.0_amd64.deb
-RUN sudo dpkg -i hyperfine_1.11.0_amd64.deb
 RUN opam install dune
 
+# Final steps
 ENV DEBIAN_FRONTEND teletype
-
 CMD ["/bin/bash"]

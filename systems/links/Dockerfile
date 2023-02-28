@@ -19,6 +19,11 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER ubuntu
 WORKDIR /home/ubuntu
 
+# Install hyperfine
+RUN sudo apt install -y wget
+RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfine_1.11.0_amd64.deb
+RUN sudo dpkg -i hyperfine_1.11.0_amd64.deb
+
 # Configure tzdata
 RUN echo 'tzdata tzdata/Areas select Europe' | sudo debconf-set-selections
 RUN echo 'tzdata tzdata/Zones/Europe select London' | sudo debconf-set-selections
@@ -39,11 +44,6 @@ RUN eval $(opam env)
 # TODO install database facilities?
 RUN opam install links -y
 
-# Install hyperfine
-RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfine_1.11.0_amd64.deb
-RUN sudo dpkg -i hyperfine_1.11.0_amd64.deb
-
-
+# Final steps
 ENV DEBIAN_FRONTEND teletype
-
 CMD ["/bin/bash"]

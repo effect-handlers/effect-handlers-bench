@@ -1,6 +1,7 @@
 FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN true
 
 # Get the basic stuff
 RUN apt-get update && \
@@ -18,17 +19,18 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER ubuntu
 WORKDIR /home/ubuntu
 
+# Install hyperfine
+RUN sudo apt install -y wget
+RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfine_1.11.0_amd64.deb
+RUN sudo dpkg -i hyperfine_1.11.0_amd64.deb
+
 # Configure tzdata
 RUN echo 'tzdata tzdata/Areas select Europe' | sudo debconf-set-selections
 RUN echo 'tzdata tzdata/Zones/Europe select London' | sudo debconf-set-selections
 RUN sudo apt-get install -qqy --no-install-recommends tzdata
 
-# Install hyperfine
-RUN sudo apt install -y wget git curl gcc make m4
-RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfine_1.11.0_amd64.deb
-RUN sudo dpkg -i hyperfine_1.11.0_amd64.deb
-
 # Install Koka
+RUN sudo apt install -y curl
 RUN curl -sSL https://github.com/koka-lang/koka/releases/download/v2.4.0/install.sh | sh
 
 # Final steps
