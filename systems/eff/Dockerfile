@@ -21,8 +21,8 @@ WORKDIR /home/ubuntu
 
 # Install hyperfine
 RUN sudo apt install -y wget
-RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfine_1.11.0_amd64.deb
-RUN sudo dpkg -i hyperfine_1.11.0_amd64.deb
+RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
+RUN sudo dpkg -i hyperfine_1.15.0_amd64.deb
 
 # Install OCaml
 RUN sudo apt install -y wget git curl gcc make m4 unzip bubblewrap bzip2
