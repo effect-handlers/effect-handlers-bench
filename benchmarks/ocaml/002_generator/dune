@@ -1,3 +1,0 @@
-(executable
-  (name 002_generator_ocaml)
-	(ocamlopt_flags (:standard -O3)))

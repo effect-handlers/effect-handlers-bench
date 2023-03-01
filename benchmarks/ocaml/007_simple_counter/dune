@@ -1,3 +1,0 @@
-(executable
-  (name 007_simple_counter_ocaml)
-	(ocamlopt_flags (:standard -O3)))

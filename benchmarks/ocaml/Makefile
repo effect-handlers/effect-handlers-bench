@@ -1,21 +1,25 @@
-all:
-	#Build OCaml benchmarks
-	opam exec --switch=4.12.0+domains+effects -- dune build
-	#Run OCaml benchmarks
-	hyperfine --export-csv ocaml.csv \
-		'./_build/default/001_nqueens/001_nqueens_ocaml.exe 13' \
-		'./_build/default/002_generator/002_generator_ocaml.exe 25' \
-		'./_build/default/003_tree_explore/003_tree_explore_ocaml.exe 16' \
-		'./_build/default/004_triples/004_triples_ocaml.exe 300 300' \
-		'./_build/default/007_simple_counter/007_simple_counter_ocaml.exe 20000'
-	#Cleanup
-	opam exec --switch=4.12.0+domains+effects -- dune clean
-	#Copy results to the root of the repository
-	mkdir -p ../../results
-	mv ocaml.csv ../../results
+bench: build
+	hyperfine --export-csv results.csv \
+		'001_nqueens/main 13' \
+		'002_generator/main 25' \
+		'003_tree_explore/main 16' \
+		'004_triples/main 300 300' \
+		'007_simple_counter/main 20000'
 
+build:
+	cd 001_nqueens ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
+	cd 002_generator ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
+	cd 003_tree_explore ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
+	cd 004_triples ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
+	cd 007_simple_counter ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
+
+clean:
+	-rm */main.cmi
+	-rm */main.cmx
+	-rm */main.o
+	-rm */main
 
 ci_test:
 	# Build everything
 	opam exec --switch=4.12.0+domains+effects -- dune build
-	./_build/default/$(BENCHMARK-NAME)/$(BENCHMARK-NAME)_ocaml.exe $(ARGS) > $(BENCHMARK-NAME).out
+	$(BENCHMARK-NAME)/$(BENCHMARK-NAME)_ocaml.exe $(ARGS) > $(BENCHMARK-NAME).out
