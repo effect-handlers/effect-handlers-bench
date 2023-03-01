@@ -109,7 +109,7 @@ scratch natively on a machine if needed. The benchmarking chair will push the im
 to [Docker Hub](https://hub.docker.com/repository/docker/effecthandlers/effect-handlers) so
 that systems are easily available for wider use.
 
-We use Ubuntu 20.04 as the base image for building the systems and
+We use Ubuntu 22.04 as the base image for building the systems and
 [hyperfine](https://github.com/sharkdp/hyperfine) to run the benchmarks.
 
 ### Artifacts
