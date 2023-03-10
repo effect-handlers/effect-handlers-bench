@@ -1,4 +1,4 @@
-module benchmark
+module main
 
 import std/os/env
 import std/text/parse
