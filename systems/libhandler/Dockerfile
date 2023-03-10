@@ -1,6 +1,7 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN true
 
 # Get the basic stuff
 RUN apt-get update && \
@@ -18,6 +19,11 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER ubuntu
 WORKDIR /home/ubuntu
 
+# Install hyperfine
+RUN sudo apt install -y wget
+RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
+RUN sudo dpkg -i hyperfine_1.15.0_amd64.deb
+
 # Install libhandler
 RUN sudo apt install -y wget git curl gcc make m4
 RUN curl -o libhandler-0.5.tar.gz -sL https://github.com/koka-lang/libhandler/archive/refs/tags/v0.5.tar.gz
@@ -28,7 +34,8 @@ CMD ["/bin/bash" "./configure"]
 CMD ["/bin/make" "depend"]
 CMD ["/bin/make" "VARIANT=release" "main"]
 
+# Final steps
 ENV DEBIAN_FRONTEND teletype
-
 CMD ["/bin/bash"]
+
 #gcc -Wall -O3 -DNDEBUG -Iinc -Iout/gcc-amd64-linux-gnu -o amb amb.c out/gcc-amd64-linux-gnu/release/libhandler.lib
