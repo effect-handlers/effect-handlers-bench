@@ -33,7 +33,7 @@ jobs:
 
       - name: Setup OCaml system
         run: |
-          make sys_ocaml
+          make system_ocaml
 
       - name: Run OCaml benchmarks
         run: |

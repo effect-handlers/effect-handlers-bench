@@ -33,7 +33,7 @@ jobs:
 
       - name: Setup Koka system
         run: |
-          make sys_koka
+          make system_koka
 
       - name: Run Koka benchmarks
         run: |

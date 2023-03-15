@@ -33,7 +33,7 @@ jobs:
 
       - name: Setup HIA system
         run: |
-          make sys_hia
+          make system_hia
 
       - name: Run HIA benchmarks
         run: |

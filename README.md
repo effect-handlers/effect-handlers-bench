@@ -41,11 +41,11 @@ Legend:
   the system.
 + `benchmarks/<system_name>/NNN_<benchmark_name>/` contains the source for the
   benchmark `<benchmark_name>` for the system `<system_name>`.
-+ `benchmark_descriptions/NNN_<benchmark_name>/` contains the description of
++ `descriptions/NNN_<benchmark_name>/` contains the description of
   the benchmark, the input and outputs, and any special considerations.
 + `Makefile` is used to build the systems and benchmarks, and run the
   benchmarks. For each `system`, the Makefile has the following rules:
-  - `sys_<system_name>`: Builds the `<system_name>` docker image.
+  - `system_<system_name>`: Builds the `<system_name>` docker image.
   - `bench_<system_name>`: Runs the benchmarks using the docker image for the
     `<system_name>`.
 + `LABELS.md` contains a list of available benchmark labels.
@@ -75,22 +75,23 @@ Past co-chairs
 If you wish to add a new benchmark `goat_benchmark` for system `awesome_system`,
 
 + Pick the next serial number for the benchmark `NNN`.
-+ Add the benchmark sources under `benchmarks/<awesome_system>/NNN_<goat_benchmark>`, use the template provided in `benchmark_descriptions/000_template/`.
-+ Update the `Makefile` to build and run the benchmark.
-+ Add a benchmark description under `benchmark_description/NNN_<goat_benchmark>/readme.md`
-  clearly stating the input, output and the expectation from the benchmark. Make sure
-  you mention the default input argument for the benchmark.
-  Add benchmark inputs and outputs (with their default values) to input/output files.
++ Add the benchmark sources under `benchmarks/<awesome_system>/NNN_<goat_benchmark>`.
+  Use the template provided in `descriptions/000_template/`.
+  The benchmark takes its inputs as a command-line arguments and prints its outputs.
++ Update `benchmarks/<awesome_system>/Makefile`to build and run the benchmark.
++ Add a benchmark description under `descriptions/NNN_<goat_benchmark>/README.md`
+  clearly stating the input, output, and the expectation from the benchmark.
+  Provide a small input output pair for testing and a large one for benchmarking.
 + Update this `README.md` file to add the new benchmark to the table of benchmarks and to the benchmark availability table.
-+ Add the benchmark to CI testing script.
++ Add the benchmark to `.github/workflows/benchmark_badges.yml`
 
-If you wish to add a benchmark `leet_benchmark` that is not available for a system
+If you wish to add a benchmark `leet_benchmark` that is not yet available for a system
 `awesome_system` but is available for another system
 
 + Use the same serial number for the benchmark `NNN` that is used by the existing system
 + Add the benchmark sources under `benchmarks/<awesome_system>/NNN_<leet_benchmark>`.
-+ Update the `Makefile` to build and run the benchmark, using the same parameter as
-  suggested in the benchmark description.
++ Update `benchmarks/<awesome_system>/Makefile` to build, test, and run the benchmark.
+  Use the parameters for testing and benchmraking provided in the benchmark description.
 
 ### System
 
@@ -100,7 +101,7 @@ If you wish to contribute a system `awesome_system`, please
 + add a new workflow under `.github/workflows/system_<awesome_system>.yml`
 + create a status badge for the new workflow and add it to to the availability table in
   lexicographic order.
-+ Update top level Makefile with commands that build the system and run the benchmarks (if applicable).
++ Update `Makefile` with commands that build, test, and benchmark the system.
 
 Ideally, you will also add benchmarks to go with the new system and update the benchmark availability table.
 

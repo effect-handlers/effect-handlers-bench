@@ -33,7 +33,7 @@ jobs:
 
       - name: Setup Links system
         run: |
-          make sys_links
+          make system_links
 
       - name: Run Links benchmarks
         run: |

@@ -32,7 +32,7 @@ jobs:
           find . -type d -exec chmod 777 {} \;
       - name: Setup libmpeff system
         run: |
-          make sys_libmpeff
+          make system_libmpeff
       - name: Run libmpeff benchmarks
         run: |
           make ci_bench_libmpeff

@@ -33,7 +33,7 @@ jobs:
 
       - name: Setup libhandler system
         run: |
-          make sys_libhandler
+          make system_libhandler
 
       - name: Run libhandler benchmarks
         run: |

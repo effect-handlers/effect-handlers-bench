@@ -33,7 +33,7 @@ jobs:
 
       - name: Setup Eff system
         run: |
-          make sys_eff
+          make system_eff
 
       - name: Run Eff benchmarks
         run: |
