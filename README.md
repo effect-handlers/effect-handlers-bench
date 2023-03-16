@@ -16,8 +16,8 @@ Ensure that [Docker](https://www.docker.com/) is installed on your system. Then,
 $ make bench_ocaml
 ```
 
-runs the OCaml benchmarks and produces `_results/ocaml.csv` which contains the
-result of running the Multicore OCaml benchmarks.
+runs the OCaml benchmarks and produces `benchmarks/ocaml/results.csv` which
+contains the results of running the Multicore OCaml benchmarks.
 
 ## Benchmark availability
 
@@ -46,8 +46,8 @@ Legend:
 + `Makefile` is used to build the systems and benchmarks, and run the
   benchmarks. For each `system`, the Makefile has the following rules:
   - `system_<system_name>`: Builds the `<system_name>` docker image.
-  - `bench_<system_name>`: Runs the benchmarks using the docker image for the
-    `<system_name>`.
+  - `bench_<system_name>`: Runs the benchmarks using the docker image for `<system_name>`.
+  - `test_<system_name>`: Tests the benchmark programs using the docker image for `<system_name>`.
 + `LABELS.md` contains a list of available benchmark labels.
   Each benchmark can be assigned multiple labels.
 
@@ -72,39 +72,37 @@ Past co-chairs
 
 ### Benchmark
 
-If you wish to add a new benchmark `goat_benchmark` for system `awesome_system`,
+If you wish to implement `<goat_benchmark>` for system `<awesome_system>`,
+
++ Use the same serial number for the benchmark `NNN` as in its description.
++ Add the benchmark sources under `benchmarks/<awesome_system>/NNN_<goat_benchmark>`.
+  The benchmark takes its inputs as a command-line arguments and prints its outputs.
++ Update `benchmarks/<awesome_system>/Makefile`to build, test, and benchmark the program.
+  Use the parameters for testing and benchmarking provided in the benchmark description.
++ Update this `README.md` file to tick the new benchmark in the benchmark availability table.
+
+### Description
+
+If you wish to add a new benchmark `<goat_benchmark>`,
 
 + Pick the next serial number for the benchmark `NNN`.
-+ Add the benchmark sources under `benchmarks/<awesome_system>/NNN_<goat_benchmark>`.
-  Use the template provided in `descriptions/000_template/`.
-  The benchmark takes its inputs as a command-line arguments and prints its outputs.
-+ Update `benchmarks/<awesome_system>/Makefile`to build and run the benchmark.
-+ Add a benchmark description under `descriptions/NNN_<goat_benchmark>/README.md`
-  clearly stating the input, output, and the expectation from the benchmark.
-  Provide a small input output pair for testing and a large one for benchmarking.
-+ Update this `README.md` file to add the new benchmark to the table of benchmarks and to the benchmark availability table.
-+ Add the benchmark to `.github/workflows/benchmark_badges.yml`
-
-If you wish to add a benchmark `leet_benchmark` that is not yet available for a system
-`awesome_system` but is available for another system
-
-+ Use the same serial number for the benchmark `NNN` that is used by the existing system
-+ Add the benchmark sources under `benchmarks/<awesome_system>/NNN_<leet_benchmark>`.
-+ Update `benchmarks/<awesome_system>/Makefile` to build, test, and run the benchmark.
-  Use the parameters for testing and benchmraking provided in the benchmark description.
-+ Add a tick for `awesome_system` and `leet_benchmark` in the availability table in this `README.md`.
++ Add a benchmark description under `descriptions/NNN_<goat_benchmark>/README.md`.
+  Use the template provided in `descriptions/000_template/README.md`.
++ Provide a reference implementation for at least one system.
++ Update this `README.md` and add a new row to the benchmark availability table.
 
 ### System
 
-If you wish to contribute a system `awesome_system`, please
+If you wish to contribute a system `<awesome_system>`,
 
-+ add a new dockerfile at `systems/<awesome_system>/Dockerfile`
-+ add a new workflow under `.github/workflows/system_<awesome_system>.yml`
-+ create a status badge for the new workflow and add it to to the availability table in
-  lexicographic order.
++ Add a new dockerfile at `systems/awesome_system/Dockerfile`.
++ Add a new workflow under `.github/workflows/system_<awesome_system>.yml`.
+  It should build the system and run tests.
++ Update this `README.md` and add a new column to the benchmark availability table.
+  Create a status badge and add it as well.
 + Update `Makefile` with commands that build, test, and benchmark the system.
 
-Ideally, you will also add benchmarks to go with the new system and update the benchmark availability table.
+Ideally, you will also add benchmarks to go with the new system.
 
 Having a dockerfile aids reproducibility and ensures that we can build the system from
 scratch natively on a machine if needed. The benchmarking chair will push the image
