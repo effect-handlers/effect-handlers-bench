@@ -31,10 +31,7 @@ jobs:
         run: |
           find . -type d -exec chmod 777 {} \;
 
-      - name: Setup HIA system
+      - name: Test HIA system
         run: |
-          make system_hia
+          make test_hia
 
-      - name: Run HIA benchmarks
-        run: |
-          make ci_bench_hia

@@ -6,6 +6,13 @@ bench: build
 		'004_triples/main 300 300' \
 		'007_simple_counter/main 20000'
 
+test: build
+	cd 001_nqueens ; ./main 5 > actual ; echo 10 > expected ; diff expected actual && echo "ok" > result
+	cd 002_generator ; ./main 5 > actual ; echo 57 > expected ; diff expected actual && echo "ok" > result
+	cd 003_tree_explore ; ./main 5 > actual ; echo 946 > expected ; diff expected actual && echo "ok" > result
+	cd 004_triples ; ./main 10 10 > actual ; echo 779312 > expected ; diff expected actual && echo "ok" > result
+	cd 007_simple_counter ; ./main 5 > actual ; echo 37 > expected ; diff expected actual && echo "ok" > result
+
 build:
 	cd 001_nqueens ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
 	cd 002_generator ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
@@ -18,8 +25,6 @@ clean:
 	-rm */main.cmx
 	-rm */main.o
 	-rm */main
-
-ci_test:
-	# Build everything
-	opam exec --switch=4.12.0+domains+effects -- dune build
-	$(BENCHMARK-NAME)/$(BENCHMARK-NAME)_ocaml.exe $(ARGS) > $(BENCHMARK-NAME).out
+	-rm */expected
+	-rm */actual
+	-rm */result

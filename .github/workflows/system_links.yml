@@ -31,10 +31,7 @@ jobs:
         run: |
           find . -type d -exec chmod 777 {} \;
 
-      - name: Setup Links system
+      - name: Test Links system
         run: |
-          make system_links
+          make test_links
 
-      - name: Run Links benchmarks
-        run: |
-          make ci_bench_links

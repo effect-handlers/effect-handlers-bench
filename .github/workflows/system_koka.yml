@@ -31,10 +31,7 @@ jobs:
         run: |
           find . -type d -exec chmod 777 {} \;
 
-      - name: Setup Koka system
+      - name: Test Koka system
         run: |
-          make system_koka
+          make test_koka
 
-      - name: Run Koka benchmarks
-        run: |
-          make ci_bench_koka

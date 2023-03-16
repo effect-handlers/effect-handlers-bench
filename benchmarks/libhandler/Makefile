@@ -1,2 +1,2 @@
-all:
+test:
 	# TODO

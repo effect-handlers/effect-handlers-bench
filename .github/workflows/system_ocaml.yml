@@ -31,10 +31,7 @@ jobs:
         run: |
           find . -type d -exec chmod 777 {} \;
 
-      - name: Setup OCaml system
+      - name: Test OCaml system
         run: |
-          make system_ocaml
+          make test_ocaml
 
-      - name: Run OCaml benchmarks
-        run: |
-          make ci_bench_ocaml

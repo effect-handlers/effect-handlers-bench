@@ -10,13 +10,9 @@ bench_eff: system_eff
 	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):eff \
 		make -C /source/benchmarks/eff
 
-ci_bench_eff: system_eff
+test_eff: system_eff
 	docker run -v $(shell pwd):/source $(DOCKERHUB):eff \
-		make -C /source/benchmarks/eff
-
-ci_test_eff:
-	docker run -v $(shell pwd):/source $(DOCKERHUB):eff \
-		make -C /source/benchmarks/eff ci_test BENCHMARK-NAME=$(BENCHMARK-NAME) ARGS='$(ARGS)'
+		make -C /source/benchmarks/eff test
 
 # Handlers in Action
 system_hia:
@@ -26,13 +22,9 @@ bench_hia: system_hia
 	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):hia \
 		make -C /source/benchmarks/hia
 
-ci_bench_hia: system_hia
+test_hia: system_hia
 	docker run -v $(shell pwd):/source $(DOCKERHUB):hia \
-		make -C /source/benchmarks/hia
-
-ci_test_hia: system_hia
-	docker run -v $(shell pwd):/source $(DOCKERHUB):hia \
-		make -C /source/benchmarks/hia ci_test BENCHMARK-NAME=$(BENCHMARK-NAME) ARGS='$(ARGS)'
+		make -C /source/benchmarks/hia test
 
 # Koka
 system_koka:
@@ -54,9 +46,9 @@ bench_libmpeff: system_libmpeff
 	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):libmpeff \
 		make -C /source/benchmarks/libmpeff
 
-ci_bench_libmpeff: system_libmpeff
+test_libmpeff: system_libmpeff
 	docker run -v $(shell pwd):/source $(DOCKERHUB):libmpeff \
-		make -C /source/benchmarks/libmpeff
+		make -C /source/benchmarks/libmpeff test
 
 # Links
 system_links:
@@ -66,9 +58,9 @@ bench_links: system_links
 	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):links \
 		make -C /source/benchmarks/links
 
-ci_bench_links: system_links
+test_links: system_links
 	docker run -v $(shell pwd):/source $(DOCKERHUB):links \
-		make -C /source/benchmarks/links
+		make -C /source/benchmarks/links test
 
 # libhandler
 system_libhandler:
@@ -78,9 +70,9 @@ bench_libhandler: system_libhandler
 	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):libhandler \
 		make -C /source/benchmarks/libhandler
 
-ci_bench_libhandler: system_libhandler
+test_libhandler: system_libhandler
 	docker run -v $(shell pwd):/source $(DOCKERHUB):libhandler \
-		make -C /source/benchmarks/libhandler
+		make -C /source/benchmarks/libhandler test
 
 # Multicore OCaml
 system_ocaml:
@@ -90,13 +82,9 @@ bench_ocaml: system_ocaml
 	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):ocaml \
 		make -C /source/benchmarks/ocaml
 
-ci_bench_ocaml: system_ocaml
+test_ocaml: system_ocaml
 	docker run -v $(shell pwd):/source $(DOCKERHUB):ocaml \
-		make -C /source/benchmarks/ocaml
-
-ci_test_ocaml: system_ocaml
-	docker run -v $(shell pwd):/source $(DOCKERHUB):ocaml \
-		make -C /source/benchmarks/ocaml ci_test BENCHMARK-NAME=$(BENCHMARK-NAME) ARGS='$(ARGS)'
+		make -C /source/benchmarks/ocaml test
 
 clean:
 	rm -f _results *~

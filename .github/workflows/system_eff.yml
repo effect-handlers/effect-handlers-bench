@@ -31,10 +31,7 @@ jobs:
         run: |
           find . -type d -exec chmod 777 {} \;
 
-      - name: Setup Eff system
+      - name: Test Eff system
         run: |
-          make system_eff
+          make test_eff
 
-      - name: Run Eff benchmarks
-        run: |
-          make ci_bench_eff
