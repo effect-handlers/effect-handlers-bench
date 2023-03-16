@@ -7,11 +7,11 @@ bench: build
 		'007_simple_counter/main 20000'
 
 test: build
-	cd 001_nqueens ; ./main 5 > actual ; echo 10 > expected ; diff expected actual && echo "ok" > result
-	cd 002_generator ; ./main 5 > actual ; echo 57 > expected ; diff expected actual && echo "ok" > result
-	cd 003_tree_explore ; ./main 5 > actual ; echo 946 > expected ; diff expected actual && echo "ok" > result
-	cd 004_triples ; ./main 10 10 > actual ; echo 779312 > expected ; diff expected actual && echo "ok" > result
-	cd 007_simple_counter ; ./main 5 > actual ; echo 37 > expected ; diff expected actual && echo "ok" > result
+	cd 001_nqueens ; ./main 5 > actual ; echo 10 > expected ; diff expected actual
+	cd 002_generator ; ./main 5 > actual ; echo 57 > expected ; diff expected actual
+	cd 003_tree_explore ; ./main 5 > actual ; echo 946 > expected ; diff expected actual
+	cd 004_triples ; ./main 10 10 > actual ; echo 779312 > expected ; diff expected actual
+	cd 007_simple_counter ; ./main 5 > actual ; echo 37 > expected ; diff expected actual
 
 build:
 	cd 001_nqueens ; cp ../OcamlHeader.ml OcamlHeader.ml ; eff.exe --no-stdlib --compile-plain-ocaml main.eff | opam exec -- ocamlformat - --name=temp.ml --enable-outside-detected-project > generated.ml ; opam exec -- ocamlopt -O3 -o main OcamlHeader.ml generated.ml wrapper.ml
@@ -35,4 +35,3 @@ clean:
 	-rm */OcamlHeader.cmx
 	-rm */expected
 	-rm */actual
-	-rm */result

@@ -7,11 +7,11 @@ bench: build
 		'./007_simple_counter/main 20000'
 
 test: build
-	cd 001_nqueens ; ./main 5 > actual ; echo 10 > expected ; diff expected actual && echo "ok" > result
-	cd 002_generator ; ./main 5 > actual ; echo 57 > expected ; diff expected actual && echo "ok" > result
-	cd 003_tree_explore ; ./main 5 > actual ; echo 946 > expected ; diff expected actual && echo "ok" > result
-	cd 004_triples ; ./main 10 10 > actual ; echo 779312 > expected ; diff expected actual && echo "ok" > result
-	cd 007_simple_counter ; ./main 5 > actual ; echo 37 > expected ; diff expected actual && echo "ok" > result
+	cd 001_nqueens ; ./main 5 > actual ; echo 10 > expected ; diff expected actual
+	cd 002_generator ; ./main 5 > actual ; echo 57 > expected ; diff expected actual
+	cd 003_tree_explore ; ./main 5 > actual ; echo 946 > expected ; diff expected actual
+	cd 004_triples ; ./main 10 10 > actual ; echo 779312 > expected ; diff expected actual
+	cd 007_simple_counter ; ./main 5 > actual ; echo 37 > expected ; diff expected actual
 
 build:
 	cd 001_nqueens ; koka -O3 -o main main.kk ; chmod +x main
@@ -26,4 +26,3 @@ clean:
 	-rm results.csv
 	-rm */expected
 	-rm */actual
-	-rm */result
