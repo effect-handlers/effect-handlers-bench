@@ -1,4 +1,4 @@
-# 001 - N-Queens Problem
+# N-Queens Problem
 
 The goal of the benchmark is to calculate the number of safe assignments of
 queens on a N x N chess board. Effect handlers are utilised for backtracking

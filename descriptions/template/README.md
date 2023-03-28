@@ -1,4 +1,4 @@
-# XXX - Short benchmark name
+# Short benchmark name
 
 *A description of the benchmark.*
 

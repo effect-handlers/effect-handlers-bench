@@ -1,4 +1,4 @@
-# 002 - Generator
+# Generator
 
 The goal of the benchmark is to compute the sum of the elements in a complete
 binary tree of height `h` using a generator. The generator is implemented using

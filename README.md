@@ -39,9 +39,9 @@ Legend:
 
 + `systems/<system_name>/Dockerfile` is the `Dockerfile` in order to build
   the system.
-+ `benchmarks/<system_name>/NNN_<benchmark_name>/` contains the source for the
++ `benchmarks/<system_name>/<benchmark_name>/` contains the source for the
   benchmark `<benchmark_name>` for the system `<system_name>`.
-+ `descriptions/NNN_<benchmark_name>/` contains the description of
++ `descriptions/<benchmark_name>/` contains the description of
   the benchmark, the input and outputs, and any special considerations.
 + `Makefile` is used to build the systems and benchmarks, and run the
   benchmarks. For each `system`, the Makefile has the following rules:
@@ -74,20 +74,18 @@ Past co-chairs
 
 If you wish to implement `<goat_benchmark>` for system `<awesome_system>`,
 
-+ Use the same serial number for the benchmark `NNN` as in its description.
-+ Add the benchmark sources under `benchmarks/<awesome_system>/NNN_<goat_benchmark>`.
++ Add the benchmark sources under `benchmarks/<awesome_system>/<goat_benchmark>`.
   The benchmark takes its inputs as a command-line arguments and prints its outputs.
 + Update `benchmarks/<awesome_system>/Makefile`to build, test, and benchmark the program.
-  Use the parameters for testing and benchmarking provided in the benchmark description.
+  Use the parameters for testing and benchmarking provided in `descriptions/<goat_benchmark>/README.md`.
 + Update this `README.md` file to tick the new benchmark in the benchmark availability table.
 
 ### Description
 
 If you wish to add a new benchmark `<goat_benchmark>`,
 
-+ Pick the next serial number for the benchmark `NNN`.
-+ Add a benchmark description under `descriptions/NNN_<goat_benchmark>/README.md`.
-  Use the template provided in `descriptions/000_template/README.md`.
++ Add a benchmark description under `descriptions/<goat_benchmark>/README.md`.
+  Use the template provided in `descriptions/template/README.md`.
 + Provide a reference implementation for at least one system.
 + Update this `README.md` and add a new row to the benchmark availability table.
 

@@ -1,4 +1,4 @@
-# 007 - Simple Counter
+# Simple Counter
 
 Repeatedly apply an operation in a loop at a non-tail position.
 

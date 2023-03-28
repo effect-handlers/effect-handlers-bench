@@ -1,15 +1,15 @@
 bench: build
 	hyperfine --export-csv hia.csv \
-		'./001_nqueens/001_nqueens 13' \
-		'./002_generator/002_generator 25'
+		'./nqueens/main 13' \
+		'./generator/main 25'
 
 test: build
-	cd 001_nqueens ; ./main 5 > actual ; echo 10 > expected ; diff expected actual
-	cd 002_generator ; ./main 5 > actual ; echo 57 > expected ; diff expected actual
+	cd nqueens ; ./main 5 > actual ; echo 10 > expected ; diff expected actual
+	cd generator ; ./main 5 > actual ; echo 57 > expected ; diff expected actual
 
 build:
-	cd 001_nqueens ; cp -r ../HIA HIA ; ghc -O2 -o main Main.hs
-	cd 002_generator ; cp -r ../HIA HIA ; ghc -O2 -o main Main.hs
+	cd nqueens ; cp -r ../HIA HIA ; ghc -O2 -o main Main.hs
+	cd generator ; cp -r ../HIA HIA ; ghc -O2 -o main Main.hs
 
 clean:
 	-rm */main

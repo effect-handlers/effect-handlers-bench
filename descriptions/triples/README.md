@@ -1,4 +1,4 @@
-# 004 - Triples
+# Triples
 
 Compute the number of strictly decreasing triples that sum up to a target number `s`.
 Effect handlers are used to iterate through all the possible combinations.
