@@ -3,31 +3,32 @@
 effect Pick : int -> int
 effect Fail : unit -> empty
 
-type queen =  int * int
 type rows = RowsEmpty | RowsCons of int * rows
 
-let queens_count n =
+let run n =
+
   let rec safe queen diag xs =
     match xs with
     | RowsEmpty -> true
     | RowsCons(q, qs) -> 
-        queen <> q && queen <> q + diag && queen <> q - diag && 
-        safe queen (diag + 1) qs
-  in
-  let rec find_solution (n, col) =
+        queen <> q && queen <> q + diag && queen <> q - diag && safe queen (diag + 1) qs in
+
+  let rec place size column =
     let absurd void = (match void with) in
-    if col = 0 then RowsEmpty
-    else (
-      let sol = find_solution (n, (col - 1)) in
-      let queen = perform (Pick n) in
-      if safe queen 1 sol then RowsCons(queen, sol) else absurd (perform (Fail ()))
-    )
-  in
-  handle (find_solution (n, n)) with
+    if column = 0
+      then RowsEmpty
+      else (
+        let rest = place size (column - 1) in
+        let next = perform (Pick size) in
+        if safe next 1 rest
+          then RowsCons(next, rest)
+          else absurd (perform (Fail ()))) in
+
+  handle (place n n) with
   | _x -> 1
   | effect (Fail ()) k -> 0
-  | effect (Pick n) k ->
-      let rec loop i acc =
-        if i = n then (k i) + acc
-        else loop (i+1) ((k i) + acc)
+  | effect (Pick size) k ->
+      let rec loop i a =
+        if i = n then a + k i
+        else loop (i+1) (a + k i)
       in loop 1 0

@@ -1,54 +1,42 @@
 module main
 
 import std/os/env
-import std/text/parse
 
 alias solution = list<int>
-alias solutions = list<list<int>>
 
 effect search
   ctl pick(size : int) : int
-  ctl fail() : ()
+  ctl fail() : a
 
-fun safe( queen : int, diag : int, ^xs : solution ) : bool
+fun safe(queen : int, diag : int, xs : solution ) : bool
   match xs
-    Cons(q,qs) -> (queen != q && queen != q + diag && queen != q - diag && safe(queen,diag + 1,qs))
-    _          -> True
+    Nil -> True
+    Cons(q, qs) -> queen != q && queen != q + diag && queen != q - diag && safe(queen, diag + 1, qs)
 
-fun find-one-solution(size : int, queen : int) : <div, search> solution 
-  if queen == 0 
+fun place(size : int, column : int) : <div, search> solution
+  if column == 0
     then Nil
   else 
-    val sol = find-one-solution(size, queen - 1)
+    val rest = place(size, column - 1)
     val next = pick(size)
-    if safe(next, 1, sol) 
-      then Cons(next, sol)
-    else 
-      fail()
-      Nil
+    if safe(next, 1, rest)
+      then Cons(next, rest)
+      else fail()
 
-fun count-solutions(size) : div int
+fun run(n : int)
   with handler
     return(_)        1
     ctl fail()       0
-    ctl pick(sz)      {
-      //list(1, sz).map(resume).sum // This is slower on my machine
-      fun loop(i : int, acc : int){
-        if i == sz then
-          resume(i) + acc
+    ctl pick(size)
+      fun loop(i : int, a : int)
+        if i == n then
+          a + resume(i)
         else
-          loop(i + 1, (resume(i) + acc))
-      }
+          loop(i + 1, a + resume(i))
       loop(1, 0)
-    }
-  find-one-solution(size, size)
+  place(n, n)
 
 pub fun main()
-  val sz = 
-    match get-args()
-      Nil -> 8
-      Cons(arg0, _) -> 
-        match parse-int(arg0)
-          Just(sz) -> sz
-          _        -> 8
-  count-solutions(sz).println
+  val n = get-args().head("").parse-int-default(8)
+  val r = run(n)
+  println(r)
