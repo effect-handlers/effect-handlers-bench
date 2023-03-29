@@ -1,63 +1,50 @@
 module main
 
 import std/os/env
-import std/text/parse
 
-effect yield-num
-  ctl yield-num(num : int) : ()
+effect yield
+  ctl yield(x : int) : ()
 
-
-type tree<a>
+type tree
   Leaf
-  Node(left: tree<a>, v: a, right: tree<a>)
+  Node(left : tree, value : int, right : tree)
 
-type generator<a>
+type generator
   Empty
-  Thunk(v: a, rest: () -> generator<a>)
+  Thunk(value : int, next: () -> div generator)
 
-fun make-tree(n: int) : div tree<int>
+fun make(n : int) : div tree
   if n == 0 then
     Leaf
   else
-    val sub = make-tree(n - 1)
-    Node(sub, n, sub)
+    val t = make(n - 1)
+    Node(t, n, t)
 
-
-fun iterate(tree: tree<int>) : <yield-num> () {
-  match tree
+fun iterate(t : tree) : yield ()
+  match t
     Leaf -> ()
-    Node(left, v, right) -> {
-      iterate(left)
-      yield-num(v)
-      iterate(right)
-    }
-}
+    Node(l, v, r) ->
+      iterate(l)
+      yield(v)
+      iterate(r)
 
-fun consumer(g: () -> generator<int>, acc : int) : div int
-  match g ()
-    Empty -> acc
-    Thunk(v, rest) -> consumer (rest, acc + v)
-
-fun sum-generator(tree: tree<int>) : (() -> generator<int>) {
+fun generate(f : () -> <yield,div> ()): div generator
   with handler
-    return(_)  fn () { Empty }
-    raw ctl yield-num(x : int) {   
-      fn () { 
-        Thunk ( 
-          x , 
-          rcontext.resume(())
-        ) 
-      }
-    }
-  iterate(tree)
-}
+    return(_) Empty
+    ctl yield(x)
+      Thunk(x, fn() { resume(())})
+  f()
+
+fun sum(a : int, g : generator) : div int
+  match g
+    Empty -> a
+    Thunk(v, f) -> sum(v + a, f())
+
+fun run(n : int): div int
+  sum(0, generate({ iterate(make(n))}))
 
 pub fun main()
-  val sz = 
-    match get-args()
-      Nil -> 25
-      Cons(arg0, _) -> 
-        match parse-int(arg0)
-          Just(sz) -> sz
-          _        -> 25
-  consumer(sum-generator(make-tree(sz)), 0).println
+  val n = get-args().head("").parse-int-default(5)
+  val r = run(n)
+  println(r)
+

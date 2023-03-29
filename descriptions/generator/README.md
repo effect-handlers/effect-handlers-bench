@@ -4,7 +4,7 @@ The goal of the benchmark is to compute the sum of the elements in a complete
 binary tree of height `h` using a generator. The generator is implemented using
 effect handlers.
 
-Binary tree should be explored in a depth-first fashion, exploring the left subtree,
+The tree is explored in a depth-first fashion, exploring the left subtree,
 yielding the value of the node, and then exploring the right subtree.
 
 The values in the binary tree nodes are defined as follows. If the height is 0,
