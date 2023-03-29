@@ -1,8 +1,8 @@
 # Tree explore
 
 The goal of this benchmark is to compute the maximal result of reducing a binary
-operation `op` over all possible paths from the root to the leaves in a full
-binary tree 10 times.
+operation over all possible paths from the root to the leaves in a full binary
+tree 10 times.
 
 Effect handlers are used to simulate non-determinism when exploring the tree.
 Leaf value is determined by the global state. The initial value of the state is
@@ -58,9 +58,10 @@ with results:
 
 And the maximal value of `913`.
 
-The is the height of the complete binary tree.
+The input is the height of the complete binary tree.
 
-Maximal value of the fold operation over all paths from the root to leaves.
+The output is the maximal value of the fold operation over all paths from the
+root to leaves.
 
 ## Examples
 
