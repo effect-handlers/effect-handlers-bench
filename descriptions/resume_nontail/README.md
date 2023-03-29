@@ -1,29 +1,29 @@
 # Simple Counter
 
-Repeatedly apply an operation in a loop at a non-tail position.
+Repeatedly apply an operation in a loop at a non-tail position. Handle the
+operation by resuming in non-tail position.
 
 Compute the repeated application of provided operation. The operation is applied
-via handling of effect `Increment` which applies the operation `op` on the rest
-of computation (recursive call with decremented param) and provided argument.
-The continuation should be resumed at a non-tail position as indicated by the
+via handling of effect `Operator` which applies an operation on the rest of
+computation (recursive call with decremented param) and provided argument. The
+continuation should be resumed at a non-tail position as indicated by the
 following code.
 
 ```ocaml
-effect Increment : int -> unit
-let op x y = abs (x - (503 * y) + 37) mod 1009 in
+effect Operator : int -> unit
 
 handle
-  let rec looper i =
+  let rec loop i =
     if i = 0 then
       initial_value
   else (
-    perform (Increment i);
-    looper (i - 1)
+    perform (Operator i);
+    loop (i - 1)
   )
   in
-  looper n
+  loop n
 with
-  | effect (Increment j) k -> op j (continue k ()))
+  | effect (Operator x) k -> let y = continue k () in abs (x - (503 * y) + 37) mod 1009
 ```
 
 The full benchmark is repeated `1000` times, each time, the result from the
@@ -31,9 +31,7 @@ previous run is taken as the `initial_value`. The initial `initial_value` is
 `0`.
 
 Try to call the repeating part of the program in a tail recursive way, as the
-stack size of `looper` is expected to be linear in `n`. The main purpose of `op`
-is to thwart any optimizations performed by compilers to inline the resuming
-call.
+stack size of `looper` is expected to be linear in `n`.
 
 The input is a single non-negative integer `n`.
 

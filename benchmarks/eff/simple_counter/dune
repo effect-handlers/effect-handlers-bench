@@ -1,5 +1,0 @@
-(executable
- (name wrapper_007_simple_counter)
- (libraries OcamlHeader)
- (ocamlopt_flags
-  (:standard -O3)))
