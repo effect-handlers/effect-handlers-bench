@@ -10,8 +10,10 @@ let run n =
   let rec safe queen diag xs =
     match xs with
     | RowsEmpty -> true
-    | RowsCons(q, qs) -> 
-        queen <> q && queen <> q + diag && queen <> q - diag && safe queen (diag + 1) qs in
+    | RowsCons(q, qs) ->  if (queen <> q && queen <> q + diag && queen <> q - diag)
+        then safe queen (diag + 1) qs
+        else false
+  in
 
   let rec place size column =
     let absurd void = (match void with) in
@@ -22,7 +24,8 @@ let run n =
         let next = perform (Pick size) in
         if safe next 1 rest
           then RowsCons(next, rest)
-          else absurd (perform (Fail ()))) in
+          else absurd (perform (Fail ())))
+  in
 
   handle (place n n) with
   | _x -> 1

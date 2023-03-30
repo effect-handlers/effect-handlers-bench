@@ -11,7 +11,9 @@ effect search
 fun safe(queen : int, diag : int, xs : solution ) : bool
   match xs
     Nil -> True
-    Cons(q, qs) -> queen != q && queen != q + diag && queen != q - diag && safe(queen, diag + 1, qs)
+    Cons(q, qs) -> if (queen != q && queen != q + diag && queen != q - diag)
+      then safe(queen, diag + 1, qs)
+      else False
 
 fun place(size : int, column : int) : <div, search> solution
   if column == 0

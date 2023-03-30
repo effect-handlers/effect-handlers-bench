@@ -5,7 +5,9 @@ exception Fail
 let rec safe queen diag xs =
   match xs with
   | [] -> true
-  | q :: qs -> queen <> q && queen <> q + diag && queen <> q - diag && safe queen (diag + 1) qs
+  | q :: qs -> if (queen <> q && queen <> q + diag && queen <> q - diag)
+    then safe queen (diag + 1) qs
+    else false
 
 let rec place size column : int list =
   if column = 0
