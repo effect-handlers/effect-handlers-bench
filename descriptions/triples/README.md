@@ -38,13 +38,13 @@ The output is the sum of hashes of triples modulo `1000000007`.
 
 ### Small
 
-Input: 10 10
+Input: 10
 
 Output: 779312
 
 ### Large
 
-Input: 300 300
+Input: 300
 
 Output: 460212934
 
