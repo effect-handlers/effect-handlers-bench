@@ -1,20 +1,8 @@
-# 002 - Generator
+# Generator
 
 The goal of the benchmark is to compute the sum of the elements in a complete
 binary tree of height `h` using a generator. The generator is implemented using
 effect handlers.
-
-## Input
-
-The program should take a single command-line argument which is the
-height of the complete binary tree. For benchmarking, the default input used is
-25.
-
-## Output
-
-The sum of the elements in the binary tree.
-
-## Description
 
 Binary tree should be explored in a depth-first fashion, exploring the left subtree,
 yielding the value of the node, and then exploring the right subtree.
@@ -39,37 +27,31 @@ let rec make_tree = function
   | n -> let t = make_tree (n-1) in Node (t,n,t)
 ```
 
-## Labels
+The input is the height of the complete binary tree.
+
+The output is the sum of the elements in the binary tree.
+
+## Examples
+
+### Small
+
+Input: 5
+
+Output: 57
+
+### Large
+
+Input: 25
+
+Output: 67108837
+
+## Metadata
+
+### Labels
 
 ESCAPING_CONTINUATION
 
-## Output example
+### References
 
-| Height | Sum of the elements |
-|--------|---------------------|
-| 0 | 0 |
-| 1 | 1 |
-| 2 | 4 |
-| 3 | 11 |
-| 4 | 26 |
-| 5 | 57 |
-| 6 | 120 |
-| 7 | 247 |
-| 8 | 502 |
-| 9 | 1013 |
-| 10 | 2036 |
-| 11 | 4083 |
-| 12 | 8178 |
-| 13 | 16369 |
-| 14 | 32752 |
-| 15 | 65519 |
-| 16 | 131054 |
-| 17 | 262125 |
-| 18 | 524268 |
-| 19 | 1048555 |
-| 20 | 2097130 |
-| 21 | 4194281 |
-| 22 | 8388584 |
-| 23 | 16777191 |
-| 24 | 33554406 |
-| 25 | 67108837 |
+### Rationale
+

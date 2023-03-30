@@ -31,10 +31,7 @@ jobs:
         run: |
           find . -type d -exec chmod 777 {} \;
 
-      - name: Setup libhandler system
+      - name: Test libhandler system
         run: |
-          make sys_libhandler
+          make test_libhandler
 
-      - name: Run libhandler benchmarks
-        run: |
-          make ci_bench_libhandler

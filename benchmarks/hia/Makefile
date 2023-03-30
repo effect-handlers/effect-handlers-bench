@@ -1,33 +1,18 @@
-BUILD_DIRS = HIA 001_nqueens 002_generator
-BUILD_DIRS_CLEAN = $(addsuffix clean,$(BUILD_DIRS))
-
-all:
-	# Compile
-	ghc -O2 001_nqueens/001_nqueens.hs
-	ghc -O2 002_generator/002_generator.hs
-	# Run benchmarks
+bench: build
 	hyperfine --export-csv hia.csv \
-		'./001_nqueens/001_nqueens 13' \
-                './002_generator/002_generator 25'
-	#Cleanup
-	make -C . clean
-	#Copy results to the root of the repository
-	mkdir -p ../../results
-	mv hia.csv ../../results
+		'./nqueens/main 13' \
+		'./generator/main 25'
 
-ci_test: compile_hs_file run_compiled_file
+test: build
+	cd nqueens ; ./main 5 > actual ; echo 10 > expected ; diff expected actual
+	cd generator ; ./main 5 > actual ; echo 57 > expected ; diff expected actual
 
-compile_hs_file:
-	ghc -O2 $(BENCHMARK-NAME)/$(BENCHMARK-NAME).hs
+build:
+	cd nqueens ; cp -r ../HIA HIA ; ghc -O2 -o main Main.hs
+	cd generator ; cp -r ../HIA HIA ; ghc -O2 -o main Main.hs
 
-run_compiled_file:
-	./$(BENCHMARK-NAME)/$(BENCHMARK-NAME) $(ARGS) > $(BENCHMARK-NAME).out
-
-clean: $(BUILD_DIRS_CLEAN)
-	rm -fv 001_nqueens/001_nqueens 002_generator/002_generator
-
-clean-build-dir:
-	rm -fv *.hi *.o *.dyn_hi *.dyn_o
-
-%clean: %
-	$(MAKE) -C $< -f $(shell pwd)/Makefile clean-build-dir
+clean:
+	-rm */main
+	-rm -r */HIA
+	-rm */expected
+	-rm */actual
