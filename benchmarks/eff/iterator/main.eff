@@ -1,0 +1,26 @@
+
+effect Emit : int -> unit
+effect Get : unit -> int
+effect Set : int -> unit
+
+let rec range l u =
+  if (l > u)
+    then ()
+    else (
+      perform (Emit l);
+      range (l + 1) u)
+
+let run n =
+  (handle
+    handle
+      (range 0 n;
+      perform (Get ()))
+    with
+    | effect (Emit e) k -> (
+      perform (Set (perform (Get ()) + e));
+      k ())
+  with
+  | x -> fun _ -> x
+  | effect (Get ()) k -> fun s -> (k s) s
+  | effect (Set s) k -> fun _ -> (k ()) s) 0
+

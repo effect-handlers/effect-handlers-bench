@@ -2,6 +2,7 @@ bench: build
 	hyperfine --export-csv results.csv \
 		'countdown/main 200000000' \
 		'product_early/main 100000' \
+		'iterator/main 40000000' \
 		'nqueens/main 13' \
 		'generator/main 25' \
 		'tree_explore/main 16' \
@@ -11,6 +12,7 @@ bench: build
 test: build
 	cd countdown ; ./main 5 > actual ; echo 0 > expected ; diff expected actual
 	cd product_early ; ./main 5 > actual ; echo 0 > expected ; diff expected actual
+	cd iterator ; ./main 5 > actual ; echo 15 > expected ; diff expected actual
 	cd nqueens ; ./main 5 > actual ; echo 10 > expected ; diff expected actual
 	cd generator ; ./main 5 > actual ; echo 57 > expected ; diff expected actual
 	cd tree_explore ; ./main 5 > actual ; echo 946 > expected ; diff expected actual
@@ -20,6 +22,7 @@ test: build
 build:
 	cd countdown ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
 	cd product_early ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
+	cd iterator ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
 	cd nqueens ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
 	cd generator ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
 	cd tree_explore ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
