@@ -1,6 +1,7 @@
 bench: build
 	hyperfine --export-csv results.csv \
 		'countdown/main 200000000' \
+		'product_early/main 100000' \
 		'nqueens/main 13' \
 		'generator/main 25' \
 		'tree_explore/main 16' \
@@ -8,16 +9,18 @@ bench: build
 		'resume_nontail/main 20000'
 
 test: build
-	cd nqueens ; ./main 5 > actual ; echo 10 > expected ; diff expected actual
 	cd countdown ; ./main 5 > actual ; echo 0 > expected ; diff expected actual
+	cd product_early ; ./main 5 > actual ; echo 0 > expected ; diff expected actual
+	cd nqueens ; ./main 5 > actual ; echo 10 > expected ; diff expected actual
 	cd generator ; ./main 5 > actual ; echo 57 > expected ; diff expected actual
 	cd tree_explore ; ./main 5 > actual ; echo 946 > expected ; diff expected actual
 	cd triples ; ./main 10 10 > actual ; echo 779312 > expected ; diff expected actual
 	cd resume_nontail ; ./main 5 > actual ; echo 37 > expected ; diff expected actual
 
 build:
-	cd nqueens ; cp ../OcamlHeader.ml OcamlHeader.ml ; eff.exe --no-stdlib --compile-plain-ocaml main.eff | opam exec -- ocamlformat - --name=temp.ml --enable-outside-detected-project > generated.ml ; opam exec -- ocamlopt -O3 -o main OcamlHeader.ml generated.ml wrapper.ml
 	cd countdown ; cp ../OcamlHeader.ml OcamlHeader.ml ; eff.exe --no-stdlib --compile-plain-ocaml main.eff | opam exec -- ocamlformat - --name=temp.ml --enable-outside-detected-project > generated.ml ; opam exec -- ocamlopt -O3 -o main OcamlHeader.ml generated.ml wrapper.ml
+	cd product_early ; cp ../OcamlHeader.ml OcamlHeader.ml ; eff.exe --no-stdlib --compile-plain-ocaml main.eff | opam exec -- ocamlformat - --name=temp.ml --enable-outside-detected-project > generated.ml ; opam exec -- ocamlopt -O3 -o main OcamlHeader.ml generated.ml wrapper.ml
+	cd nqueens ; cp ../OcamlHeader.ml OcamlHeader.ml ; eff.exe --no-stdlib --compile-plain-ocaml main.eff | opam exec -- ocamlformat - --name=temp.ml --enable-outside-detected-project > generated.ml ; opam exec -- ocamlopt -O3 -o main OcamlHeader.ml generated.ml wrapper.ml
 	cd generator ; cp ../OcamlHeader.ml OcamlHeader.ml ; eff.exe --no-stdlib --compile-plain-ocaml main.eff | opam exec -- ocamlformat - --name=temp.ml --enable-outside-detected-project > generated.ml ; opam exec -- ocamlopt -O3 -o main OcamlHeader.ml generated.ml wrapper.ml
 	cd tree_explore ; cp ../OcamlHeader.ml OcamlHeader.ml ; eff.exe --no-stdlib --compile-plain-ocaml main.eff | opam exec -- ocamlformat - --name=temp.ml --enable-outside-detected-project > generated.ml ; opam exec -- ocamlopt -O3 -o main OcamlHeader.ml generated.ml wrapper.ml
 	cd triples ; cp ../OcamlHeader.ml OcamlHeader.ml ; eff.exe --no-stdlib --compile-plain-ocaml main.eff | opam exec -- ocamlformat - --name=temp.ml --enable-outside-detected-project > generated.ml ; opam exec -- ocamlopt -O3 -o main OcamlHeader.ml generated.ml wrapper.ml
