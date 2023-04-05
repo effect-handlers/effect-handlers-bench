@@ -6,58 +6,49 @@ import std/text/parse
 effect choose
   ctl choose() : bool
 
-
-type tree<a>
+type tree
   Leaf
-  Node(left: tree<a>, v: a, right: tree<a>)
-
+  Node(left : tree, value : int, right : tree)
 
 fun operator(x, y) 
   abs (x - (503 * y) + 37) % 1009
 
-fun make-tree(n: int) : div tree<int>
+fun make(n: int) : div tree
   if n == 0 then
     Leaf
   else
-    val sub = make-tree(n - 1)
-    Node(sub, n, sub)
+    val t = make(n - 1)
+    Node(t, n, t)
 
+fun run(n : int)
 
-fun max-l(l : list<int>) : int
-  l.maximum
-
-fun sum-paths(tree: tree<int>){
+  val tree = make(n)
   var state := 0
-  fun explore(tr: tree<int>) {
-    match tr
+
+  fun explore(t : tree)
+    match t
       Leaf -> state
-      Node(left, v, right) ->
-        val next = if choose() then left else right
+      Node(l, v, r) ->
+        val next = if choose() then l else r
         state := operator(state, v)
         operator(v, explore(next))
-  }
-  val choose-handler = handler
-    return(x) [x]
-    ctl choose() resume(True) ++ resume(False)
-  fun iterate(n: int){
-    if n == 0 then state
-    else {
-      val l = choose-handler(fn () explore(tree))
-      val s = l.max-l
-      state := s
-      iterate(n - 1)
-    }
-  }
-  iterate(10)
-}
 
+  fun paths()
+    with handler
+      return(x) [x]
+      ctl choose() resume(True) ++ resume(False)
+    explore(tree)
+
+  fun loop(i : int)
+    if i == 0
+      then state
+      else
+        state := paths().maximum
+        loop(i - 1)
+
+  loop(10)
 
 pub fun main()
-  val sz = 
-    match get-args()
-      Nil -> 16
-      Cons(arg0, _) -> 
-        match parse-int(arg0)
-          Just(sz) -> sz
-          _        -> 16
-  sum-paths(make-tree(sz)).println
+  val n = get-args().head("").parse-int-default(5)
+  val r = run(n)
+  println(r)

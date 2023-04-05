@@ -1,5 +1,0 @@
-(executable
- (name wrapper_003_tree_explore)
- (libraries OcamlHeader)
- (ocamlopt_flags
-  (:standard -O3)))

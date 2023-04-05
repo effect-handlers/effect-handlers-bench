@@ -8,7 +8,7 @@ type tree
  | Node of tree * int * tree
 
 
-let op x y = abs (x - (503 * y) + 37) mod 1009
+let operator x y = abs (x - (503 * y) + 37) mod 1009
 
 type intlist = Nil | Cons of (int * intlist)
 
@@ -17,30 +17,31 @@ let rec ( @ ) xs ys =
   | Nil -> ys
   | Cons (x, xs) -> Cons (x, xs @ ys)
 
-let rec make_tree = function
+let rec make = function
   | 0 -> Leaf
   | n ->
-    let t = make_tree (n - 1) in
+    let t = make (n - 1) in
     Node (t, n, t)
 
 let max a b = if a > b then a else b
 
-(* Eff is currently unable to automatically optimize nested handlers so we merge them by hand *)
-
-let max_path_merged_handler m = 
-  let rec maxl acc = function
+let rec maxl acc = function
   | Nil -> acc
   | Cons(x, xs) -> maxl (max x acc) xs
-  in
-  let ___t = make_tree m in
+
+(* Eff is currently unable to automatically optimize nested handlers so we merge them by hand *)
+
+let run n =
+  let tree = make n in
+
   let rec explore t = match t with
     | Leaf -> perform (Get ())
-    | Node (left, x, right) -> 
-      let next = if (perform (Choose ())) then left else right in
+    | Node (l, v, r) ->
+      let next = if (perform (Choose ())) then l else r in
       let state = perform (Get ()) in
-      let q = op state x in
+      let q = operator state v in
       perform (Set q);
-      (op x (explore next))
+      (operator v (explore next))
   in
   let monad_state = handler
   | y -> (fun u -> (u, Cons(y, Nil)))
@@ -58,15 +59,17 @@ let max_path_merged_handler m =
         )
   )
   in
-  let rec looper s n = 
-    if n = 0 then 
+  let paths () = with monad_state handle explore tree
+  in
+  let rec loop s i =
+    if i = 0 then
       s 
     else (
-    let s = match ((with monad_state handle explore ___t) s)
+    let s = match (paths () s)
     with (s', l) -> (
       maxl 0 l
     )  
-    in looper s (n - 1)
+    in loop s (i - 1)
     )
   in
-  looper 0 10
+  loop 0 10

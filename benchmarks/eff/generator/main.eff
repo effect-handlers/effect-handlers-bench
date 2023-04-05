@@ -1,32 +1,28 @@
 effect Yield : int -> unit
 
-type int_tree = Leaf | Node of int_tree * int * int_tree
+type tree = Leaf | Node of tree * int * tree
 
-type generator = None | Thunk of (int * (unit -> generator))
+type generator = Empty | Thunk of int * (unit -> generator)
 
-let rec make_tree = function
-  | 0 -> Leaf
-  | n -> let t = make_tree (n-1) in Node (t, n, t)
+let run n =
+  let rec make = function
+    | 0 -> Leaf
+    | n -> let t = make (n-1) in Node (t, n, t) in
 
-let sum_generator n = 
-  let tree = make_tree n in
-  let h = handler
-    | _x -> (fun () -> None)
-    | effect (Yield x) k -> (fun () -> Thunk (x, k ()))
-  in
-  let rec iterate t = 
-    match t with
+  let rec iterate = function
     | Leaf -> ()
-    | Node (l, x, r) -> 
-      iterate l;
-      perform (Yield x);
-      iterate r
-  in
-  let rec looper (gen, acc) = 
-    match gen () with 
-    | None -> acc
-    | Thunk (x, k) -> looper (k, acc + x)
-  in
-  let ff = fun () -> iterate tree in
-  let gen = with h handle iterate (tree) in
-  looper (gen, 0)
+    | Node (l, v, r) -> iterate l; perform (Yield v); iterate r in
+
+  let rec generate f =
+    let h = handler
+      | _x -> Empty
+      | effect (Yield x) k -> Thunk (x, k)
+    in
+    with h handle f () in
+
+  let rec sum a = function
+    | Empty -> a
+    | Thunk (v, f) -> sum (v + a) (f ()) in
+
+  sum 0 (generate (fun () -> iterate (make n)))
+
