@@ -32,6 +32,6 @@ let run n =
   | effect (Fail ()) k -> 0
   | effect (Pick size) k ->
       let rec loop i a =
-        if i = n then a + k i
+        if i = size then a + k i
         else loop (i+1) (a + k i)
       in loop 1 0

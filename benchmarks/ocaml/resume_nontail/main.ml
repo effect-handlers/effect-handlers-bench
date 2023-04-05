@@ -23,7 +23,7 @@ let rec repeat n =
   step 1000 0
 
 let main () =
-  let n = try int_of_string (Sys.argv.(1)) with _ -> 10_000 in
+  let n = try int_of_string (Sys.argv.(1)) with _ -> 5 in
   let r = repeat n in
   Printf.printf "%d\n" r
 
