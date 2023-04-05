@@ -1,12 +1,18 @@
 bench: build
 	hyperfine --export-csv results.csv \
-		'./nqueens/main 13' \
-		'./generator/main 25' \
-		'./tree_explore/main 16' \
-		'./triples/main 300 300' \
-		'./resume_nontail/main 20000'
+		'countdown/main 200000000' \
+		'product_early/main 100000' \
+		'iterator/main 40000000' \
+		'nqueens/main 13' \
+		'generator/main 25' \
+		'tree_explore/main 16' \
+		'triples/main 300 300' \
+		'resume_nontail/main 20000'
 
 test: build
+	cd countdown ; ./main 5 > actual ; echo 0 > expected ; diff expected actual
+	cd product_early ; ./main 5 > actual ; echo 0 > expected ; diff expected actual
+	cd iterator ; ./main 5 > actual ; echo 15 > expected ; diff expected actual
 	cd nqueens ; ./main 5 > actual ; echo 10 > expected ; diff expected actual
 	cd generator ; ./main 5 > actual ; echo 57 > expected ; diff expected actual
 	cd tree_explore ; ./main 5 > actual ; echo 946 > expected ; diff expected actual
@@ -14,6 +20,9 @@ test: build
 	cd resume_nontail ; ./main 5 > actual ; echo 37 > expected ; diff expected actual
 
 build:
+	cd countdown ; koka -O3 -o main main.kk ; chmod +x main
+	cd product_early ; koka -O3 -o main main.kk ; chmod +x main
+	cd iterator ; koka -O3 -o main main.kk ; chmod +x main
 	cd nqueens ; koka -O3 -o main main.kk ; chmod +x main
 	cd generator ; koka -O3 -o main main.kk ; chmod +x main
 	cd tree_explore ; koka -O3 -o main main.kk ; chmod +x main
