@@ -25,6 +25,6 @@ fun repeat(n : int) : div int
   step(1000, 0)
 
 pub fun main()
-  val n = get-args().head("").parse-int-default(20000)
+  val n = get-args().head("").parse-int-default(10000)
   val r = repeat(n)
   println(r)
