@@ -7,8 +7,9 @@ bench: build
 		'nqueens/main 13' \
 		'generator/main 25' \
 		'tree_explore/main 16' \
-		'triples/main 300' \
-		'resume_nontail/main 10000' \
+		'triples/main 300 300' \
+		'parsing_dollars/main 20000' \
+		'resume_nontail/main 20000' \
 		'handler_sieve/main 60000'
 
 test: build
@@ -20,6 +21,7 @@ test: build
 	cd generator ; ./main 5 > actual ; echo 57 > expected ; diff expected actual
 	cd tree_explore ; ./main 5 > actual ; echo 946 > expected ; diff expected actual
 	cd triples ; ./main 10 > actual ; echo 779312 > expected ; diff expected actual
+	cd parsing_dollars ; ./main 10 > actual ; echo 55 > expected ; diff expected actual
 	cd resume_nontail ; ./main 5 > actual ; echo 37 > expected ; diff expected actual
 	cd handler_sieve ; ./main 10 > actual ; echo 17 > expected ; diff expected actual
 
@@ -32,6 +34,7 @@ build:
 	cd generator ; koka -O3 -o main main.kk ; chmod +x main
 	cd tree_explore ; koka -O3 -o main main.kk ; chmod +x main
 	cd triples ; koka -O3 -o main main.kk ; chmod +x main
+	cd parsing_dollars ; koka -O3 -o main main.kk ; chmod +x main
 	cd resume_nontail ; koka -O3 -o main main.kk ; chmod +x main
 	cd handler_sieve ; koka -O3 -o main main.kk ; chmod +x main
 

@@ -33,6 +33,7 @@ contains the results of running the Multicore OCaml benchmarks.
 | **Triples**             | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
 | **Resume Nontail**      | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
 | **Handler Sieve**       | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
+| **Parsing Dollars**     | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
 
 Legend:
 
