@@ -1,0 +1,25 @@
+
+effect Prime : int -> bool
+
+let rec primes i n a =
+  if (i >= n)
+    then a
+    else
+      if perform (Prime i)
+        then
+          handle
+            primes (i + 1) n (a + i)
+          with
+          | effect (Prime e) k ->
+            if (e mod i = 0)
+              then k false
+              else k (perform (Prime e))
+        else
+          primes (i + 1) n a
+
+let run n =
+  handle
+    primes 2 n 0
+  with
+  | effect (Prime e) k -> k true
+

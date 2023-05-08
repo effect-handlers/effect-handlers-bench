@@ -7,7 +7,8 @@ bench: build
 		'generator/main 25' \
 		'tree_explore/main 16' \
 		'triples/main 300' \
-		'resume_nontail/main 10000'
+		'resume_nontail/main 10000' \
+		'handler_sieve/main 60000'
 
 test: build
 	cd countdown ; ./main 5 > actual ; echo 0 > expected ; diff expected actual
@@ -18,6 +19,7 @@ test: build
 	cd tree_explore ; ./main 5 > actual ; echo 946 > expected ; diff expected actual
 	cd triples ; ./main 10 > actual ; echo 779312 > expected ; diff expected actual
 	cd resume_nontail ; ./main 5 > actual ; echo 37 > expected ; diff expected actual
+	cd handler_sieve ; ./main 10 > actual ; echo 17 > expected ; diff expected actual
 
 build:
 	cd countdown ; koka -O3 -o main main.kk ; chmod +x main
@@ -28,6 +30,7 @@ build:
 	cd tree_explore ; koka -O3 -o main main.kk ; chmod +x main
 	cd triples ; koka -O3 -o main main.kk ; chmod +x main
 	cd resume_nontail ; koka -O3 -o main main.kk ; chmod +x main
+	cd handler_sieve ; koka -O3 -o main main.kk ; chmod +x main
 
 clean:
 	-rm -r */.koka/

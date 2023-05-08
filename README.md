@@ -31,6 +31,7 @@ contains the results of running the Multicore OCaml benchmarks.
 | **Tree explore**   | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
 | **Triples**        | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
 | **Resume Nontail** | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
+| **Handler Sieve**  | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
 
 Legend:
 
