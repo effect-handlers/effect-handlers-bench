@@ -31,7 +31,7 @@ fun run(n : int)
     ctl fail()       0
     ctl pick(size)
       fun loop(i : int, a : int)
-        if i == n then
+        if i == size then
           a + resume(i)
         else
           loop(i + 1, a + resume(i))
@@ -39,6 +39,6 @@ fun run(n : int)
   place(n, n)
 
 pub fun main()
-  val n = get-args().head("").parse-int-default(8)
+  val n = get-args().head("").parse-int-default(5)
   val r = run(n)
   println(r)

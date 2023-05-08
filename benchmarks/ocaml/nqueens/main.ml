@@ -26,12 +26,12 @@ let run n =
   | exception Fail -> 0
   | effect (Pick size) k ->
       let rec loop i a =
-        if i = n then (a + continue k i)
+        if i = size then (a + continue k i)
         else loop (i+1) (a + continue (Obj.clone_continuation k) i)
       in loop 1 0
 
 let main () =
-  let n = try int_of_string Sys.argv.(1) with _ -> 8 in
+  let n = try int_of_string Sys.argv.(1) with _ -> 5 in
   let r = run n in
   Printf.printf "%d\n" r
 

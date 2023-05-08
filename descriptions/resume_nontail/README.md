@@ -1,4 +1,4 @@
-# Simple Counter
+# Resume Nontail
 
 Repeatedly apply an operation in a loop at a non-tail position. Handle the
 operation by resuming in non-tail position.
@@ -48,9 +48,9 @@ Output: 37
 
 ### Large
 
-Input: 20000
+Input: 10000
 
-Output: 357
+Output: 860
 
 ## Metadata
 
