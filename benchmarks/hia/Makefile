@@ -1,6 +1,6 @@
 bench: build
 	hyperfine --export-csv hia.csv \
-		'./nqueens/main 13' \
+		'./nqueens/main 12' \
 		'./generator/main 25'
 
 test: build

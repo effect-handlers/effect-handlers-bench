@@ -23,9 +23,9 @@ Output: 10
 
 ### Large
 
-Input: 13
+Input: 12
 
-Output: 73712
+Output: 14200
 
 ## Metadata
 

@@ -4,7 +4,7 @@ bench: build
 		'fibonacci_recursive/main 42' \
 		'product_early/main 100000' \
 		'iterator/main 40000000' \
-		'nqueens/main 13' \
+		'nqueens/main 12' \
 		'generator/main 25' \
 		'tree_explore/main 16' \
 		'triples/main 300 300' \
