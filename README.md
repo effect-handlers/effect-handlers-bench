@@ -68,12 +68,13 @@ consecutive terms. Each term is 6 months.
 
 The current co-chairs are
 
+* [Jesse Sigal](https://github.com/jasigal) (2023/09/27 - 2023/03/27 - 2023/09/27)
 * [Philipp Schuster](https://github.com/phischu) (2022/09/21 - 2023/03/21 - 2023/09/21)
-* [Filip Koprivec](https://github.com/jO-Osko) (2022/01/21 - 2022/07/22 - 2023/03/21)
 
 Past co-chairs
 
-* [Daniel Hillerström](https://github.com/dhil) (In augural chair, 2021/07/23 - 2022/01/22 - 2022/09/20)
+* [Filip Koprivec](https://github.com/jO-Osko) (2022/01/21 - 2022/07/22 - 2023/03/21)
+* [Daniel Hillerström](https://github.com/dhil) (Inaugural chair, 2021/07/23 - 2022/01/22 - 2022/09/20)
 
 
 ### Benchmark
