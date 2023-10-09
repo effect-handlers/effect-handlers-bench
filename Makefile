@@ -14,6 +14,18 @@ test_eff: system_eff
 	docker run -v $(shell pwd):/source $(DOCKERHUB):eff \
 		make -C /source/benchmarks/eff test
 
+# Effekt
+system_effekt:
+	docker build -t $(DOCKERHUB):effekt systems/effekt
+
+bench_effekt: system_effekt
+	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):effekt \
+		make -C /source/benchmarks/effekt
+
+test_effekt: system_effekt
+	docker run -v $(shell pwd):/source $(DOCKERHUB):effekt \
+		make -C /source/benchmarks/effekt test
+
 # Handlers in Action
 system_hia:
 	docker build -t $(DOCKERHUB):hia systems/hia

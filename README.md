@@ -19,21 +19,34 @@ $ make bench_ocaml
 runs the OCaml benchmarks and produces `benchmarks/ocaml/results.csv` which
 contains the results of running the Multicore OCaml benchmarks.
 
+## System availability
+
+| System | Availability |
+|--------|--------------|
+| [Eff](https://github.com/matijapretnar/eff) | [![Eff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml) |
+| [Effekt](https://github.com/effekt-lang/effekt) | [![Effekt](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_effekt.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_effekt.yml) |
+| [Handlers in Action](https://github.com/slindley/effect-handlers) | [![Handlers in Action](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml) |
+| [Koka](https://github.com/koka-lang/koka) | [![Koka](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml) |
+| [libhandler](https://github.com/koka-lang/libhandler) | [![libhandler](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libhandler.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libhandler.yml) |
+| [libmpeff](https://github.com/koka-lang/libmprompt) | [![libmpeff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libmpeff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libmpeff.yml) |
+| [Links](https://github.com/links-lang/links) | [![Links](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml) |
+| [Multicore OCaml](https://github.com/ocaml-multicore/ocaml-multicore) | [![Multicore OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml) |
+
 ## Benchmark availability
 
-|              | [Eff](https://github.com/matijapretnar/eff)<br><br>[![Eff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml) | [Handlers in Action](https://github.com/slindley/effect-handlers)<br>[![Handlers in Action](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml) | [Koka](https://github.com/koka-lang/koka)<br><br>[![Koka](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml) | [libhandler](https://github.com/koka-lang/libhandler)<br><br>[![libhandler](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libhandler.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libhandler.yml) | [libmpeff](https://github.com/koka-lang/libmprompt)<br><br>[![libmpeff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libmpeff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libmpeff.yml) | [Links](https://github.com/links-lang/links)<br><br>[![Links](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml) | [Multicore OCaml](https://github.com/ocaml-multicore/ocaml-multicore)<br>[![Multicore OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml) |
-| :----------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: |
-| **Countdown**           | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
-| **Fibonacci Recursive** | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
-| **Product Early**       | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
-| **Iterator**            | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
-| **Nqueens**             | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
-| **Generator**           | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
-| **Tree explore**        | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
-| **Triples**             | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
-| **Resume Nontail**      | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
-| **Handler Sieve**       | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
-| **Parsing Dollars**     | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
+|                         | Eff                | Effekt             | Handlers in Action | Koka               | Multicore OCaml    |
+| :---------------------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: |
+| **Countdown**           | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: |
+| **Fibonacci Recursive** | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: |
+| **Product Early**       | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: |
+| **Iterator**            | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: |
+| **Nqueens**             | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| **Generator**           | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| **Tree explore**        | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: |
+| **Triples**             | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: |
+| **Parsing Dollars**     | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: |
+| **Resume Nontail**      | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: |
+| **Handler Sieve**       | :heavy_check_mark: | :x:                | :x:                | :heavy_check_mark: | :heavy_check_mark: |
 
 Legend:
 
