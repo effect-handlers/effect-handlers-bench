@@ -21,8 +21,7 @@ def run(n: Int) = {
   try {
     countdown()
   } with Get { () => resume(s)
-  } with Set { (i: Int) => s = i; resume(())
-  }
+  } with Set { (i: Int) => s = i; resume(()) }
 }
 
 def main() = {

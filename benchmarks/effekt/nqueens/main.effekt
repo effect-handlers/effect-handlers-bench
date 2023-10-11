@@ -13,7 +13,7 @@ effect Search {
 def safe(queen: Int, diag: Int, xs: Solution): Boolean =
   xs match {
     case Nil() => true
-    case Cons(q, qs) => if(queen != q && queen != q + diag && queen != q - diag) {
+    case Cons(q, qs) => if (queen != q && queen != q + diag && queen != q - diag) {
       safe(queen, diag + 1, qs)
     } else {
       false

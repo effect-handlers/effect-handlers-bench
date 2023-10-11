@@ -15,9 +15,9 @@ def product(xs: List[Int]): Int / Abort =
 
 def enumerate(i: Int): List[Int] =
   if (i < 0) {
-      Nil()
+    Nil()
   } else {
-      Cons(i, enumerate(i - 1))
+    Cons(i, enumerate(i - 1))
   }
 
 def runProduct(xs: List[Int]) =
