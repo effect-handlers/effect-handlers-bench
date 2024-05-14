@@ -2,12 +2,12 @@ bench: build
 	hyperfine --export-csv hia.csv \
 		'./countdown/main 200000000' \
 		'./fibonacci_recursive/main 42' \
-		'./product_early/main ' \
-		'./iterator/main ' \
+		'./product_early/main 100000' \
+		'./iterator/main 40000000' \
 		'./nqueens/main 12' \
 		'./generator/main 25' \
-		'./triples/main ' \
-		'./resume_nontail/main'
+		'./triples/main 300' \
+		'./resume_nontail/main 10000'
 
 test_cmd = cd $(1) ; ./main $(2) > actual ; echo $(3) > expected ; diff expected actual
 build_cmd = cd $(1) ; cp -r ../HIA HIA ; ghc -O2 -o main Main.hs 
