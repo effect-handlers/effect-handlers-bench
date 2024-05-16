@@ -25,6 +25,8 @@ product' []     = return 0
 product' (0:ys) = done 0
 product' (y:ys) = do x <- product' ys; return (y * x)
 
+-- Accept an extra parameter to make GHC execute `runProduct` more than once.
+-- Prevent inlining so that GHC cannot tell we're doing this.
 {-# NOINLINE runProduct #-}
 runProduct :: [Int] -> Int -> Int
 runProduct xs _ = handleDone (product' xs)
