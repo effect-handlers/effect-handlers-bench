@@ -25,8 +25,9 @@ product' []     = return 0
 product' (0:ys) = done 0
 product' (y:ys) = do x <- product' ys; return (y * x)
 
-runProduct :: [Int] -> Int
-runProduct xs = handleDone (product' xs)
+{-# NOINLINE runProduct #-}
+runProduct :: [Int] -> Int -> Int
+runProduct xs _ = handleDone (product' xs)
 
 enumerate :: Int -> [Int]
 enumerate !i | i < 0 = []
@@ -37,7 +38,7 @@ run n = loop n 0
         where xs = enumerate 1000
               loop :: Int -> Int -> Int
               loop !0 !a = a
-              loop !i !a = loop (i - 1) (a + runProduct xs)
+              loop !i !a = loop (i - 1) (a + runProduct xs a)
 
 main :: IO ()
 main = do 
