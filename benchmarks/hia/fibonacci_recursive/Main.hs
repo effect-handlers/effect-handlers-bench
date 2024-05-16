@@ -6,12 +6,6 @@
 
 import System.Environment
 
--- Imports are not needed, but included so that
--- all benchmarking tests have the same import overhead
-import HIA.Handlers
-import HIA.TopLevel
-import HIA.DesugarHandlers
-
 fib :: Int -> Int
 fib !0 = 0
 fib !1 = 1
