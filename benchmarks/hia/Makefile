@@ -1,5 +1,5 @@
 bench: build
-	hyperfine --export-csv hia.csv \
+	hyperfine --export-csv results.csv \
 		'./countdown/main 200000000' \
 		'./fibonacci_recursive/main 42' \
 		'./product_early/main 100000' \
@@ -10,7 +10,7 @@ bench: build
 		'./resume_nontail/main 10000'
 
 test_cmd = cd $(1) ; ./main $(2) > actual ; echo $(3) > expected ; diff expected actual
-build_cmd = cd $(1) ; cp -r ../HIA HIA ; ghc -O2 -o main Main.hs 
+build_cmd = cd $(1) ; cp -r ../HIA HIA ; ghc -O2 -o main Main.hs
 
 test: build
 	$(call test_cmd, countdown, 5, 0)
@@ -25,7 +25,7 @@ test: build
 build:
 	$(call build_cmd, countdown)
 	$(call build_cmd, fibonacci_recursive)
-	$(call build_cmd, product_early)	
+	$(call build_cmd, product_early)
 	$(call build_cmd, iterator)
 	$(call build_cmd, nqueens)
 	$(call build_cmd, generator)
