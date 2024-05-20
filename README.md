@@ -36,16 +36,16 @@ contains the results of running the Multicore OCaml benchmarks.
 
 |                         | Eff                | Effekt             | Handlers in Action | Koka               | Multicore OCaml    |
 | :---------------------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: |
-| **Countdown**           | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:                | :heavy_check_mark: | :heavy_check_mark: |
-| **Fibonacci Recursive** | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:                | :heavy_check_mark: | :heavy_check_mark: |
-| **Product Early**       | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:                | :heavy_check_mark: | :heavy_check_mark: |
-| **Iterator**            | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:                | :heavy_check_mark: | :heavy_check_mark: |
+| **Countdown**           | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| **Fibonacci Recursive** | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| **Product Early**       | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| **Iterator**            | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | **Nqueens**             | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | **Generator**           | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | **Tree explore**        | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: |
-| **Triples**             | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:                | :heavy_check_mark: | :heavy_check_mark: |
+| **Triples**             | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | **Parsing Dollars**     | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: |
-| **Resume Nontail**      | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:                | :heavy_check_mark: | :heavy_check_mark: |
+| **Resume Nontail**      | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | **Handler Sieve**       | :heavy_check_mark: | :x:                | :x:                | :heavy_check_mark: | :heavy_check_mark: |
 
 Legend:
