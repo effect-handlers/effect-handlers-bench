@@ -13,9 +13,9 @@ import HIA.DesugarHandlers
 [operation|Put s :: s -> ()|]
 
 [handler|
-    RunState s a :: s -> (a, s) 
+    RunState s a :: s -> a
     handles {Get s,Put s} where
-        Return x   s -> (x,s)
+        Return x   _ -> x
         Get      k s -> (k s) s
         Put    s k _ -> (k ()) s 
 |]
@@ -31,7 +31,7 @@ countdown = do
             countdown
 
 run :: Int -> Int
-run n = fst (runState n countdown)
+run n = runState n countdown
 
 main :: IO ()
 main = do 
