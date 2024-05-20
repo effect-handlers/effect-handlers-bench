@@ -13,14 +13,14 @@ import HIA.DesugarHandlers
 [operation|Put s :: s -> ()|]
 
 [handler|
-    RunState s a :: s -> a
+    EvalState s a :: s -> a
     handles {Get s,Put s} where
         Return x   _ -> x
         Get      k s -> (k s) s
         Put    s k _ -> (k ()) s 
 |]
 
-type CountdownComp = Comp (RunState Int Int) Int
+type CountdownComp = Comp (EvalState Int Int) Int
 
 countdown :: CountdownComp
 countdown = do
@@ -31,7 +31,7 @@ countdown = do
             countdown
 
 run :: Int -> Int
-run n = runState n countdown
+run n = evalState n countdown
 
 main :: IO ()
 main = do 
