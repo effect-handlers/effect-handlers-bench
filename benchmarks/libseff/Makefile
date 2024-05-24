@@ -26,7 +26,7 @@ bench: build
 test: build
 	$(call test_cmd, countdown, 5, 0)
 	$(call test_cmd, fibonacci_recursive, 5, 5)
-	$(call build_cmd, product_early, 100000, 0)
+	$(call build_cmd, product_early, 5, 0)
 	$(call test_cmd, iterator, 5, 15)
 
 build: 
