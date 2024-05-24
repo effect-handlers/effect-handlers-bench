@@ -30,6 +30,7 @@ test: build
 	$(call build_cmd, product_early, 5, 0)
 	$(call test_cmd, iterator, 5, 15)
 	$(call test_cmd, generator, 5, 57)
+	$(call test_cmd, resume_nontail, 5, 37)
 
 build: 
 	$(call build_cmd, countdown)
@@ -37,6 +38,7 @@ build:
 	$(call build_cmd, product_early)
 	$(call build_cmd, iterator)
 	$(call build_cmd, generator)
+	$(call build_cmd, resume_nontail)
 
 clean:
 	-rm */main
