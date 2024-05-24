@@ -21,16 +21,19 @@ bench: build
 					'./countdown/main 200000000' \
 					'./fibonacci_recursive/main 42' \
 					'./product_early/main 100000' \
+					'./iterator/main 40000000 '
 
 test: build
 	$(call test_cmd, countdown, 5, 0)
 	$(call test_cmd, fibonacci_recursive, 5, 5)
 	$(call build_cmd, product_early, 100000, 0)
+	$(call test_cmd, iterator, 5, 15)
 
 build: 
 	$(call build_cmd, countdown)
 	$(call build_cmd, fibonacci_recursive)
 	$(call build_cmd, product_early)
+	$(call build_cmd, iterator)
 
 clean:
 	-rm */main
