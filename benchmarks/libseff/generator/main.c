@@ -119,7 +119,7 @@ int64_t run(int64_t n) {
   seff_coroutine_delete(k);
 
   // Sum generated values
-  int64_t result = 0;
+  int64_t result = sum(generator);
 
   // Free memory
   freeGenerator(generator);
@@ -132,7 +132,7 @@ int main(int argc, char** argv) {
   int64_t r = run(n);
 
   // Use buffered output for performance
-  char buffer[20];
+  char buffer[8192];
   setvbuf(stdout, buffer, _IOFBF, sizeof(buffer));
   printf("%ld\n", r);
   return 0; 
