@@ -3,7 +3,7 @@ LIBSEFF_H   := $(LIBSEFF)/src
 LIBSEFF_LIB := $(LIBSEFF)/output/lib
 
 CC               := clang-10
-CC_COMPILE_FLAGS := -O3 -I$(LIBSEFF_H)
+CC_COMPILE_FLAGS := -O3 -I$(LIBSEFF_H) -fsplit-stack 
 CC_LINK_FLAGS    := -O3
 
 LD         := $(shell which ld.gold)
@@ -33,12 +33,12 @@ test: build
 	$(call test_cmd, resume_nontail, 5, 37)
 
 build: 
+	$(call build_cmd, resume_nontail)
 	$(call build_cmd, countdown)
 	$(call build_cmd, fibonacci_recursive)
 	$(call build_cmd, product_early)
 	$(call build_cmd, iterator)
 	$(call build_cmd, generator)
-	$(call build_cmd, resume_nontail)
 
 clean:
 	-rm */main
