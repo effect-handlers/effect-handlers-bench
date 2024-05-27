@@ -27,7 +27,7 @@ RUN sudo dpkg -i hyperfine_1.15.0_amd64.deb
 # Download and install libseff 
 RUN sudo apt install -y git python3 make clang-10
 RUN git clone https://github.com/effect-handlers/libseff.git
-RUN cd "/home/ubuntu/libseff"
+RUN sed -i '1,+20s/:= *debug/:= release/' "/home/ubuntu/libseff/Makefile"
 RUN make -C "/home/ubuntu/libseff" "output/lib/libseff.a"
 RUN make -C "/home/ubuntu/libseff" "output/lib/libutils.a"
 
