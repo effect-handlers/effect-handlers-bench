@@ -22,7 +22,9 @@ bench: build
 					'./fibonacci_recursive/main 42' \
 					'./product_early/main 100000' \
 					'./iterator/main 40000000' \
-					'./generator/main 25'
+					'./generator/main 25' \ 
+					'./resume_nontail/main 20000'
+					'./parsing_dollars/main 20000'
 
 test: build
 	$(call test_cmd, countdown, 5, 0)
@@ -30,15 +32,17 @@ test: build
 	$(call build_cmd, product_early, 5, 0)
 	$(call test_cmd, iterator, 5, 15)
 	$(call test_cmd, generator, 5, 57)
+	$(call test_cmd, parsing_dollars, 10, 55)
 	$(call test_cmd, resume_nontail, 5, 37)
 
 build: 
-	$(call build_cmd, resume_nontail)
 	$(call build_cmd, countdown)
 	$(call build_cmd, fibonacci_recursive)
 	$(call build_cmd, product_early)
 	$(call build_cmd, iterator)
 	$(call build_cmd, generator)
+	$(call build_cmd, parsing_dollars)
+	$(call build_cmd, resume_nontail)
 
 clean:
 	-rm */main
