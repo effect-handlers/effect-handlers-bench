@@ -134,7 +134,7 @@ int main(int argc, char** argv) {
   int64_t n = argc != 2 ? 25 : atoi(argv[1]);
   int64_t r = run(n);
 
-  // Use buffered output for performance
+  // Increase size of output buffer for performance
   char buffer[8192];
   setvbuf(stdout, buffer, _IOFBF, sizeof(buffer));
   printf("%ld\n", r);
