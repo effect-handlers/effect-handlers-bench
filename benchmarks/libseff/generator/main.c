@@ -27,9 +27,13 @@ inline void freeNode(node_t* node) { free(node); }
 // Allocate a tree on the heap
 tree_t makeTree(int n) {
   if (n == 0) return NULL;
-  tree_t node = allocNode(); 
-  node->l = makeTree (n - 1);
-  node->r = makeTree (n - 1);
+  tree_t node = allocNode();
+  tree_t t = makeTree (n - 1);
+
+  // Note: both left and right pointers point to the same memory, 
+  // to match the other languages
+  node->l = t;
+  node->r = t;
   node->v = n;
   return node;
 }
@@ -38,7 +42,6 @@ tree_t makeTree(int n) {
 void freeTree(tree_t tree) {
   if (tree == NULL) return;
   freeTree(tree->l);
-  freeTree(tree->r);    
   freeNode(tree);
 }
 
