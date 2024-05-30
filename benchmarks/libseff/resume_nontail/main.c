@@ -26,12 +26,14 @@ typedef struct loop_args_t {
   int64_t s;
 } loop_args_t;
 
+// Note: using a for loop instead of recursion because
+// it is the idiomatic way of doing loops in C
 void* loop(void* parameter) {
   loop_args_t* args = (loop_args_t*) parameter;
-  if (args->n == 0) return (void*) args->s;
-  PERFORM(op, args->n);
-  args->n--;
-  return loop((void*) args);
+  for (int i = args->n; i > 0; i--) {
+    PERFORM(op, i);
+  }
+  return (void*) args->s;
 }
 
 int64_t run(int64_t n, int64_t s) {
