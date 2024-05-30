@@ -3,7 +3,7 @@ LIBSEFF_H   := $(LIBSEFF)/src
 LIBSEFF_LIB := $(LIBSEFF)/output/lib
 
 CC               := clang-10
-CC_COMPILE_FLAGS := -O3 -I$(LIBSEFF_H) -fsplit-stack 
+CC_COMPILE_FLAGS := -O3 -I$(LIBSEFF_H) -fsplit-stack
 CC_LINK_FLAGS    := -O3
 
 LD         := $(shell which ld.gold)
@@ -23,8 +23,9 @@ bench: build
 					'./product_early/main 100000' \
 					'./iterator/main 40000000' \
 					'./generator/main 25' \ 
-					'./resume_nontail/main 20000'
-					'./parsing_dollars/main 20000'
+					'./resume_nontail/main 20000' \
+					'./parsing_dollars/main 20000' \
+					'./handler_sieve/main 60000'
 
 test: build
 	$(call test_cmd, countdown, 5, 0)
@@ -34,6 +35,7 @@ test: build
 	$(call test_cmd, generator, 5, 57)
 	$(call test_cmd, parsing_dollars, 10, 55)
 	$(call test_cmd, resume_nontail, 5, 37)
+	$(call build_cmd, handler_sieve, 10, 17)
 
 build: 
 	$(call build_cmd, countdown)
@@ -43,6 +45,7 @@ build:
 	$(call build_cmd, generator)
 	$(call build_cmd, parsing_dollars)
 	$(call build_cmd, resume_nontail)
+	$(call build_cmd, handler_sieve)
 
 clean:
 	-rm */main
