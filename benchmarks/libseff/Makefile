@@ -3,12 +3,12 @@ LIBSEFF_H   := $(LIBSEFF)/src
 LIBSEFF_LIB := $(LIBSEFF)/output/lib
 
 CC               := clang-10
-CC_COMPILE_FLAGS := -O3 -I$(LIBSEFF_H) -fsplit-stack
-CC_WARN_FLAGS    := -Wall -Wextra -Wpedantic \
+CC_COMPILE_FLAGS := -std=gnu99 -O3 -I$(LIBSEFF_H) -fsplit-stack 
+CC_WARN_FLAGS    := -Wall -Wextra \
 									  -Wformat=2 -Wno-unused-parameter -Wshadow \
 										-Wwrite-strings -Wstrict-prototypes -Wold-style-definition \
 										-Wredundant-decls -Wnested-externs -Wmissing-include-dirs
-CC_LINK_FLAGS    := -O3
+CC_LINK_FLAGS    := -std=gnu99 -O3
 
 LD         := $(shell which ld.gold)
 LD_FLAGS   := -fuse-ld=$(LD) -l:libseff.a -l:libutils.a -L$(LIBSEFF_LIB)
