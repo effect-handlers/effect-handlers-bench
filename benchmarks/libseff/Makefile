@@ -2,7 +2,7 @@ LIBSEFF     := /home/ubuntu/libseff
 LIBSEFF_H   := $(LIBSEFF)/src
 LIBSEFF_LIB := $(LIBSEFF)/output/lib
 
-CC               := clang-10
+CC               := clang-14
 CC_COMPILE_FLAGS := -std=gnu99 -O3 -I$(LIBSEFF_H) -fsplit-stack 
 CC_WARN_FLAGS    := -Wall -Wextra \
 									  -Wformat=2 -Wno-unused-parameter -Wshadow \
