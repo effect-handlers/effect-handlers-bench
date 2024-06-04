@@ -1,6 +1,6 @@
 # Product early
 
-Compute the product of a list of numbers and abort early if encountering a `0`
+Compute the product of a linked list of numbers and abort early if encountering a `0`
 in a non-tail recursive way. Run this on a descending list of 1000 numbers
 ending in a `0`. Iterate this `n` times.
 
