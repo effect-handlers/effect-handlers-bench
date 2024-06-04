@@ -15,10 +15,10 @@ typedef struct node_t* tree_t;
 // Generator data structure
 struct thunk_t {
   int64_t v;
-  struct thunk_t* next;
+  seff_coroutine_t *k;
 };
 typedef struct thunk_t thunk_t;
-typedef thunk_t* generator_t;
+typedef thunk_t generator_t;
 
 // Allocate and free a tree node
 static inline node_t* allocNode() { return malloc(sizeof(node_t));}
@@ -45,52 +45,28 @@ static void freeTree(tree_t tree) {
   freeNode(tree);
 }
 
-// Allocate and free generator thunk
-static inline thunk_t* allocThunk() { return malloc(sizeof(thunk_t)); }
-static inline void freeThunk(thunk_t* t) { free(t); }
-
-// Free generator memory
-static void freeGenerator(generator_t generator) {
-  generator_t next;
-  while (generator != NULL) {
-    next = generator->next; 
-    freeThunk(generator);
-    generator = next;
-  }
-}
-
 // Yield handler
-static generator_t handleYield(seff_coroutine_t *k) {
-  effect_set handles_yield = HANDLES(yield); 
-  seff_request_t req = seff_handle(k, NULL, handles_yield);
-
-  generator_t generator = allocThunk(); 
-  generator->v = -1;
-  generator_t currentThunk = generator;
-  bool done = false;
-  while (!done) {   
-    switch (req.effect) {
-      CASE_EFFECT(req, yield, { 
-        currentThunk->v = payload.value;
-        currentThunk->next = allocThunk();
-        currentThunk = currentThunk->next;
-        req = seff_handle(k, 0, handles_yield);
-        break;
-      })
-      CASE_RETURN(req, {
-        currentThunk->next = NULL; // Empty thunk 
-        done = true;
-        break;
-      })
-    };
+static thunk_t handleYield(seff_coroutine_t *k) {
+  seff_request_t req = seff_handle(k, NULL, HANDLES(yield));
+  thunk_t thunk;
+  switch (req.effect) {
+    CASE_EFFECT(req, yield, {
+      thunk.v = payload.value;
+      thunk.k = k;
+      return thunk;
+    });
+    CASE_RETURN(req, {
+      thunk.v = (int64_t) payload.result;
+      thunk.k = NULL; 
+      seff_coroutine_delete(k);
+      return thunk;
+    });
   }
 
-  // If no values were generated
-  if (generator->v == -1) {
-    freeGenerator(generator);
-    return NULL;
-  }
-  return generator;
+  // Unreachable, but required by C
+  thunk.v = 0;
+  thunk.k = NULL;
+  return thunk;
 }
 
 // Performs yield for every node in tree
@@ -106,26 +82,22 @@ static void* iterate(void* parameter) {
 // Sums all values generated
 static int64_t sum(generator_t generator) {
   int64_t acc = 0;
-  while (generator != NULL) {
-    acc += generator->v;
-    generator = generator->next;
+  while (generator.k != NULL) {
+    acc += generator.v;
+    generator = handleYield(generator.k);
   }
   return acc;
 }
 
 static int64_t run(int64_t n) {
   tree_t tree = makeTree(n); 
-
-  // Create generator
   seff_coroutine_t *k = seff_coroutine_new(iterate, (void*) tree);
   generator_t generator = handleYield(k);
-  seff_coroutine_delete(k);
 
   // Sum generated values
   int64_t result = sum(generator);
 
   // Free memory
-  freeGenerator(generator);
   freeTree(tree);
   return result;
 }
