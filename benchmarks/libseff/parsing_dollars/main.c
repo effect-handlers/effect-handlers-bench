@@ -65,7 +65,10 @@ static void feed(int64_t n, seff_coroutine_t *k) {
     switch (req.effect)
     {
       CASE_EFFECT(req, read, {
-        if (i > n) PERFORM(stop);
+        if (i > n) { 
+          seff_coroutine_delete(k);
+          PERFORM(stop);
+        }
         else if (j == 0) {
           i++;
           j = i;
