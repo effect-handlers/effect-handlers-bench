@@ -9,7 +9,7 @@ typedef struct primes_params_t {
   int64_t a;
 } primes_params_t;
 
-int64_t handle_toplevel(seff_coroutine_t *k) {
+static int64_t handle_toplevel(seff_coroutine_t *k) {
   seff_request_t req = seff_handle(k, NULL, HANDLES(prime));
   int64_t result = 0;
   bool done = false;
@@ -30,7 +30,7 @@ int64_t handle_toplevel(seff_coroutine_t *k) {
   return result;
 }
 
-int64_t handle_prime(seff_coroutine_t *k, int64_t i) {
+static int64_t handle_prime(seff_coroutine_t *k, int64_t i) {
   seff_request_t req = seff_handle(k, NULL, HANDLES(prime));
 
   int64_t result = 0;
@@ -55,7 +55,7 @@ int64_t handle_prime(seff_coroutine_t *k, int64_t i) {
   return result;
 }
 
-void* primes(void* parameter) {
+static void* primes(void* parameter) {
   primes_params_t params = *(primes_params_t*) parameter;
   if (params.i >= params.n) return (void*) params.a;
 
@@ -72,7 +72,7 @@ void* primes(void* parameter) {
   }
 }
 
-int64_t run(int64_t n) {
+static int64_t run(int64_t n) {
   primes_params_t params = {
     .i = 2,
     .n = n,

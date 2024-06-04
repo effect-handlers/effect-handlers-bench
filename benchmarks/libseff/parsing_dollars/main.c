@@ -10,10 +10,10 @@ DEFINE_EFFECT(stop, 2, void, {});
 
 #define NEWLINE 10
 #define DOLLAR 36
-inline bool is_newline(char c) { return c == NEWLINE; }
-inline bool is_dollar(char c) { return c == DOLLAR; }
+inline bool is_newline(char c) { return (int) c == NEWLINE; }
+inline bool is_dollar(char c) { return (int) c == DOLLAR; }
 
-void* parse(void* parameter) {
+static void* parse(void* parameter) {
   int64_t a = 0;
   while (true) {
     char c = PERFORM(read);
@@ -27,7 +27,7 @@ void* parse(void* parameter) {
   return NULL;
 }
 
-int64_t sum(seff_coroutine_t *k) {
+static int64_t sum(seff_coroutine_t *k) {
   int64_t s = 0;
   seff_request_t req = seff_handle(k, NULL, HANDLES(emit));
   
@@ -50,12 +50,12 @@ int64_t sum(seff_coroutine_t *k) {
   return s;
 }
 
-void catch(seff_coroutine_t *k) {
+static void catch(seff_coroutine_t *k) {
   seff_handle(k, NULL, HANDLES(stop));
   seff_coroutine_delete(k);
 }
 
-void feed(int64_t n, seff_coroutine_t *k) {
+static void feed(int64_t n, seff_coroutine_t *k) {
   int64_t i = 0;
   int64_t j = 0;
   seff_request_t req = seff_handle(k, NULL, HANDLES(read));
@@ -86,18 +86,18 @@ void feed(int64_t n, seff_coroutine_t *k) {
   }
 }
 
-void* run_catch(void* parameter) {
+static void* run_catch(void* parameter) {
   seff_coroutine_t *parse_k = seff_coroutine_new(parse, NULL);
   feed((int64_t) parameter, parse_k);
   return NULL;
 }
 
-void* run_sum(void* parameter) { 
+static void* run_sum(void* parameter) { 
   HANDLE(run_catch, parameter, catch); 
   return NULL;
 }
 
-int64_t run(int64_t n) {
+static int64_t run(int64_t n) {
   int64_t result = HANDLE(run_sum, (void*) n, sum);
   return result;
 }

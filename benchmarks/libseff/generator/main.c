@@ -21,11 +21,11 @@ typedef struct thunk_t thunk_t;
 typedef thunk_t* generator_t;
 
 // Allocate and free a tree node
-inline node_t* allocNode() { return malloc(sizeof(node_t));}
-inline void freeNode(node_t* node) { free(node); }
+static inline node_t* allocNode() { return malloc(sizeof(node_t));}
+static inline void freeNode(node_t* node) { free(node); }
 
 // Allocate a tree on the heap
-tree_t makeTree(int n) {
+static tree_t makeTree(int n) {
   if (n == 0) return NULL;
   tree_t node = allocNode();
   tree_t t = makeTree (n - 1);
@@ -39,18 +39,18 @@ tree_t makeTree(int n) {
 }
 
 // Free tree from heap
-void freeTree(tree_t tree) {
+static void freeTree(tree_t tree) {
   if (tree == NULL) return;
   freeTree(tree->l);
   freeNode(tree);
 }
 
 // Allocate and free generator thunk
-inline thunk_t* allocThunk() { return malloc(sizeof(thunk_t)); }
-inline void freeThunk(thunk_t* t) { free(t); }
+static inline thunk_t* allocThunk() { return malloc(sizeof(thunk_t)); }
+static inline void freeThunk(thunk_t* t) { free(t); }
 
 // Free generator memory
-void freeGenerator(generator_t generator) {
+static void freeGenerator(generator_t generator) {
   generator_t next;
   while (generator != NULL) {
     next = generator->next; 
@@ -60,7 +60,7 @@ void freeGenerator(generator_t generator) {
 }
 
 // Yield handler
-generator_t handleYield(seff_coroutine_t *k) {
+static generator_t handleYield(seff_coroutine_t *k) {
   effect_set handles_yield = HANDLES(yield); 
   seff_request_t req = seff_handle(k, NULL, handles_yield);
 
@@ -94,7 +94,7 @@ generator_t handleYield(seff_coroutine_t *k) {
 }
 
 // Performs yield for every node in tree
-void* iterate(void* parameter) {
+static void* iterate(void* parameter) {
   if (parameter == NULL) return NULL;
   tree_t tree = parameter;
   iterate(tree->l);
@@ -104,7 +104,7 @@ void* iterate(void* parameter) {
 }
 
 // Sums all values generated
-int64_t sum(generator_t generator) {
+static int64_t sum(generator_t generator) {
   int64_t acc = 0;
   while (generator != NULL) {
     acc += generator->v;
@@ -113,7 +113,7 @@ int64_t sum(generator_t generator) {
   return acc;
 }
 
-int64_t run(int64_t n) {
+static int64_t run(int64_t n) {
   tree_t tree = makeTree(n); 
 
   // Create generator

@@ -4,11 +4,11 @@
 
 DEFINE_EFFECT(op, 0, void, { int64_t x; });
 
-inline int64_t binaryOperation(int64_t x, int64_t y) { 
+static inline int64_t binaryOperation(int64_t x, int64_t y) { 
   return (labs(x - (503 * y) + 37)) % 1009;
 }
 
-int64_t handleOpRec(seff_coroutine_t *k) {
+static int64_t handleOpRec(seff_coroutine_t *k) {
   seff_request_t req = seff_handle(k, NULL, HANDLES(op));
   switch (req.effect) {
     CASE_EFFECT(req, op, {
@@ -28,7 +28,7 @@ typedef struct loop_args_t {
 
 // Note: using a for loop instead of recursion because
 // it is the idiomatic way of doing loops in C
-void* loop(void* parameter) {
+static void* loop(void* parameter) {
   loop_args_t* args = (loop_args_t*) parameter;
   for (int i = args->n; i > 0; i--) {
     PERFORM(op, i);
@@ -36,7 +36,7 @@ void* loop(void* parameter) {
   return (void*) args->s;
 }
 
-int64_t run(int64_t n, int64_t s) {
+static int64_t run(int64_t n, int64_t s) {
   loop_args_t args = {
     .n = n,
     .s = s
@@ -47,9 +47,9 @@ int64_t run(int64_t n, int64_t s) {
   return result;
 }
 
-int64_t repeat(int64_t n) {
+static int64_t repeat(int64_t n) {
   int64_t s = 0;
-  for (int i = 1000; i > 0; i--) {
+  for (int i = 0; i < 1000; i++) {
     s = run(n, s);
   }
   return s;

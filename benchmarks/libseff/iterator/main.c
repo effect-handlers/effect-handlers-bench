@@ -8,7 +8,7 @@ struct range_args {
   int64_t u;
 };
 
-int64_t handleEmit(seff_coroutine_t *k) {
+static int64_t handleEmit(seff_coroutine_t *k) {
   effect_set handles_emit = HANDLES(emit); 
   seff_request_t req = seff_handle(k, NULL, handles_emit);
 
@@ -30,7 +30,7 @@ int64_t handleEmit(seff_coroutine_t *k) {
   return s;
 }
 
-void* range(void* args) {
+static void* range(void* args) {
   struct range_args* range_args = args;
   for (int l = range_args->l; l <= range_args->u; l++) {
     PERFORM (emit, l);
@@ -38,7 +38,7 @@ void* range(void* args) {
   return NULL;
 }
 
-int64_t run(int64_t n) {
+static int64_t run(int64_t n) {
   struct range_args args = {
     .l = 0,
     .u = n

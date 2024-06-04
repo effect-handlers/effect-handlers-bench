@@ -4,7 +4,7 @@
 
 DEFINE_EFFECT(done, 0, int64_t, { int64_t value; });
 
-int64_t handleDone(seff_coroutine_t *k, int* xs) {
+static int64_t handleDone(seff_coroutine_t *k, int* xs) {
   effect_set handles_done = HANDLES(done); 
   seff_request_t req = seff_handle(k, NULL, handles_done);
 
@@ -20,7 +20,7 @@ int64_t handleDone(seff_coroutine_t *k, int* xs) {
   };
 }
 
-void* product(void* parameter) {
+static void* product(void* parameter) {
   int* xs = (int*) parameter;
   int64_t prod = 1;
   
@@ -37,25 +37,25 @@ void* product(void* parameter) {
   return NULL;
 }
 
-int run_product(int* xs) {
+static int run_product(int* xs) {
   seff_coroutine_t *k = seff_coroutine_new(product, (void*) xs);
   int64_t result = handleDone(k, xs);
   seff_coroutine_delete(k);
   return result;
 }
 
-void enumerate(int xs[]) {
-  for (int i = ENUMERATE_SIZE; i >= 0; i--) {
-    xs[ENUMERATE_SIZE - i] = i;
+static void enumerate(size_t n, int xs[n]) {
+  for (size_t i = 0; i < n; i++) {
+    xs[i] = (int) (n - 1) - i;
   }
 }
 
-int64_t run(int64_t n) {
+static int64_t run(int64_t n) {
   int xs[ENUMERATE_SIZE + 1];
-  enumerate(xs); 
+  enumerate(ENUMERATE_SIZE + 1, xs); 
 
   int64_t a = 0;
-  for (int i = n; i > 0; i--) {
+  for (int i = 0; i < n; i++) {
     a += run_product(xs);
   }
   return a;

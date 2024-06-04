@@ -4,7 +4,7 @@
 DEFINE_EFFECT(get, 0, int64_t, {});
 DEFINE_EFFECT(put, 1, void, { int64_t new_value; });
 
-int64_t evalState(seff_coroutine_t *k, int64_t initialState) {
+static int64_t evalState(seff_coroutine_t *k, int64_t initialState) {
   int64_t state = initialState;
   effect_set handles_state = HANDLES(get) | HANDLES(put); 
   seff_request_t req = seff_handle(k, NULL, handles_state);
@@ -32,7 +32,7 @@ int64_t evalState(seff_coroutine_t *k, int64_t initialState) {
   return result;
 }
 
-void* countdown(void* parameter) {
+static void* countdown(void* parameter) {
   int64_t state = PERFORM (get);
   while (state > 0) {
     PERFORM (put, state - 1);
@@ -41,7 +41,7 @@ void* countdown(void* parameter) {
   return (void*) state;
 }
 
-int64_t run(int64_t n) {
+static int64_t run(int64_t n) {
   seff_coroutine_t *k = seff_coroutine_new(countdown, (void*) n);
   int64_t result = evalState(k, n);
   seff_coroutine_delete(k);

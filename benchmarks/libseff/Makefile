@@ -4,12 +4,16 @@ LIBSEFF_LIB := $(LIBSEFF)/output/lib
 
 CC               := clang-10
 CC_COMPILE_FLAGS := -O3 -I$(LIBSEFF_H) -fsplit-stack
+CC_WARN_FLAGS    := -Wall -Wextra -Wpedantic \
+									  -Wformat=2 -Wno-unused-parameter -Wshadow \
+										-Wwrite-strings -Wstrict-prototypes -Wold-style-definition \
+										-Wredundant-decls -Wnested-externs -Wmissing-include-dirs
 CC_LINK_FLAGS    := -O3
 
 LD         := $(shell which ld.gold)
 LD_FLAGS   := -fuse-ld=$(LD) -l:libseff.a -l:libutils.a -L$(LIBSEFF_LIB)
 
-compile_cmd = $(CC)	$(CC_COMPILE_FLAGS) -o main.o -c main.c
+compile_cmd = $(CC)	$(CC_COMPILE_FLAGS) $(CC_WARN_FLAGS) -o main.o -c main.c
 link_cmd    = $(CC) $(CC_LINK_FLAGS) -o main main.o $(LD_FLAGS)
 build_cmd   = cd $(1) ; $(call compile_cmd, $(1)); $(call link_cmd, $(1))
 test_cmd    = cd $(1) ; ./main $(2) > actual ; echo $(3) > expected ; diff expected actual
