@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
@@ -20,16 +20,18 @@ USER ubuntu
 WORKDIR /home/ubuntu
 
 # Install hyperfine
-RUN sudo apt install -y wget
+RUN sudo apt-get install -y wget
 RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
 RUN sudo dpkg -i hyperfine_1.15.0_amd64.deb
 
 # Download and install libseff 
-RUN sudo apt install -y git python3 make clang-10
+RUN sudo apt-get update && sudo apt-get install -y git python3 make clang-14
 RUN git clone https://github.com/effect-handlers/libseff.git
 RUN sed -i '1,+20s/:= *debug/:= release/' "/home/ubuntu/libseff/Makefile"
-RUN make -C "/home/ubuntu/libseff" "output/lib/libseff.a"
-RUN make -C "/home/ubuntu/libseff" "output/lib/libutils.a"
+
+# Update clang version from 10 to 14
+RUN make CC=clang-14 CXX=clang++-14 -C "/home/ubuntu/libseff" "output/lib/libseff.a"
+RUN make CC=clang-14 CXX=clang++-14 -C "/home/ubuntu/libseff" "output/lib/libutils.a"
 
 # Final steps
 ENV DEBIAN_FRONTEND teletype
