@@ -18,8 +18,8 @@ jobs:
             const caches = await github.rest.actions.getActionsCacheList({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              sort: size_in_bytes,
-              direction: desc,
+              sort: "size_in_bytes",
+              direction: "desc",
               per_page: 100,
             })
             for (const cache of caches.data.actions_caches) {
