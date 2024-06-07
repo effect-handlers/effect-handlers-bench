@@ -30,15 +30,16 @@ RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfin
 RUN sudo dpkg -i hyperfine_1.15.0_amd64.deb
 
 # Install libmprompt/libmpeff
-RUN sudo apt install -y wget git curl gcc make cmake
+RUN sudo apt install -y wget git curl gcc g++ make cmake
 RUN curl -o libmprompt-0.6.3.tar.gz -sL https://github.com/koka-lang/libmprompt/archive/refs/tags/v0.6.3.tar.gz
 RUN tar xvf libmprompt-0.6.3.tar.gz
-WORKDIR ./libmprompt-0.6.3
+RUN mv libmprompt-0.6.3 libmprompt
+WORKDIR ./libmprompt
 
-CMD ["/bin/bash" "mkdir" "-p" "out/release"]
+RUN mkdir -p out/release
 WORKDIR ./out/release
-CMD ["/bin/cmake" "../.."]
-CMD ["/bin/make"]
+RUN cmake "../.." -DMP_USE_C=ON
+RUN make
 
 # Final steps
 ENV DEBIAN_FRONTEND teletype
