@@ -21,8 +21,8 @@ WORKDIR /home/ubuntu
 
 # Install hyperfine
 RUN sudo apt install -y wget
-RUN export bleah=$(arch); wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_arm64.deb
-RUN sudo dpkg -i hyperfine_1.15.0_arm64.deb
+RUN export bleah=$(arch); wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
+RUN sudo dpkg -i hyperfine_1.15.0_amd64.deb
 
 # Configure tzdata
 RUN echo 'tzdata tzdata/Areas select Europe' | sudo debconf-set-selections
