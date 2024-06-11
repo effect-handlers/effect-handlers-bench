@@ -97,8 +97,9 @@ static int64_t run(int64_t n) {
   // Sum generated values
   int64_t result = sum(generator);
 
-  // Free memory
-  freeTree(tree);
+  // NOTE: if larger program, should free tree memory:
+  // i.e. `freeTree(tree);`
+  // But since the program just exits, memory will be freed anyway.
   return result;
 }
 
