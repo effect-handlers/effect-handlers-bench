@@ -1,0 +1,37 @@
+name: libseff
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+#From https://docs.github.com/en/actions/guides/publishing-docker-images
+jobs:
+  bench-system-libseff:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - uses: satackey/action-docker-layer-caching@v0.0.11
+        # Ignore the failure of a step and avoid terminating the job.
+        continue-on-error: true
+
+      - name: Add write permission to directories
+        run: |
+          find . -type d -exec chmod 777 {} \;
+
+      - name: Test libseff system
+        run: |
+          make test_libseff
+
