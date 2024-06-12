@@ -2,13 +2,13 @@ LIBMPEFF     := /home/ubuntu/libmprompt
 LIBMPEFF_H   := $(LIBMPEFF)/include
 LIBMPEFF_LIB := $(LIBMPEFF)/out/release
 
-CC               := gcc
-CC_COMPILE_FLAGS := -std=gnu99 -O3 -I$(LIBMPEFF_H)
+CC               := clang-14
+CC_COMPILE_FLAGS := -std=gnu99 -O3 -I$(LIBMPEFF_H) -flto
 CC_WARN_FLAGS    := -Wall -Wextra \
 									  -Wformat=2 -Wno-unused-parameter -Wshadow \
 										-Wwrite-strings \
 										-Wredundant-decls -Wnested-externs -Wmissing-include-dirs
-CC_LINK_FLAGS    := -std=gnu99 -O3
+CC_LINK_FLAGS    := -std=gnu99 -O3 -flto
 
 LD_FLAGS   := -l:libmpeff.a -l:libmprompt.a -L$(LIBMPEFF_LIB)
 
