@@ -15,11 +15,11 @@ static void* handle_sieve_prime(mpe_resume_t* r, void* local, void* arg) {
   bool res;
   if (mpe_long_voidp(arg) % mpe_long_voidp(local) == 0) res = false;
   else res = mpe_bool_voidp(sieve_prime(mpe_long_voidp(arg)));
-  return mpe_resume(r, local, mpe_voidp_bool(res));
+  return mpe_resume_tail(r, local, mpe_voidp_bool(res));
 }
 
 static void* handle_top_sieve_prime(mpe_resume_t* r, void* local, void* arg) {
-  return mpe_resume(r, local, mpe_voidp_bool(true));
+  return mpe_resume_tail(r, local, mpe_voidp_bool(true));
 }
 
 static const mpe_handlerdef_t sieve_hdef = {
