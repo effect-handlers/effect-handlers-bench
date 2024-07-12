@@ -66,8 +66,8 @@ test_libmpeff: system_libmpeff
 		make -C /source/benchmarks/libmpeff test
 
 # libseff
-system_libseff:
-	docker build -t $(DOCKERHUB):libseff systems/libseff
+system_libseff: system_base
+	docker build $(DOCKERBUILDARGS) -t $(DOCKERHUB):libseff -f systems/libseff/Dockerfile .
 
 bench_libseff: system_libseff
 	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):libseff \
