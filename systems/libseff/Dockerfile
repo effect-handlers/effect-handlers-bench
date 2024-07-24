@@ -26,7 +26,9 @@ RUN sudo dpkg -i hyperfine_1.15.0_amd64.deb
 
 # Download and install libseff 
 RUN sudo apt-get update && sudo apt-get install -y git python3 make clang-14
-RUN git clone https://github.com/effect-handlers/libseff.git
+RUN git clone https://github.com/effect-handlers/libseff.git && \
+    cd libseff && \
+    git checkout d74c576a18ceb1b123d50952208cedf5d7df3a56
 RUN sed -i '1,+20s/:= *debug/:= release/' "/home/ubuntu/libseff/Makefile"
 
 # Update clang version from 10 to 14
