@@ -90,7 +90,7 @@ static void feed(int64_t n, seff_coroutine_t *k) {
 }
 
 static void* run_catch(void* parameter) {
-  seff_coroutine_t *parse_k = seff_coroutine_new(parse, NULL);
+  seff_coroutine_t *parse_k = seff_coroutine_new(parse, NULL); // Never freed, see https://github.com/effect-handlers/effect-handlers-bench/pull/58#discussion_r1627262932
   feed((int64_t) parameter, parse_k);
   return NULL;
 }
