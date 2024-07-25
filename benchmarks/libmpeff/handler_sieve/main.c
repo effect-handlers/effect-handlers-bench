@@ -22,6 +22,10 @@ static void* handle_top_sieve_prime(mpe_resume_t* r, void* local, void* arg) {
   return mpe_resume_tail(r, local, mpe_voidp_bool(true));
 }
 
+// NOTE: We exepected to be able to use MPE_OP_TAIL here, but when used we
+// enter an infinite loop of the same handler handling the next emitted prime
+// effect instead of the next one up the stack.
+// See https://github.com/effect-handlers/effect-handlers-bench/pull/60#issuecomment-2167645757
 static const mpe_handlerdef_t sieve_hdef = {
   MPE_EFFECT(sieve), NULL,
   {  
