@@ -5,7 +5,7 @@ DEFINE_EFFECT(get, 0, int64_t, {});
 DEFINE_EFFECT(put, 1, void, { int64_t new_value; });
 
 int64_t* evalState(seff_coroutine_t *k, int64_t param, int64_t *state) {
-  seff_request_t req = seff_handle(k, (void*) param, HANDLES(get) | HANDLES(put));
+  seff_request_t req = seff_resume(k, (void*) param, HANDLES(get) | HANDLES(put));
   switch (req.effect) {
     CASE_EFFECT(req, get, {
       return evalState(k, *state, state);
@@ -36,9 +36,9 @@ int64_t run(int64_t n) {
   return *evalState(k, 0, &state);
 }
 
-int main(int argc, char** argv) { 
+int main(int argc, char** argv) {
   int64_t n = argc != 2 ? 5 : atoi(argv[1]);
   int64_t result = run(n);
   printf("%ld\n", result);
-  return 0;   
+  return 0;
 }

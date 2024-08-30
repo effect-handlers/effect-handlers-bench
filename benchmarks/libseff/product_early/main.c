@@ -11,8 +11,8 @@ typedef struct list {
 } list_t;
 
 static int64_t handleDone(seff_coroutine_t *k, list_t* xs) {
-  effect_set handles_done = HANDLES(done); 
-  seff_request_t req = seff_handle(k, NULL, handles_done);
+  effect_set handles_done = HANDLES(done);
+  seff_request_t req = seff_resume(k, NULL, handles_done);
 
   switch (req.effect) {
     CASE_EFFECT(req, done, {
@@ -32,7 +32,7 @@ static void* product(void* parameter) {
     PERFORM(done, 0);
   }
   else {
-    int64_t res = (int64_t) product(list.next); 
+    int64_t res = (int64_t) product(list.next);
     return (void*) (list.head * res);
   }
   return NULL;
@@ -51,7 +51,7 @@ static list_t* enumerate(size_t n) {
   list_t* current = top;
 
   for (size_t i = 0; i < n; i++) {
-    current->head = (n - 1) - i; 
+    current->head = (n - 1) - i;
     if (i == n - 1) current->next = NULL;
     else current->next = malloc(sizeof(list_t));
     current = current->next;
@@ -69,7 +69,7 @@ static void free_list(list_t* xs) {
 }
 
 static int64_t run(int64_t n) {
-  list_t* xs = enumerate(ENUMERATE_SIZE + 1); 
+  list_t* xs = enumerate(ENUMERATE_SIZE + 1);
 
   int64_t a = 0;
   for (int i = 0; i < n; i++) {
@@ -80,13 +80,13 @@ static int64_t run(int64_t n) {
   return a;
 }
 
-int main(int argc, char** argv) { 
+int main(int argc, char** argv) {
   int64_t n = argc != 2 ? 5 : atoi(argv[1]);
   int64_t r = run(n);
-  
+
   // Increase output buffer size to increase performance
   char buffer[8192];
   setvbuf(stdout, buffer, _IOFBF, sizeof(buffer));
   printf("%ld\n", r);
-  return 0;   
+  return 0;
 }

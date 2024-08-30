@@ -4,12 +4,12 @@
 
 DEFINE_EFFECT(op, 0, void, { int64_t x; });
 
-static inline int64_t binaryOperation(int64_t x, int64_t y) { 
+static inline int64_t binaryOperation(int64_t x, int64_t y) {
   return (labs(x - (503 * y) + 37)) % 1009;
 }
 
 static int64_t handleOpRec(seff_coroutine_t *k) {
-  seff_request_t req = seff_handle(k, NULL, HANDLES(op));
+  seff_request_t req = seff_resume(k, NULL, HANDLES(op));
   switch (req.effect) {
     CASE_EFFECT(req, op, {
       return binaryOperation(payload.x, handleOpRec(k));
@@ -55,13 +55,13 @@ static int64_t repeat(int64_t n) {
   return s;
 }
 
-int main(int argc, char** argv) { 
+int main(int argc, char** argv) {
   int64_t n = argc != 2 ? 5 : atoi(argv[1]);
   int64_t r = repeat(n);
-  
+
   // Increase output buffer size to increase performance
   char buffer[8192];
   setvbuf(stdout, buffer, _IOFBF, sizeof(buffer));
   printf("%ld\n", r);
-  return 0; 
+  return 0;
 }

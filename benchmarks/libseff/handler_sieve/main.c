@@ -10,13 +10,13 @@ typedef struct primes_params_t {
 } primes_params_t;
 
 static int64_t handle_toplevel(seff_coroutine_t *k) {
-  seff_request_t req = seff_handle(k, NULL, HANDLES(prime));
+  seff_request_t req = seff_resume(k, NULL, HANDLES(prime));
   int64_t result = 0;
   bool done = false;
   while (!done) {
     switch(req.effect) {
       CASE_EFFECT(req, prime, {
-        req = seff_handle(k, (void*) true, HANDLES(prime));
+        req = seff_resume(k, (void*) true, HANDLES(prime));
         break;
       });
       CASE_RETURN(req, {
@@ -31,7 +31,7 @@ static int64_t handle_toplevel(seff_coroutine_t *k) {
 }
 
 static int64_t handle_prime(seff_coroutine_t *k, int64_t i) {
-  seff_request_t req = seff_handle(k, NULL, HANDLES(prime));
+  seff_request_t req = seff_resume(k, NULL, HANDLES(prime));
 
   int64_t result = 0;
   bool done = false;
@@ -41,7 +41,7 @@ static int64_t handle_prime(seff_coroutine_t *k, int64_t i) {
         bool res;
         if (payload.e % i == 0) res = false;
         else res = PERFORM (prime, payload.e);
-        req = seff_handle(k, (void*) res, HANDLES(prime));
+        req = seff_resume(k, (void*) res, HANDLES(prime));
         break;
       });
       CASE_RETURN(req, {
@@ -83,13 +83,13 @@ static int64_t run(int64_t n) {
   return result;
 }
 
-int main(int argc, char** argv) { 
+int main(int argc, char** argv) {
   int64_t n = argc != 2 ? 10 : atoi(argv[1]);
   int64_t r = run(n);
-  
+
   // Increase output buffer size to increase performance
   char buffer[8192];
   setvbuf(stdout, buffer, _IOFBF, sizeof(buffer));
   printf("%ld\n", r);
-  return 0;   
+  return 0;
 }
