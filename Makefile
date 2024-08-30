@@ -1,13 +1,14 @@
 DOCKERHUB=effecthandlers/effect-handlers
+DOCKERBUILDARGS =
 
 all: bench_eff bench_hia bench_koka bench_links bench_ocaml
 
 system_base:
-	docker build -t $(DOCKERHUB):base systems
+	docker build $(DOCKERBUILDARGS) -t $(DOCKERHUB):base systems
 
 # Eff in ocaml
 system_eff: system_base
-	docker build -t $(DOCKERHUB):eff systems/eff
+	docker build $(DOCKERBUILDARGS) -t $(DOCKERHUB):eff systems/eff
 
 bench_eff: system_eff
 	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):eff \
@@ -19,7 +20,7 @@ test_eff: system_eff
 
 # Effekt
 system_effekt: system_base
-	docker build -t $(DOCKERHUB):effekt systems/effekt
+	docker build $(DOCKERBUILDARGS) -t $(DOCKERHUB):effekt systems/effekt
 
 bench_effekt: system_effekt
 	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):effekt \
@@ -31,7 +32,7 @@ test_effekt: system_effekt
 
 # Handlers in Action
 system_hia: system_base
-	docker build -t $(DOCKERHUB):hia systems/hia
+	docker build $(DOCKERBUILDARGS) -t $(DOCKERHUB):hia systems/hia
 
 bench_hia: system_hia
 	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):hia \
@@ -43,7 +44,7 @@ test_hia: system_hia
 
 # Koka
 system_koka: system_base
-	docker build -t effecthandlers/effect-handlers:koka systems/koka
+	docker build $(DOCKERBUILDARGS) -t $(DOCKERHUB):koka systems/koka
 
 bench_koka: system_koka
 	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):koka \
@@ -55,7 +56,7 @@ test_koka: system_koka
 
 # libmpeff
 system_libmpeff: system_base
-	docker build -t $(DOCKERHUB):libmpeff systems/libmpeff
+	docker build $(DOCKERBUILDARGS) -t $(DOCKERHUB):libmpeff systems/libmpeff
 
 bench_libmpeff: system_libmpeff
 	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):libmpeff \
@@ -79,7 +80,7 @@ test_libseff: system_libseff
 
 # Links
 system_links: system_base
-	docker build -t $(DOCKERHUB):links systems/links
+	docker build $(DOCKERBUILDARGS) -t $(DOCKERHUB):links systems/links
 
 bench_links: system_links
 	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):links \
@@ -91,7 +92,7 @@ test_links: system_links
 
 # libhandler
 system_libhandler: system_base
-	docker build -t $(DOCKERHUB):libhandler systems/libhandler
+	docker build $(DOCKERBUILDARGS) -t $(DOCKERHUB):libhandler systems/libhandler
 
 bench_libhandler: system_libhandler
 	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):libhandler \
@@ -103,7 +104,7 @@ test_libhandler: system_libhandler
 
 # Multicore OCaml
 system_ocaml: system_base
-	docker build -t $(DOCKERHUB):ocaml systems/ocaml
+	docker build $(DOCKERBUILDARGS) -t $(DOCKERHUB):ocaml systems/ocaml
 
 bench_ocaml: system_ocaml
 	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):ocaml \
