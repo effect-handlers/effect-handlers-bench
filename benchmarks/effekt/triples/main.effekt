@@ -1,15 +1,15 @@
-import io/args
-import immutable/list
-import immutable/option
-import text/string
+import list
+import option
+import args
+import string
 
 record Triple(a: Int, b: Int, c: Int)
 
-effect Flip {
-  def flip(): Boolean
+interface Flip {
+  def flip(): Bool
 }
 
-effect Fail {
+interface Fail {
   def fail(): Nothing
 }
 
@@ -48,7 +48,9 @@ def run(n: Int, s: Int): Int =
   }
 
 def main() = {
-  val n = commandLineArgs().headOption.getOrElse { "" }.toInt.getOrElse { 10 };
+  val n = on[WrongFormat].default{10}{
+    commandLineArgs().headOption.getOrElse{""}.toInt
+  }
   val r = run(n, n);
   println(r)
 }

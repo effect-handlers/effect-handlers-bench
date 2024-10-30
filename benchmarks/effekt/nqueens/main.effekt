@@ -1,16 +1,16 @@
-import immutable/list
-import immutable/option
-import io/args
-import text/string
+import list
+import option
+import args
+import string
 
 type Solution = List[Int]
 
-effect Search {
+interface Search {
   def pick(size: Int): Int
   def fail(): Nothing
 }
 
-def safe(queen: Int, diag: Int, xs: Solution): Boolean =
+def safe(queen: Int, diag: Int, xs: Solution): Bool =
   xs match {
     case Nil() => true
     case Cons(q, qs) => if (queen != q && queen != q + diag && queen != q - diag) {
@@ -52,7 +52,9 @@ def run(n: Int): Int =
   }
 
 def main() = {
-  val n = commandLineArgs().headOption.getOrElse { "" }.toInt.getOrElse { 5 };
+  val n = on[WrongFormat].default{5}{
+    commandLineArgs().headOption.getOrElse{""}.toInt
+  }
   val r = run(n);
   println(r)
 }

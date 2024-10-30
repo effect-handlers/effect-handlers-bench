@@ -1,7 +1,7 @@
-import immutable/list
-import immutable/option
-import io/args
-import text/string
+import list
+import option
+import args
+import string
 
 type Chr = Int
 
@@ -31,7 +31,7 @@ def parse(a: Int): Unit / {Read, Emit, Stop} = {
       do Stop()
     }
 }
-  
+
 def sum { action: () => Unit / Emit } = {
   var s = 0;
   try {
@@ -73,7 +73,9 @@ def run(n: Int) =
   sum { catch { feed(n) { parse(0) } } }
 
 def main() = {
-  val n = commandLineArgs().headOption.getOrElse { "" }.toInt.getOrElse { 10 };
+  val n = on[WrongFormat].default{10}{
+    commandLineArgs().headOption.getOrElse{""}.toInt
+  }
   val r = run(n);
   println(r)
 }

@@ -1,7 +1,7 @@
-import immutable/list
-import immutable/option
-import io/args
-import text/string
+import list
+import option
+import args
+import string
 
 def fibonacci(n: Int): Int =
   if (n == 0) {
@@ -13,7 +13,9 @@ def fibonacci(n: Int): Int =
   }
 
 def main() = {
-  val n = commandLineArgs().headOption.getOrElse { "" }.toInt.getOrElse { 5 };
+  val n = on[WrongFormat].default{5}{
+    commandLineArgs().headOption.getOrElse{""}.toInt
+  }
   val r = fibonacci(n);
   println(r)
 }

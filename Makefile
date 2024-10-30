@@ -1,6 +1,6 @@
 DOCKERHUB=effecthandlers/effect-handlers
 
-all: bench_eff bench_hia bench_koka bench_links bench_ocaml
+all: bench_effekt bench_eff bench_hia bench_koka bench_links bench_ocaml
 
 system_base:
 	docker build -t $(DOCKERHUB):base systems
