@@ -1,5 +1,5 @@
 bench: build
-	hyperfine --export-csv results.csv \
+	hyperfine --export-csv results.csv --export-json results.json \
 		'./countdown/main 200000000' \
 		'./fibonacci_recursive/main 42' \
 		'./product_early/main 100000' \

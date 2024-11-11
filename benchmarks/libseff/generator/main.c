@@ -30,7 +30,7 @@ static tree_t makeTree(int n) {
   tree_t node = allocNode();
   tree_t t = makeTree (n - 1);
 
-  // Note: both left and right pointers point to the same memory, 
+  // Note: both left and right pointers point to the same memory,
   // to match the other languages
   node->l = t;
   node->r = t;
@@ -47,7 +47,7 @@ static void freeTree(tree_t tree) {
 
 // Yield handler
 static thunk_t handleYield(seff_coroutine_t *k) {
-  seff_request_t req = seff_handle(k, NULL, HANDLES(yield));
+  seff_request_t req = seff_resume(k, NULL, HANDLES(yield));
   thunk_t thunk;
   switch (req.effect) {
     CASE_EFFECT(req, yield, {
@@ -57,7 +57,7 @@ static thunk_t handleYield(seff_coroutine_t *k) {
     });
     CASE_RETURN(req, {
       thunk.v = (int64_t) payload.result;
-      thunk.k = NULL; 
+      thunk.k = NULL;
       seff_coroutine_delete(k);
       return thunk;
     });
@@ -90,7 +90,7 @@ static int64_t sum(generator_t generator) {
 }
 
 static int64_t run(int64_t n) {
-  tree_t tree = makeTree(n); 
+  tree_t tree = makeTree(n);
   seff_coroutine_t *k = seff_coroutine_new(iterate, (void*) tree);
   generator_t generator = handleYield(k);
 
@@ -102,7 +102,7 @@ static int64_t run(int64_t n) {
   return result;
 }
 
-int main(int argc, char** argv) { 
+int main(int argc, char** argv) {
   int64_t n = argc != 2 ? 25 : atoi(argv[1]);
   int64_t r = run(n);
 
@@ -110,5 +110,5 @@ int main(int argc, char** argv) {
   char buffer[8192];
   setvbuf(stdout, buffer, _IOFBF, sizeof(buffer));
   printf("%ld\n", r);
-  return 0; 
+  return 0;
 }

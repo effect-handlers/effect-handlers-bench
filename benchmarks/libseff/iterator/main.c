@@ -9,16 +9,16 @@ struct range_args {
 };
 
 static int64_t handleEmit(seff_coroutine_t *k) {
-  effect_set handles_emit = HANDLES(emit); 
-  seff_request_t req = seff_handle(k, NULL, handles_emit);
+  effect_set handles_emit = HANDLES(emit);
+  seff_request_t req = seff_resume(k, NULL, handles_emit);
 
   int64_t s = 0;
   bool done = false;
-  while (!done) {   
+  while (!done) {
     switch (req.effect) {
       CASE_EFFECT(req, emit, {
         s += payload.value;
-        req = seff_handle(k, NULL, handles_emit);
+        req = seff_resume(k, NULL, handles_emit);
         break;
       })
       CASE_RETURN(req, {
@@ -49,7 +49,7 @@ static int64_t run(int64_t n) {
   return result;
 }
 
-int main(int argc, char** argv) { 
+int main(int argc, char** argv) {
   int64_t n = argc != 2 ? 5 : atoi(argv[1]);
   int64_t r = run(n);
 
@@ -57,5 +57,5 @@ int main(int argc, char** argv) {
   char buffer[8192];
   setvbuf(stdout, buffer, _IOFBF, sizeof(buffer));
   printf("%ld\n", r);
-  return 0;   
+  return 0;
 }

@@ -29,15 +29,15 @@ static void* parse(void* parameter) {
 
 static int64_t sum(seff_coroutine_t *k) {
   int64_t s = 0;
-  seff_request_t req = seff_handle(k, NULL, HANDLES(emit));
-  
+  seff_request_t req = seff_resume(k, NULL, HANDLES(emit));
+
   bool done = false;
   while (!done) {
     switch (req.effect)
     {
       CASE_EFFECT(req, emit, {
         s += payload.value;
-        req = seff_handle(k, NULL, HANDLES(emit));
+        req = seff_resume(k, NULL, HANDLES(emit));
         break;
       })
       CASE_RETURN(req, {
@@ -51,32 +51,32 @@ static int64_t sum(seff_coroutine_t *k) {
 }
 
 static void catch(seff_coroutine_t *k) {
-  seff_handle(k, NULL, HANDLES(stop));
+  seff_resume(k, NULL, HANDLES(stop));
   seff_coroutine_delete(k);
 }
 
 static void feed(int64_t n, seff_coroutine_t *k) {
   int64_t i = 0;
   int64_t j = 0;
-  seff_request_t req = seff_handle(k, NULL, HANDLES(read));
+  seff_request_t req = seff_resume(k, NULL, HANDLES(read));
 
   bool done = false;
   while (!done) {
     switch (req.effect)
     {
       CASE_EFFECT(req, read, {
-        if (i > n) { 
+        if (i > n) {
           seff_coroutine_delete(k);
           PERFORM(stop);
         }
         else if (j == 0) {
           i++;
           j = i;
-          req = seff_handle(k, (void*) NEWLINE, HANDLES(read));
+          req = seff_resume(k, (void*) NEWLINE, HANDLES(read));
         }
         else {
           j--;
-          req = seff_handle(k, (void*) DOLLAR, HANDLES(read));
+          req = seff_resume(k, (void*) DOLLAR, HANDLES(read));
         }
         break;
       });
@@ -95,8 +95,8 @@ static void* run_catch(void* parameter) {
   return NULL;
 }
 
-static void* run_sum(void* parameter) { 
-  HANDLE(run_catch, parameter, catch); 
+static void* run_sum(void* parameter) {
+  HANDLE(run_catch, parameter, catch);
   return NULL;
 }
 
@@ -105,13 +105,13 @@ static int64_t run(int64_t n) {
   return result;
 }
 
-int main(int argc, char** argv) { 
+int main(int argc, char** argv) {
   int64_t n = argc != 2 ? 10 : atoi(argv[1]);
   int64_t result = run(n);
-  
+
   // Increase output buffer size to increase performance
   char buffer[8192];
   setvbuf(stdout, buffer, _IOFBF, sizeof(buffer));
   printf("%ld\n", result);
-  return 0; 
+  return 0;
 }

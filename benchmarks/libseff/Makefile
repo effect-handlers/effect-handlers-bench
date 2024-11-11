@@ -3,7 +3,7 @@ LIBSEFF_H   := $(LIBSEFF)/src
 LIBSEFF_LIB := $(LIBSEFF)/output/lib
 
 CC               := clang-14
-CC_COMPILE_FLAGS := -std=gnu99 -O3 -I$(LIBSEFF_H) -fsplit-stack 
+CC_COMPILE_FLAGS := -std=gnu99 -O3 -I$(LIBSEFF_H) -fsplit-stack
 CC_WARN_FLAGS    := -Wall -Wextra \
 									  -Wformat=2 -Wno-unused-parameter -Wshadow \
 										-Wwrite-strings -Wstrict-prototypes -Wold-style-definition \
@@ -19,15 +19,15 @@ build_cmd   = cd $(1) ; $(call compile_cmd, $(1)); $(call link_cmd, $(1))
 test_cmd    = cd $(1) ; ./main $(2) > actual ; echo $(3) > expected ; diff expected actual
 
 bench: build
-	hyperfine --export-csv results.csv \
-					'./countdown/main 200000000' \
-					'./fibonacci_recursive/main 42' \
-					'./product_early/main 100000' \
-					'./iterator/main 40000000' \
-					'./generator/main 25' \
-					'./parsing_dollars/main 20000' \
-					'./resume_nontail/main 20000' \
-					'./handler_sieve/main 60000'
+	hyperfine --export-csv results.csv --export-json results.json \
+					'countdown/main 200000000' \
+					'fibonacci_recursive/main 42' \
+					'product_early/main 100000' \
+					'iterator/main 40000000' \
+					'generator/main 25' \
+					'parsing_dollars/main 20000' \
+					'resume_nontail/main 20000' \
+					'handler_sieve/main 60000'
 
 test: build
 	$(call test_cmd, countdown, 5, 0)
@@ -39,7 +39,7 @@ test: build
 	$(call test_cmd, resume_nontail, 5, 37)
 	$(call test_cmd, handler_sieve, 10, 17)
 
-build: 
+build:
 	$(call build_cmd, countdown)
 	$(call build_cmd, fibonacci_recursive)
 	$(call build_cmd, product_early)
