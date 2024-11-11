@@ -83,11 +83,12 @@ consecutive terms. Each term is 6 months.
 
 The current co-chairs are
 
+* [Cong Ma](https://github.com/hflsmax) (2024/11/11 - 2025/05/11 - 2025/11/11)
 * [Jesse Sigal](https://github.com/jasigal) (2023/09/27 - 2024/03/27 - 2024/09/27)
-* [Philipp Schuster](https://github.com/phischu) (2022/09/21 - 2023/03/21 - 2023/09/21)
 
 Past co-chairs
 
+* [Philipp Schuster](https://github.com/phischu) (2022/09/21 - 2023/03/21 - 2024/11/11)
 * [Filip Koprivec](https://github.com/jO-Osko) (2022/01/21 - 2022/07/22 - 2023/03/21)
 * [Daniel Hillerström](https://github.com/dhil) (Inaugural chair, 2021/07/23 - 2022/01/22 - 2022/09/20)
 
