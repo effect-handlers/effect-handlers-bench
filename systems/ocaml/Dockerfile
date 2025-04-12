@@ -1,6 +1,6 @@
 FROM effecthandlers/effect-handlers:base
 
-# Install Multicore OCaml
+# Install OCaml
 RUN sudo apt install -y wget git curl gcc make m4 unzip bubblewrap bzip2
 RUN curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh > /tmp/install.sh
 RUN ["/bin/bash", "-c", "sudo /bin/bash /tmp/install.sh <<< /usr/local/bin"]
