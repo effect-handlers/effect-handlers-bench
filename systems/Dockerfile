@@ -3,6 +3,9 @@ FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 
+ARG UID
+ARG GID
+
 # Get the basic stuff
 RUN apt-get update && \
     apt-get -y upgrade && \
@@ -10,7 +13,7 @@ RUN apt-get update && \
     sudo
 
 # Create ubuntu user with sudo privileges
-RUN useradd -ms /bin/bash ubuntu && \
+RUN useradd -ms /bin/bash -u $UID ubuntu && \
     usermod -aG sudo ubuntu
 # New added for disable sudo password
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers

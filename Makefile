@@ -3,7 +3,7 @@ DOCKERHUB=effecthandlers/effect-handlers
 all: bench_eff bench_hia bench_koka bench_links bench_ocaml
 
 system_base:
-	docker build -t $(DOCKERHUB):base systems
+	docker build --build-arg UID=$$(id -u) --build-arg GID=$$(id -g) -t $(DOCKERHUB):base systems
 
 # Eff in ocaml
 system_eff: system_base
