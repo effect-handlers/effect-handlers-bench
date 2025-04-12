@@ -1,5 +1,7 @@
+open Effect
+open Effect.Deep
 
-effect Yield : int -> unit
+type _ Effect.t += Yield : int -> unit t
 
 type tree =
 | Leaf
@@ -20,7 +22,7 @@ let rec iterate = function
 let rec generate f =
   match f () with
     | () -> Empty
-    | effect (Yield v) k -> Thunk (v, fun () -> continue k ())
+    | effect (Yield v), k -> Thunk (v, fun () -> continue k ())
 
 let rec sum a = function
   | Empty -> a
