@@ -31,8 +31,9 @@ contains the results of running the OCaml benchmarks.
 | [libmpeff](https://github.com/koka-lang/libmprompt) | [![libmpeff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libmpeff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libmpeff.yml) |
 | [libseff](https://github.com/effect-handlers/libseff.git) | [![libseff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libseff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libseff.yml) |
 | [Links](https://github.com/links-lang/links) | [![Links](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml) |
-| [OCaml](https://github.com/ocaml/ocaml) | [![OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml) |
+| [OCaml](https://github.com/ocaml/ocaml)\* | [![OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml) |
 
+\* OCaml's multishot continuations are supported via [ocaml-multicont](https://github.com/dhil/ocaml-multicont)
 
 ## Benchmark availability
 
