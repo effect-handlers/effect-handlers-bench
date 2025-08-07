@@ -1,4 +1,3 @@
-
 exception Done of int
 
 let rec product = function

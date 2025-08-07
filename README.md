@@ -17,7 +17,7 @@ $ make bench_ocaml
 ```
 
 runs the OCaml benchmarks and produces `benchmarks/ocaml/results.csv` which
-contains the results of running the Multicore OCaml benchmarks.
+contains the results of running the OCaml benchmarks.
 
 ## System availability
 
@@ -31,12 +31,13 @@ contains the results of running the Multicore OCaml benchmarks.
 | [libmpeff](https://github.com/koka-lang/libmprompt) | [![libmpeff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libmpeff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libmpeff.yml) |
 | [libseff](https://github.com/effect-handlers/libseff.git) | [![libseff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libseff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libseff.yml) |
 | [Links](https://github.com/links-lang/links) | [![Links](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml) |
-| [Multicore OCaml](https://github.com/ocaml-multicore/ocaml-multicore) | [![Multicore OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml) |
+| [OCaml](https://github.com/ocaml/ocaml)\* | [![OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml) |
 
+\* OCaml's multishot continuations are supported via [ocaml-multicont](https://github.com/dhil/ocaml-multicont)
 
 ## Benchmark availability
 
-|                         | Eff                | Effekt             | Handlers in Action | Koka               | Multicore OCaml    | Libseff            | Libmpeff            |
+|                         | Eff                | Effekt             | Handlers in Action | Koka               | OCaml              | Libseff            | Libmpeff            |
 | :---------------------- | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: |
 | **Countdown**           | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | **Fibonacci Recursive** | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |

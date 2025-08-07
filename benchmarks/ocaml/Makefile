@@ -26,17 +26,17 @@ test: build
 	cd handler_sieve ; ./main 10 > actual ; echo 17 > expected ; diff expected actual
 
 build:
-	cd countdown ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
-	cd fibonacci_recursive ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
-	cd product_early ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
-	cd iterator ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
-	cd nqueens ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
-	cd generator ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
-	cd tree_explore ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
-	cd triples ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
-	cd parsing_dollars ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
-	cd resume_nontail ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
-	cd handler_sieve ; opam exec --switch=4.12.0+domains+effects -- ocamlopt -O3 -o main main.ml
+	cd countdown ; opam exec --switch=5.3.0 -- ocamlopt -O3 -I $$(opam var lib)/multicont multicont.cmxa -o main main.ml
+	cd fibonacci_recursive ; opam exec --switch=5.3.0 -- ocamlopt -O3 -I $$(opam var lib)/multicont multicont.cmxa -o main main.ml
+	cd product_early ; opam exec --switch=5.3.0 -- ocamlopt -O3 -I $$(opam var lib)/multicont multicont.cmxa -o main main.ml
+	cd iterator ; opam exec --switch=5.3.0 -- ocamlopt -O3 -I $$(opam var lib)/multicont multicont.cmxa -o main main.ml
+	cd nqueens ; opam exec --switch=5.3.0 -- ocamlopt -O3 -I $$(opam var lib)/multicont multicont.cmxa -o main main.ml
+	cd generator ; opam exec --switch=5.3.0 -- ocamlopt -O3 -I $$(opam var lib)/multicont multicont.cmxa -o main main.ml
+	cd tree_explore ; opam exec --switch=5.3.0 -- ocamlopt -O3 -I $$(opam var lib)/multicont multicont.cmxa -o main main.ml
+	cd triples ; opam exec --switch=5.3.0 -- ocamlopt -O3 -I $$(opam var lib)/multicont multicont.cmxa -o main main.ml
+	cd parsing_dollars ; opam exec --switch=5.3.0 -- ocamlopt -O3 -I $$(opam var lib)/multicont multicont.cmxa -o main main.ml
+	cd resume_nontail ; opam exec --switch=5.3.0 -- ocamlopt -O3 -I $$(opam var lib)/multicont multicont.cmxa -o main main.ml
+	cd handler_sieve ; opam exec --switch=5.3.0 -- ocamlopt -O3 -I $$(opam var lib)/multicont multicont.cmxa -o main main.ml
 
 clean:
 	-rm */main.cmi
