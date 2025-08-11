@@ -1,0 +1,109 @@
+effect Read {
+    read: () -> int
+}
+
+effect Emit {
+    emit: (int) -> unit
+}
+
+effect Stop {
+    stop: () -> int
+}
+
+def newline(): int {
+    10
+}
+
+def is_newline(c: int): bool {
+    c == 10
+}
+
+def dollar(): int {
+    36
+}
+
+def is_dollar(c: int): bool {
+    c == 36
+}
+
+def sum(action: <> [; emit_stub: Emit] (int) -> int, n: int): int {
+    val s = newref {0};
+    handle <> {
+        action: [; emit_stub] (n)
+    } with emit_stub: Emit {
+        def emit(e) {
+            s[0] := s[0] + e
+        }
+    };
+    s[0]
+}
+
+def catch [; emit_stub: Emit] (action: <> [; stop_stub: Stop, emit_stub: Emit] (int) -> int, n: int): int {
+    handle <emit_stub> {
+        action: [; stop_stub, emit_stub] (n)
+    } with stop_stub: Stop {
+        exc stop() { 0 }
+    }
+}
+
+def feed [; stop_stub: Stop, emit_stub: Emit] (n: int, action: <> [; read_stub: Read, emit_stub: Emit, stop_stub: Stop] () -> int): int {
+    val i_ref = newref {0};
+    val j_ref = newref {0};
+    handle <emit_stub, stop_stub> {
+        action :[; read_stub, emit_stub, stop_stub] ()
+    }
+    with read_stub: Read {
+        def read() {
+            val i = i_ref[0];
+            val j = j_ref[0];
+            if i > n then
+                raise stop_stub.stop()
+            else (
+                if j == 0 then
+                    i_ref[0] := i + 1;
+                    j_ref[0] := i + 1;
+                    newline()
+                else
+                    (j_ref[0] := j - 1;
+                    dollar())
+            )
+        }
+    }
+}
+
+def parse [; read_stub: Read, emit_stub: Emit, stop_stub: Stop] (a: int): int {
+    val c = raise read_stub.read();
+    if is_dollar(c) then
+        parse: [; read_stub, emit_stub, stop_stub](a + 1)
+    else
+        if is_newline(c) then
+            raise emit_stub.emit(a);
+            parse: [; read_stub, emit_stub, stop_stub](0)
+        else
+            raise stop_stub.stop()
+}
+
+def feed_action [; read_stub: Read, emit_stub: Emit, stop_stub: Stop] (): int {
+    parse:[;read_stub, emit_stub, stop_stub](0)
+}
+
+def sum_action [;emit_stub: Emit] (n: int): int {
+    val catch_action_i64 = catch_action;
+    catch:[;emit_stub] (catch_action_i64, n)
+}
+
+def catch_action [; stop_stub: Stop, emit_stub: Emit](n: int): int {
+    val feed_action_i64 = feed_action;
+    feed:[; stop_stub, emit_stub](n, feed_action_i64)
+}
+
+def run(n: int): int {
+    val sum_action_i64 = sum_action;
+    sum(sum_action_i64, n)
+}
+
+def main(): int {
+    val n = ~readInt();
+    ~printInt(run(n));
+    0
+}

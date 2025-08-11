@@ -1,0 +1,39 @@
+effect Operator {
+    operator: (int) -> int
+}
+
+def loop [;operator_stub: Operator](i: int, s: int): int {
+    if i == 0 then
+        s
+    else (
+        raise operator_stub.operator(i);
+        loop: [;operator_stub](i - 1, s)
+    )
+}
+
+def run(n: int, s: int): int {
+    handle <> {
+        loop: [;operator_stub](n, s)
+    } with operator_stub: Operator {
+        hdl_1 operator(x, k) {
+            val y = resume_final k 0;
+            ~mathAbs(x - (503 * y) + 37) % 1009
+        }
+    }
+}
+
+def step(l: int, s: int, n: int): int {
+    if l == 0 then
+        s
+    else
+        step(l - 1, run(n, s), n)
+}
+
+def repeat(n: int): int {
+    step(1000, 0, n)
+}
+
+def main(): int {
+    ~printInt(repeat(~readInt()));
+    0
+}

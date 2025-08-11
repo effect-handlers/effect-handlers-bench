@@ -1,0 +1,50 @@
+effect Choice {
+    flip: () -> int
+    fail: () -> int
+}
+
+def choice [; choice_stub: Choice](n: int): int {
+    if n < 1 then
+        raise choice_stub.fail()
+    else
+        if raise choice_stub.flip() > 0 then
+            n
+        else
+            choice:[; choice_stub](n - 1)
+}
+
+def triple [; choice_stub: Choice] (n: int, s: int): int {
+    val i = choice:[; choice_stub](n);
+    val j = choice:[; choice_stub](i - 1);
+    val k = choice:[; choice_stub](j - 1);
+    if i + j + k == s then
+        hash(i, j, k)
+    else
+        raise choice_stub.fail()
+}
+
+def run(n: int, s: int): int {
+    handle <> {
+        triple:[; choice_stub](n, s)
+    } with choice_stub: Choice {
+        exc fail() {
+            0
+        }
+
+        hdl_s flip(k) {
+            (resume k 1 + resume_final k 0) % 1000000007
+        }
+    }
+}
+
+def hash(a: int, b: int, c: int): int {
+    (53 * a + 2809 * b + 148877 * c) % 1000000007
+}
+
+def main(): int {
+    val n = ~readInt();
+    val res = run(n, n);
+    ~printInt(res);
+    0
+}
+

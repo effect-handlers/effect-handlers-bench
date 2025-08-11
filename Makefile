@@ -53,6 +53,18 @@ test_koka: system_koka
 	docker run -v $(shell pwd):/source $(DOCKERHUB):koka \
 		make -C /source/benchmarks/koka test
 
+# Lexa
+system_lexa:
+	docker build -t $(DOCKERHUB):lexa systems/lexa
+
+bench_lexa: system_lexa
+	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):lexa \
+		make -C /source/benchmarks/lexa
+
+test_lexa: system_lexa
+	docker run -v $(shell pwd):/source $(DOCKERHUB):lexa \
+		make -C /source/benchmarks/lexa test
+
 # libmpeff
 system_libmpeff: system_base
 	docker build -t $(DOCKERHUB):libmpeff systems/libmpeff
