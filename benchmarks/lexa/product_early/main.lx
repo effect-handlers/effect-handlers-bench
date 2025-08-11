@@ -1,0 +1,51 @@
+
+effect Abort {
+  done: (int) -> int
+}
+
+def product [; abort_stub: Abort] (xs: node_t::[int]): int {
+    if ~listIsEmpty::[int](xs) then
+        0
+    else
+        val y = ~listHead::[int](xs);
+        val ys = ~listTail::[int](xs);
+            if y == 0 then
+                raise abort_stub.done(0)
+            else
+                y * product:[; abort_stub](ys)
+}
+
+def enumerate(i: int): node_t::[int] {
+    if i < 0 then
+        ~listEnd::[int]()
+    else
+        ~listNode::[int](i, enumerate(i - 1))
+}
+
+def runProduct(xs: node_t::[int]): int {
+    handle <> {
+        product:[; abort_stub](xs)
+    } with abort_stub: Abort {
+        exc done(r) {
+            r
+        }
+    }
+}
+
+def loop(xs: node_t::[int], i: int, a: int): int {
+    if i == 0 then
+        a
+    else
+        loop(xs, i - 1, a + runProduct(xs))
+}
+
+def run(n: int): int {
+    loop(enumerate(1000), n, 0)
+}
+
+def main(): int {
+    val arg1 = ~readInt();
+    val arg2 = run(arg1);
+    ~printInt(arg2);
+    0
+}

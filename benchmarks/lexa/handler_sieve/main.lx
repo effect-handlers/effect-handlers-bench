@@ -1,0 +1,39 @@
+effect Prime {
+    prime: (int) -> bool
+}
+
+def primes [; prime_stub: Prime] (i: int, n: int, a: int): int {
+    if i < n then
+        if raise prime_stub.prime(i) then
+            handle <prime_stub> {
+                primes: [;new_prime_stub](i + 1, n, a + i)
+            } with new_prime_stub: Prime {
+                def prime(e) {
+                    if (e % i) == 0 then
+                        false
+                    else
+                        raise prime_stub.prime(e)
+                }                
+            }
+        else
+            primes: [; prime_stub](i + 1, n, a)
+    else
+        a
+}
+
+def run(n: int): int {
+    handle <> {
+        primes: [;prime_true_stub](2, n, 0)
+    } with prime_true_stub: Prime {
+        def prime(e) {
+            true
+        }        
+    }
+}
+
+def main(): int {
+    val arg1 = ~readInt();
+    val arg2 = run(arg1);
+    ~printInt(arg2);
+    0
+}

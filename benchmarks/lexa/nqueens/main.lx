@@ -1,0 +1,56 @@
+effect Search {
+    pick: (int) -> int
+    fail: () -> int
+}
+
+def safe(queen: int, diag: int, xs: node_t::[int]): bool {
+    val is_empty = ~listIsEmpty::[int](xs);
+    if is_empty then
+        true
+    else
+        val q = ~listHead::[int](xs);
+        val qs = ~listTail::[int](xs);
+        if queen != q && queen != q + diag && queen != q - diag then
+            safe(queen, diag + 1, qs)
+        else
+            false
+}
+
+def place [; search_stub: Search] (size: int, column: int): node_t::[int] {
+    if column == 0 then
+        ~listEnd::[int]()
+    else
+        val rest = place:[; search_stub](size, column - 1);
+        val next = raise search_stub.pick(size);
+        if safe(next, 1, rest) then
+            ~listNode::[int](next, rest)
+        else 
+            (raise search_stub.fail();
+            ~listEnd::[int]())
+}
+
+def run(n: int): int {
+    handle <> {
+        place:[; search_stub](n, n);
+        1
+    } with search_stub: Search {
+        exc fail() { 0 }
+        hdl_s pick(size, k) {
+            loop(1, 0, size, k)
+        }
+    }
+}
+
+def loop(i: int, a: int, size: int, k: cont <> int -> int): int {
+    if i == size then
+        a + resume_final k i
+    else
+        loop(i + 1, a + resume k i, size, k)
+}
+
+def main(): int {
+    val n = ~readInt();
+    val run_res = run(n);
+    ~printInt(run_res);
+    0
+}
