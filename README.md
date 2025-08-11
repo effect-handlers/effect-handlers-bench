@@ -10,11 +10,11 @@ language.
 
 ## Quick start
 
-Ensure that [Docker](https://www.docker.com/) is installe on your system. Then,
+Ensure that [Docker](https://www.docker.com/) is installed on your system. Then,
 
 ```bash
 $ make bench_ocaml
-``
+```
 
 runs the OCaml benchmarks and produces `benchmarks/ocaml/results.csv` which
 contains the results of running the OCaml benchmarks.
@@ -25,12 +25,12 @@ contains the results of running the OCaml benchmarks.
 |-------|--------------|
 | [Eff](https://github.com/matijapretnar/eff) | [![Eff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_eff.yml) |
 | [Effekt](https://github.com/effekt-lang/effekt) | [![Effekt](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_effekt.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_effekt.yml) |
-| [Handlers in Action](https://github.com/slindley/effect-handlers) | [![Handlers in Action](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml |
+| [Handlers in Action](https://github.com/slindley/effect-handlers) | [![Handlers in Action](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_hia.yml) |
 | [Koka](https://github.com/koka-lang/koka) | [![Koka](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_koka.yml) |
 | [Lexa](https://github.com/lexa-lang/lexa) | [![Lexa](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_lexa.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_lexa.yml) |
 | [libhandler](https://github.com/koka-lang/libhandler) | [![libhandler](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libhandler.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libhandler.yml) |
 | [libmpeff](https://github.com/koka-lang/libmprompt) | [![libmpeff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libmpeff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libmpeff.yml) |
-| [libseff](https://github.com/effect-handlers/libseff.git | [![libseff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libseff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libseff.yml) |
+| [libseff](https://github.com/effect-handlers/libseff.git) | [![libseff](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libseff.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_libseff.yml) |
 | [Links](https://github.com/links-lang/links) | [![Links](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_links.yml) |
 | [OCaml](https://github.com/ocaml/ocaml)\* | [![OCaml](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml/badge.svg)](https://github.com/effect-handlers/effect-handlers-bench/actions/workflows/system_ocaml.yml) |
 
