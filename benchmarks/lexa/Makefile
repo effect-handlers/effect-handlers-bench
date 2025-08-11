@@ -7,7 +7,7 @@ bench: build
 		'nqueens/main 12' \
 		'generator/main 25' \
 		'tree_explore/main 16' \
-		'triples/main 300 300' \
+		'triples/main 300' \
 		'parsing_dollars/main 20000' \
 		'resume_nontail/main 20000' \
 		'handler_sieve/main 60000'
