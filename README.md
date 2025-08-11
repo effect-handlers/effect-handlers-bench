@@ -5,7 +5,7 @@ effect handlers, `benchmarks` implemented in those systems, and scripts to
 build the systems, run the benchmarks, and produce the results.
 
 A `system` may either be a programming language that has native support for
-effect handlers, or  library that embeds effect handlers in another programmin
+effect handlers, or a library that embeds effect handlers in another programming
 language.
 
 ## Quick start
@@ -16,8 +16,8 @@ Ensure that [Docker](https://www.docker.com/) is installe on your system. Then,
 $ make bench_ocaml
 ``
 
-runs the OCaml benchmarks and produces `benchmarks/ocaml/results.csv` whic
-contains the results of running the OCam benchmarks.
+runs the OCaml benchmarks and produces `benchmarks/ocaml/results.csv` which
+contains the results of running the OCaml benchmarks.
 
 ## System availability
 
