@@ -1,9 +1,10 @@
 FROM nixos/nix
 
-RUN mkdir lexa
-WORKDIR /home/ubuntu/lexa
+WORKDIR /WorkDir
 
-RUN git clone --branch OOPSLA25 --depth 1 git@github.com:lexa-lang/lexa.git .
+RUN curl -o lexa-oopsla25.tar.gz -sL https://github.com/lexa-lang/lexa/archive/refs/tags/OOPSLA25.tar.gz
+RUN tar xvf lexa-oopsla25.tar.gz
+WORKDIR ./lexa-OOPSLA25
 
 RUN nix --extra-experimental-features "nix-command flakes" build --accept-flake-config --no-link .#clang_18_preserve_none --cores 16
 RUN nix --extra-experimental-features "nix-command flakes" build --accept-flake-config --no-link nixpkgs#texliveSmall --cores 16
