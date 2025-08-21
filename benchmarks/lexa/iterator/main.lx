@@ -1,0 +1,30 @@
+effect Emit {
+    emit: (int) -> unit
+}
+
+def range [; emit_stub: Emit] (l: int, u: int): int {
+    if l > u then
+        0
+    else (
+        raise emit_stub.emit(l);
+        range:[; emit_stub](l + 1, u)
+    )
+}
+
+def run(n: int): int {
+    val s = newref {0};
+    handle <> {
+        range:[; emit_stub](0, n)
+    } with emit_stub: Emit {
+        def emit(e) {
+            s[0] := s[0] + e;
+            0
+        }        
+    };
+    s[0]
+}
+
+def main(): int {
+    ~printInt(run(~readInt()));
+    0
+}

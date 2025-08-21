@@ -1,0 +1,58 @@
+effect Yield {
+    yield: (int) -> unit
+}
+
+type tree = 
+    | Leaf
+    | Node of int * tree * tree
+
+type generator =
+    | Empty
+    | Thunk of int * (cont <> unit -> generator)
+
+def make(n: int): tree {
+    if n == 0 then
+        Leaf
+    else
+        val t = make(n - 1);
+        Node(n, t, t)
+}
+
+def iterate [; yield_stub: Yield] (t: tree): int {
+    match t with
+    | Leaf -> { 0 }
+    | Node (value, left, right) -> {
+        iterate: [; yield_stub] (left);
+        raise yield_stub.yield(value);
+        iterate: [; yield_stub] (right)
+    }
+}
+
+def generate(f: <> [; yield_stub: Yield] () -> int): generator {
+    handle <> {
+        f:[; yield_stub]();
+        Empty()
+    } with yield_stub: Yield {
+        hdl_1 yield(x, k) {
+            Thunk(x, k)
+        }
+    }
+}
+
+def sum(a: int, g: generator): int {
+    match g with
+    | Empty -> { a }
+    | Thunk (v, f) -> {
+        sum(v + a, resume_final f (()))
+    }
+}
+
+def run(n: int): int {
+    val f = fun <> [; yield_stub: Yield] (): int { iterate:[; yield_stub](make(n)) };
+    sum(0, generate(f))
+}
+
+def main(): int {
+    ~printInt(run(~readInt()));
+    0
+}
