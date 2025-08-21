@@ -71,11 +71,11 @@ system_libseff:
 
 bench_libseff: system_libseff
 	docker run -it --init -v $(shell pwd):/source $(DOCKERHUB):libseff \
-		make -C /source/benchmarks/libseff
+		sudo make -C /source/benchmarks/libseff
 
 test_libseff: system_libseff
 	docker run -v $(shell pwd):/source $(DOCKERHUB):libseff \
-		make -C /source/benchmarks/libseff test
+		sudo make -C /source/benchmarks/libseff test
 
 # Links
 system_links: system_base
